@@ -2,13 +2,15 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<meta name="theme-color" content="#07080A" />
 <title>Agendou — Sistema de gestão para barbearias</title>
-<meta name="description" content="Agenda online, histórico de clientes, financeiro e controle do que falta receber num painel só. Comece grátis com até 15 clientes cadastrados." />
+<meta name="description" content="Agenda online, histórico de clientes, financeiro e controle do que falta receber num painel só. Comece grátis com até 15 clientes cadastrados, sem cartão." />
 <link rel="icon" type="image/svg+xml" href="https://app-agendou.vercel.app/icon.svg" />
+<link rel="preconnect" href="https://app-agendou.vercel.app" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 <style>
 /* ─── TOKENS ─────────────────────────────────────────────────── */
 :root {
@@ -564,82 +566,6 @@ h1 {
   line-height: 1.65;
 }
 .section-header { margin-bottom: 64px; }
-
-/* ─── PROBLEMS ────────────────────────────────────────────────── */
-#problems {
-  padding: 100px 0;
-  background: linear-gradient(180deg, transparent, rgba(255,47,58,0.03), transparent);
-}
-.problems-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
-  margin-bottom: 48px;
-}
-.problem-card {
-  background: var(--s1);
-  border: 1px solid var(--b1);
-  border-radius: var(--r-lg);
-  padding: 24px;
-  position: relative;
-  overflow: hidden;
-  transition: border-color 0.2s, transform 0.2s var(--ease);
-}
-.problem-card:hover {
-  border-color: rgba(255,47,58,0.25);
-  transform: translateY(-2px);
-}
-.problem-card::after {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(255,47,58,0.3), transparent);
-  opacity: 0;
-  transition: opacity 0.2s;
-}
-.problem-card:hover::after { opacity: 1; }
-.problem-icon {
-  width: 40px; height: 40px;
-  background: rgba(255,47,58,0.1);
-  border: 1px solid rgba(255,47,58,0.2);
-  border-radius: 10px;
-  display: flex; align-items: center; justify-content: center;
-  margin-bottom: 16px;
-  font-size: 18px;
-}
-.problem-title {
-  font-size: 15px;
-  font-weight: 600;
-  margin-bottom: 8px;
-  color: var(--txt);
-}
-.problem-desc {
-  font-size: 13.5px;
-  color: var(--txt3);
-  line-height: 1.6;
-}
-.problems-vs {
-  text-align: center;
-  padding: 48px 0 0;
-}
-.vs-label {
-  display: inline-block;
-  font-size: 12px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--coral);
-  margin-bottom: 16px;
-  font-weight: 600;
-}
-.vs-headline {
-  font-size: clamp(22px, 2.8vw, 34px);
-  font-weight: 700;
-  letter-spacing: -0.03em;
-  max-width: 600px;
-  margin: 0 auto;
-  line-height: 1.2;
-}
 
 /* ─── FEATURES ────────────────────────────────────────────────── */
 #features {
@@ -1307,11 +1233,6 @@ footer {
 
 /* ═══ OTIMIZAÇÃO v2 — componentes novos, mesmos tokens ═══════════ */
 
-/* logotipo único do Agendou (mesmo do app) */
-.logo-mark { flex-shrink: 0; display: block; }
-.nav-entrar { white-space: nowrap; }
-@media (max-width: 900px) { .nav-entrar { display: none; } }
-
 /* utilitários */
 html, body { overflow-x: hidden; }
 @supports (overflow-x: clip) { html, body { overflow-x: clip; } }
@@ -1561,9 +1482,312 @@ button.demo-row:hover { background: rgba(255,255,255,0.04); border-color: var(--
   .hero-note { margin-top: -28px; }
 }
 
+
+/* ═══ v3 · MOBILE PRIMEIRO — ícones, cadastro, barra fixa ═══════════ */
+
+/* ícones (Lucide, sprite inline) */
+.ic {
+  width: 20px; height: 20px; flex-shrink: 0;
+  fill: none; stroke: currentColor; stroke-width: 1.85;
+  stroke-linecap: round; stroke-linejoin: round;
+  display: inline-block; vertical-align: middle;
+}
+.ic--sm { width: 16px; height: 16px; }
+.ic--lg { width: 22px; height: 22px; }
+.ic-box {
+  width: 44px; height: 44px; border-radius: 12px; flex-shrink: 0;
+  display: inline-flex; align-items: center; justify-content: center;
+  background: rgba(255,107,74,0.11); color: var(--coral);
+}
+.ic-box--amber { background: rgba(255,179,71,0.11); color: var(--amber); }
+.ic-check {
+  width: 18px; height: 18px; border-radius: 50%; flex-shrink: 0; margin-top: 2px;
+  display: inline-flex; align-items: center; justify-content: center;
+  background: rgba(255,107,74,0.16); color: var(--coral);
+}
+.ic-check .ic { width: 11px; height: 11px; stroke-width: 3; }
+.ic-check--green { background: rgba(40,200,80,0.14); color: #4ADE80; }
+.ic-check--amber { background: rgba(255,179,71,0.16); color: var(--amber); }
+.ic-x {
+  width: 32px; height: 32px; border-radius: 10px; flex-shrink: 0;
+  display: inline-flex; align-items: center; justify-content: center;
+  background: rgba(255,107,115,0.08); color: #E98A90;
+}
+.ic-x .ic { width: 16px; height: 16px; }
+
+/* base de leitura no celular */
+body { font-size: 16px; }
+.btn-primary, .btn-ghost { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 44px; }
+.btn-primary--lg { min-height: 52px; }
+.btn-link {
+  display: inline-flex; align-items: center; gap: 6px; min-height: 44px; padding: 0 6px;
+  font-size: 15px; font-weight: 600; color: var(--txt2);
+  text-decoration: underline; text-decoration-color: rgba(255,255,255,0.25); text-underline-offset: 4px;
+  transition: color .2s, text-decoration-color .2s;
+}
+.btn-link:hover { color: var(--txt); text-decoration-color: var(--coral); }
+.tag-cfg { white-space: nowrap; }
+
+/* nav */
+.nav-cta .btn-ghost { border-color: transparent; }
+.nav-logo { min-height: 44px; }
+.nav-hamburger { margin-left: auto; width: 44px; height: 44px; align-items: center; justify-content: center; padding: 0; color: var(--txt); }
+.nav-hamburger .i-close { display: none; }
+.nav-hamburger[aria-expanded="true"] .i-open { display: none; }
+.nav-hamburger[aria-expanded="true"] .i-close { display: inline-block; }
+.nav-mobile-overlay.open { display: flex; }
+.nav-mobile-overlay a { min-height: 48px; display: flex; align-items: center; }
+.nav-mobile-overlay .menu-actions { display: flex; flex-direction: column; gap: 10px; width: min(320px, 100% - 48px); margin-top: 20px; }
+.nav-mobile-overlay .menu-actions a { justify-content: center; padding: 14px 20px; font-size: 16px; border-radius: 12px; }
+.nav-mobile-overlay .menu-actions .btn-primary { color: #1A1B1D; }
+body.menu-open { overflow: hidden; }
+
+/* hero */
+#hero h1 { font-size: clamp(31px, 5.4vw, 62px); max-width: 900px; }
+.hero-sub { max-width: 600px; }
+.hero-actions { margin-bottom: 14px; }
+.hero-note { margin: 0 0 32px; font-size: 13.5px; }
+.hero-chips {
+  display: grid; grid-template-columns: repeat(4, auto); justify-content: center; gap: 10px;
+  max-width: 900px; margin: 0 auto;
+}
+.hero-chip {
+  display: flex; align-items: center; gap: 10px; text-align: left;
+  background: rgba(255,255,255,0.03); border: 1px solid var(--b1); border-radius: 12px;
+  padding: 10px 14px 10px 10px; font-size: 13.5px; color: var(--txt2); line-height: 1.3;
+}
+.hero-chip .ic-box { width: 32px; height: 32px; border-radius: 9px; }
+.hero-chip .ic { width: 17px; height: 17px; }
+
+/* demo: carregada sob demanda */
+#demo-view:empty { min-height: 460px; }
+.demo-loading { display: flex; align-items: center; justify-content: center; min-height: 460px; font-size: 13px; color: var(--txt3); }
+.mockup-logo-sm { display: flex; align-items: center; gap: 8px; }
+.mockup-logo-sm .ic { color: var(--coral); width: 16px; height: 16px; }
+button.mock-nav-item { display: flex; align-items: center; gap: 9px; }
+button.mock-nav-item .ic { width: 16px; height: 16px; opacity: .8; }
+button.mock-nav-item.active .ic { opacity: 1; }
+.demo-btn { display: inline-flex; align-items: center; gap: 5px; }
+.demo-btn .ic { width: 13px; height: 13px; stroke-width: 2.2; }
+.var-ic { width: 12px; height: 12px; stroke-width: 2.2; vertical-align: -1px; margin-right: 2px; }
+
+/* controle financeiro (problema + cobranças) */
+#financeiro { padding: 100px 0; background: linear-gradient(180deg, transparent, rgba(255,47,58,0.03), transparent); }
+.fin-grid {
+  display: grid; grid-template-columns: 1fr 1.05fr; gap: 20px 48px; align-items: start;
+  grid-template-areas: "dores solve" "mini solve";
+}
+.fin-dores { grid-area: dores; }
+.fin-solve { grid-area: solve; }
+.fin-mini  { grid-area: mini; }
+.fin-dores .pain-list { margin-top: 0; }
+.pain-item { align-items: center; color: var(--txt3); font-size: 14px; }
+.pain-item b { font-size: 15px; }
+.solve-head { font-size: 12px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--coral); padding: 20px 0 4px; }
+.solve-item { align-items: flex-start; gap: 14px; }
+.solve-item .ic-box { width: 40px; height: 40px; }
+.solve-title { font-size: 15.5px; }
+.solve-desc { font-size: 14.5px; }
+.optional-note { align-items: flex-start; }
+.optional-note .ic { color: var(--txt3); margin-top: 1px; width: 18px; height: 18px; }
+.fin-mini .receber-mini { margin-top: 0; }
+
+/* recursos */
+.pillar-head { display: flex; align-items: center; gap: 14px; width: 100%; background: none; color: inherit; text-align: left; padding: 0; margin-bottom: 14px; }
+.pillar-head .feat-title { margin: 0; flex: 1; font-size: 19px; }
+.pillar-head .chev { display: none; color: var(--txt3); transition: transform .3s var(--ease); }
+.pillar-head[aria-expanded="true"] .chev { transform: rotate(180deg); color: var(--coral); }
+.pillars .feat-tag { margin-bottom: 6px; }
+.pillars .benefit-item { font-size: 14.5px; }
+.extras-row .benefit-card-sm { display: flex; flex-direction: column; gap: 10px; }
+.bcm-title { font-size: 14.5px; display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+.bcm-desc { font-size: 13.5px; }
+
+/* clube */
+.recorrencia-tag .ic { width: 15px; height: 15px; }
+.benefit-item { font-size: 15px; }
+
+/* como funciona */
+.steps-wrap.steps-3 .step-desc { font-size: 14.5px; }
+
+/* depoimentos (só aparece com conteúdo real) */
+#depoimentos { padding: 80px 0 0; }
+#depoimentos[hidden] { display: none; }
+.depo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; }
+.depo-card { background: var(--s1); border: 1px solid var(--b1); border-radius: var(--r-lg); padding: 22px; display: flex; flex-direction: column; gap: 16px; }
+.depo-frase { font-size: 15.5px; line-height: 1.6; color: var(--txt); }
+.depo-autor { display: flex; align-items: center; gap: 12px; margin-top: auto; }
+.depo-foto { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; background: var(--s3); flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; color: var(--txt2); }
+.depo-nome { font-size: 14px; font-weight: 600; }
+.depo-local { font-size: 12.5px; color: var(--txt3); }
+
+/* preços */
+.price-card .btn-primary, .price-card .btn-ghost { min-height: 48px; display: flex; }
+.pf-item { align-items: flex-start; }
+.pricing-all { text-align: center; font-size: 15px; color: var(--txt2); margin: -40px auto 40px; max-width: 520px; }
+.pricing-foot { max-width: 760px; margin-left: auto; margin-right: auto; }
+
+/* faq */
+.faq-question { min-height: 56px; }
+.faq-arrow .ic { width: 18px; height: 18px; }
+.faq-answer-inner { font-size: 15px; }
+.faq-answer-inner .tag-cfg { margin-right: 4px; }
+
+/* rodapé */
+.footer-links a { display: inline-flex; align-items: center; min-height: 32px; }
+
+/* barra de CTA fixa (celular) */
+.sticky-cta {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 90;
+  padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
+  background: rgba(11,12,14,0.92); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+  border-top: 1px solid var(--b1);
+  display: none; align-items: center; gap: 12px;
+  transform: translateY(110%); visibility: hidden;
+  transition: transform .3s var(--ease), visibility 0s linear .3s;
+}
+.sticky-cta.show { transform: none; visibility: visible; transition: transform .3s var(--ease), visibility 0s; }
+.sticky-cta .btn-primary { flex: 1; min-height: 48px; font-size: 15.5px; border-radius: 12px; }
+.sticky-cta-note { font-size: 11.5px; color: var(--txt3); line-height: 1.3; max-width: 104px; }
+
+/* WhatsApp flutuante */
+.wa-float {
+  position: fixed; right: 16px; bottom: calc(20px + env(safe-area-inset-bottom)); z-index: 91;
+  width: 52px; height: 52px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  background: #1FAF54; color: #fff; box-shadow: 0 8px 28px rgba(0,0,0,0.45);
+  transition: bottom .3s var(--ease), transform .15s;
+}
+.wa-float[hidden] { display: none; }
+.wa-float:active { transform: scale(.94); }
+.wa-float .ic { width: 24px; height: 24px; stroke-width: 2; }
+
+/* animação de entrada mais leve */
+.reveal { transform: translateY(16px); transition-duration: .5s; }
+
+/* ─── TABLET / CELULAR ─────────────────────────────────────────── */
+@media (max-width: 1080px) {
+  .hero-chips { grid-template-columns: repeat(2, auto); }
+}
+@media (max-width: 900px) {
+  .fin-grid { grid-template-columns: 1fr; grid-template-areas: "dores" "solve" "mini"; }
+  .sticky-cta { display: flex; }
+  body.has-sticky .wa-float { bottom: calc(84px + env(safe-area-inset-bottom)); }
+  .nav-cta .btn-ghost { display: none; }
+
+  /* pilares viram acordeão */
+  .pillar-head { min-height: 44px; margin-bottom: 0; cursor: pointer; }
+  .pillar-head .chev { display: inline-block; }
+  .pillar-body { overflow: hidden; }
+  .pillar-body[hidden] { display: none; }
+  .pillars .feat-card { padding: 18px; }
+  .pillars .feat-desc { margin: 12px 0 14px; }
+  .pillars { gap: 10px; }
+  .extras-row { grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px; }
+  .extras-row .benefit-card-sm { padding: 14px; gap: 8px; }
+  .bcm-title { font-size: 14px; }
+  .bcm-desc { font-size: 13px; }
+}
+@media (max-width: 600px) {
+  .container { padding: 0 16px; }
+  #nav { top: 10px; width: calc(100% - 20px); padding: 6px 6px 6px 14px; gap: 8px; }
+  .nav-cta .btn-primary { padding: 8px 14px; }
+
+  #hero { padding: 104px 0 44px; }
+  .eyebrow { margin-bottom: 18px; }
+  #hero h1 { margin-bottom: 16px; letter-spacing: -0.035em; line-height: 1.08; }
+  .hero-sub { font-size: 16px; margin-bottom: 24px; }
+  .hero-actions { flex-direction: column; gap: 6px; }
+  .hero-actions .btn-primary--lg { width: 100%; }
+  .hero-note { margin-bottom: 24px; }
+  .hero-chips { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .hero-chip { flex-direction: column; align-items: flex-start; gap: 8px; padding: 12px; font-size: 13.5px; }
+
+  #demo { padding-bottom: 56px; }
+  .demo-head { margin-bottom: 18px; }
+  .demo-hint { font-size: 14.5px; }
+  button.mock-nav-item { min-height: 44px; padding: 0 14px; font-size: 13.5px; }
+  .demo-chip { min-height: 40px; padding: 0 14px; font-size: 13px; }
+  .demo-chips { gap: 6px; }
+  .demo-row { min-height: 44px; font-size: 13px; }
+  .demo-row .muted { font-size: 11.5px; }
+  .demo-btn { min-height: 40px; font-size: 12.5px; padding: 0 12px; }
+  .demo-search { min-height: 44px; font-size: 16px; }
+  .demo-scroll { max-height: 320px; }
+  .demo-kv { font-size: 13px; }
+  .mock-stat-label, .mock-stat-sub { font-size: 11px; }
+  .demo-flag { font-size: 10.5px; }
+
+  #financeiro, #features, #recorrencia, #como-funciona, #planos, #faq { padding: 56px 0; }
+  #cta-final { padding: 64px 0 72px; }
+  #depoimentos { padding-top: 56px; }
+  .section-header { margin-bottom: 32px; }
+  .section-sub { margin-bottom: 0; font-size: 15.5px; }
+  .section-title { font-size: clamp(25px, 7vw, 34px); }
+  .pain-item { padding: 12px 14px; }
+  .solve-card { padding: 0 16px; }
+  .solve-item { padding: 16px 0; }
+
+  .recorrencia-wrap { gap: 28px; }
+  .recorrencia-desc { font-size: 15.5px; margin-bottom: 18px; }
+
+  .steps-wrap.steps-3 { gap: 10px; }
+  .steps-wrap.steps-3 .step-card { display: flex; align-items: center; gap: 14px; text-align: left;
+    background: var(--s1); border: 1px solid var(--b1); border-radius: var(--r-md); padding: 14px; }
+  .steps-wrap.steps-3 .step-num { width: 44px; height: 44px; margin: 0; font-size: 15px; flex-shrink: 0; box-shadow: none; }
+  .steps-wrap.steps-3 .step-title { margin-bottom: 2px; }
+
+  /* preços: Anual primeiro, Gratuito por último e compacto */
+  .pricing-all { margin: 0 auto 28px; }
+  .pricing-grid { gap: 22px; }
+  .price-card--featured { order: 1; }
+  .price-card[data-card="trimestral"] { order: 2; }
+  .price-card[data-card="mensal"] { order: 3; }
+  .price-card[data-card="gratis"] { order: 4; padding: 18px; }
+  .price-card[data-card="gratis"] .price-tagline,
+  .price-card[data-card="gratis"] .price-billing,
+  .price-card[data-card="gratis"] .price-points { display: none; }
+  .price-card[data-card="gratis"] .price-value .amt { font-size: 30px; }
+  .price-card[data-card="gratis"] .price-mini { display: block; }
+  .price-card[data-card="gratis"] .btn-ghost { margin-top: 14px; }
+  .price-tagline { margin-bottom: 12px; }
+  .price-points { margin: 14px 0 18px; }
+
+  .faq-question { padding: 14px 16px; font-size: 15.5px; }
+  .faq-answer-inner { padding: 14px 16px 16px; }
+
+  .cta-final-title { font-size: clamp(28px, 8vw, 36px); }
+  .cta-final-title br { display: none; }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 24px 16px; }
+  .footer-grid > div:first-child { grid-column: 1 / -1; }
+  .aurora-mid { width: 100vw; }
+  .cta-final-actions { flex-direction: column; }
+  .cta-final-actions .btn-primary--lg { width: 100%; }
+  .cta-final-sub { margin-bottom: 28px; }
+
+  footer { padding: 40px 0 calc(32px + env(safe-area-inset-bottom)); }
+  .footer-links { gap: 4px; }
+  .footer-links a { min-height: 44px; }
+
+  /* menos efeito, mais velocidade */
+  .aurora-wrap::before, .aurora-wrap::after, .aurora-mid { animation: none; filter: blur(70px); }
+  .aurora-wrap::before { width: 520px; height: 480px; }
+  .aurora-wrap::after { width: 420px; height: 400px; }
+}
+@media (max-width: 400px) {
+  .nav-cta { display: none; }
+  .sticky-cta-note { display: none; }
+}
+.price-mini { display: none; font-size: 13px; color: var(--txt3); margin-top: 4px; }
+
+.logo-mark { flex-shrink: 0; display: block; }
 </style>
+<script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body>
+
+<svg xmlns="http://www.w3.org/2000/svg" style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true" focusable="false"><symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></symbol><symbol id="i-bell-ring" viewBox="0 0 24 24"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/><path d="M4 2C2.8 3.7 2 5.7 2 8"/><path d="M22 8c0-2.3-.8-4.3-2-6"/></symbol><symbol id="i-calendar" viewBox="0 0 24 24"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></symbol><symbol id="i-calendar-clock" viewBox="0 0 24 24"><path d="M21 7.5V6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h3.5"/><path d="M16 2v4"/><path d="M8 2v4"/><path d="M3 10h5"/><path d="M17.5 17.5 16 16.3V14"/><circle cx="16" cy="16" r="6"/></symbol><symbol id="i-chart-line" viewBox="0 0 24 24"><path d="M3 3v16a2 2 0 0 0 2 2h16"/><path d="m19 9-5 5-4-4-3 3"/></symbol><symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol><symbol id="i-chevron-down" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol><symbol id="i-circle-check" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></symbol><symbol id="i-hand-coins" viewBox="0 0 24 24"><path d="M11 15h2a2 2 0 1 0 0-4h-3c-.6 0-1.1.2-1.4.6L3 17"/><path d="m7 21 1.6-1.4c.3-.4.8-.6 1.4-.6h4c1.1 0 2.1-.4 2.8-1.2l4.6-4.4a2 2 0 0 0-2.75-2.91l-4.2 3.9"/><path d="m2 16 6 6"/><circle cx="16" cy="9" r="2.9"/><circle cx="6" cy="5" r="3"/></symbol><symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></symbol><symbol id="i-layout-grid" viewBox="0 0 24 24"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/></symbol><symbol id="i-map-pin" viewBox="0 0 24 24"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></symbol><symbol id="i-menu" viewBox="0 0 24 24"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></symbol><symbol id="i-message-circle" viewBox="0 0 24 24"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></symbol><symbol id="i-plus" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5v14"/></symbol><symbol id="i-repeat" viewBox="0 0 24 24"><path d="m17 2 4 4-4 4"/><path d="M3 11v-1a4 4 0 0 1 4-4h14"/><path d="m7 22-4-4 4-4"/><path d="M21 13v1a4 4 0 0 1-4 4H3"/></symbol><symbol id="i-scissors" viewBox="0 0 24 24"><circle cx="6" cy="6" r="3"/><path d="M8.12 8.12 12 12"/><path d="M20 4 8.12 15.88"/><circle cx="6" cy="18" r="3"/><path d="M14.8 14.8 20 20"/></symbol><symbol id="i-shield-check" viewBox="0 0 24 24"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></symbol><symbol id="i-smartphone" viewBox="0 0 24 24"><rect width="14" height="20" x="5" y="2" rx="2" ry="2"/><path d="M12 18h.01"/></symbol><symbol id="i-trending-down" viewBox="0 0 24 24"><polyline points="22 17 13.5 8.5 8.5 13.5 2 7"/><polyline points="16 17 22 17 22 11"/></symbol><symbol id="i-trending-up" viewBox="0 0 24 24"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></symbol><symbol id="i-user-cog" viewBox="0 0 24 24"><circle cx="18" cy="15" r="3"/><circle cx="9" cy="7" r="4"/><path d="M10 15H6a4 4 0 0 0-4 4v2"/><path d="m21.7 16.4-.9-.3"/><path d="m15.2 13.9-.9-.3"/><path d="m16.6 18.7.3-.9"/><path d="m19.1 12.2.3-.9"/><path d="m19.6 18.7-.4-1"/><path d="m16.8 12.3-.4-1"/><path d="m14.3 16.6 1-.4"/><path d="m20.7 13.8 1-.4"/></symbol><symbol id="i-users" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></symbol><symbol id="i-wallet" viewBox="0 0 24 24"><path d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1"/><path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4"/></symbol><symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></symbol></svg>
 
 <!-- AURORA -->
 <div class="aurora-wrap" aria-hidden="true">
@@ -1572,84 +1796,68 @@ button.demo-row:hover { background: rgba(255,255,255,0.04); border-color: var(--
 </div>
 
 <!-- NAV -->
-<nav id="nav" role="navigation" aria-label="Navegação principal">
-  <a href="#" class="nav-logo">
+<nav id="nav" aria-label="Navegação principal">
+  <a href="#hero" class="nav-logo" aria-label="Agendou, início">
     <svg class="logo-mark" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><defs><linearGradient id="lg-logo-1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffb347"/><stop offset=".5" stop-color="#ff6b4a"/><stop offset="1" stop-color="#ff2f3a"/></linearGradient></defs><path d="M12 1.5 22.5 12 12 22.5 1.5 12Z" fill="url(#lg-logo-1)"/><path d="M12 7 17 12 12 17 7 12Z" fill="#07080a" opacity=".55"/></svg>
     Agendou
   </a>
   <div class="nav-links">
     <a href="#demo">Demonstração</a>
-    <a href="#cobrancas">Cobranças</a>
+    <a href="#financeiro">Cobranças</a>
     <a href="#features">Recursos</a>
     <a href="#planos">Preços</a>
     <a href="#faq">Dúvidas</a>
   </div>
   <div class="nav-cta">
-    <a href="https://app-agendou.vercel.app/painel/login" class="btn-ghost nav-entrar">Entrar</a>
-    <a href="#planos" class="btn-primary" data-cta="gratis">Começar grátis</a>
+    <a href="https://app-agendou.vercel.app/painel/login" class="btn-ghost" data-login>Entrar</a>
+    <a href="https://app-agendou.vercel.app/cadastro" class="btn-primary" data-cta="nav">Começar grátis</a>
   </div>
-  <label for="nav-menu-open" class="nav-hamburger" aria-label="Abrir menu">
-    <span></span><span></span><span></span>
-  </label>
-  <input type="checkbox" id="nav-menu-open" />
-  <div class="nav-mobile-overlay">
-    <a href="#demo" data-close-menu>Demonstração</a>
-    <a href="#cobrancas" data-close-menu>Cobranças</a>
-    <a href="#features" data-close-menu>Recursos</a>
-    <a href="#planos" data-close-menu>Preços</a>
-    <a href="#faq" data-close-menu>Dúvidas</a>
-    <a href="https://app-agendou.vercel.app/painel/login" data-close-menu>Entrar no painel</a>
-    <a href="#planos" class="btn-primary" data-cta="gratis" data-close-menu style="margin-top:20px;padding:14px 40px;border-radius:12px;">Começar grátis</a>
-  </div>
+  <button type="button" class="nav-hamburger" id="nav-toggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="nav-menu">
+    <svg class="ic i-open" aria-hidden="true"><use href="#i-menu"/></svg><svg class="ic i-close" aria-hidden="true"><use href="#i-x"/></svg>
+  </button>
 </nav>
+<div class="nav-mobile-overlay" id="nav-menu">
+  <a href="#demo" data-close-menu>Demonstração</a>
+  <a href="#financeiro" data-close-menu>Cobranças</a>
+  <a href="#features" data-close-menu>Recursos</a>
+  <a href="#planos" data-close-menu>Preços</a>
+  <a href="#faq" data-close-menu>Dúvidas</a>
+  <div class="menu-actions">
+    <a href="https://app-agendou.vercel.app/cadastro" class="btn-primary" data-cta="menu">Começar grátis</a>
+    <a href="https://app-agendou.vercel.app/painel/login" class="btn-ghost" data-login>Entrar</a>
+  </div>
+</div>
 
+<main>
 <!-- HERO -->
 <section id="hero">
   <div class="container">
-    <div class="eyebrow reveal">
+    <div class="eyebrow">
       <span class="eyebrow-dot"></span>
       Sistema de gestão para barbearias
     </div>
-    <h1 class="reveal">
-      Agenda, clientes e caixa<br />
-      <span class="gradient-text">num painel só.</span>
-    </h1>
-    <p class="hero-sub reveal">
-      Mais que um app de agendamento: o Agendou organiza seus horários, guarda o histórico de cada cliente
-      e mostra o que entrou, o que falta receber e de quem. No celular ou no computador.
-    </p>
-    <div class="hero-actions reveal">
-      <a href="#planos" class="btn-primary btn-primary--lg" data-cta="gratis">Começar grátis</a>
-      <a href="#demo" class="btn-ghost btn-ghost--lg">Explorar a demonstração</a>
+    <h1 id="hero-titulo">Saiba quem te deve, quem sumiu e quem vem amanhã. <span class="gradient-text">Num painel só.</span></h1>
+    <p class="hero-sub">Agenda online, histórico de clientes e o que falta receber, no celular.</p>
+    <div class="hero-actions">
+      <a href="https://app-agendou.vercel.app/cadastro" class="btn-primary btn-primary--lg" data-cta="hero">Começar grátis</a>
+      <a href="#demo" class="btn-link" data-demo-link="hero">Ver o painel funcionando <svg class="ic ic--sm" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
     </div>
-    <p class="hero-note reveal">Plano gratuito para até 15 clientes cadastrados.</p>
-    <div class="hero-proof reveal">
-      <span class="proof-item">
-        <svg class="proof-icon" viewBox="0 0 16 16" fill="none"><path d="M3.5 8.5l3 3 6-7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        Cliente agenda sozinho pelo link
-      </span>
-      <span class="proof-item">
-        <svg class="proof-icon" viewBox="0 0 16 16" fill="none"><path d="M3.5 8.5l3 3 6-7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        Histórico de cada cliente
-      </span>
-      <span class="proof-item">
-        <svg class="proof-icon" viewBox="0 0 16 16" fill="none"><path d="M3.5 8.5l3 3 6-7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        Recebido e a receber à vista
-      </span>
-      <span class="proof-item">
-        <svg class="proof-icon" viewBox="0 0 16 16" fill="none"><path d="M3.5 8.5l3 3 6-7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        Mensalidades, se você quiser
-      </span>
-    </div>
+    <p class="hero-note">Grátis para até 15 clientes cadastrados. Sem cartão.</p>
+    <ul class="hero-chips" aria-label="O que o Agendou faz">
+      <li class="hero-chip"><span class="ic-box"><svg class="ic" aria-hidden="true"><use href="#i-calendar-clock"/></svg></span>Cliente agenda sozinho pelo link</li>
+      <li class="hero-chip"><span class="ic-box"><svg class="ic" aria-hidden="true"><use href="#i-users"/></svg></span>Histórico de cada cliente</li>
+      <li class="hero-chip"><span class="ic-box"><svg class="ic" aria-hidden="true"><use href="#i-wallet"/></svg></span>Recebido e a receber à vista</li>
+      <li class="hero-chip"><span class="ic-box"><svg class="ic" aria-hidden="true"><use href="#i-repeat"/></svg></span>Mensalidades, se você quiser</li>
+    </ul>
   </div>
 </section>
 
-<!-- DEMONSTRAÇÃO INTERATIVA -->
+<!-- DEMONSTRAÇÃO INTERATIVA (carregada quando chega perto da tela) -->
 <section id="demo" aria-labelledby="demo-title">
   <div class="container container--wide">
     <div class="demo-head reveal">
       <h2 id="demo-title" class="section-title">Explore o painel antes de criar sua conta</h2>
-      <p class="demo-hint">Troque de aba, mude o período, abra um horário ou a ficha de um cliente. Os dados são fictícios e nada do que você clicar é gravado.</p>
+      <p class="demo-hint">Troque de aba, mude o período, abra um horário ou a ficha de um cliente. Dados fictícios: nada é gravado.</p>
     </div>
     <div class="mockup-frame reveal" id="demo-app">
       <div class="mockup-topbar">
@@ -1661,30 +1869,16 @@ button.demo-row:hover { background: rgba(255,255,255,0.04); border-color: var(--
       </div>
       <div class="mockup-body">
         <div class="mockup-sidebar" role="tablist" aria-label="Seções da demonstração">
-          <div class="mockup-logo-sm">✂ Agendou</div>
-          <button class="mock-nav-item active" role="tab" aria-selected="true" aria-controls="demo-view" data-view="geral">
-            <svg class="mock-nav-icon" viewBox="0 0 16 16" fill="currentColor"><rect x="2" y="2" width="5" height="5" rx="1"/><rect x="9" y="2" width="5" height="5" rx="1"/><rect x="2" y="9" width="5" height="5" rx="1"/><rect x="9" y="9" width="5" height="5" rx="1"/></svg>
-            Visão geral
-          </button>
-          <button class="mock-nav-item" role="tab" aria-selected="false" aria-controls="demo-view" data-view="agenda">
-            <svg class="mock-nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor"><rect x="2" y="3" width="12" height="10" rx="1.5"/><path d="M5 1v4M11 1v4M2 7h12"/></svg>
-            Agenda
-          </button>
-          <button class="mock-nav-item" role="tab" aria-selected="false" aria-controls="demo-view" data-view="clientes">
-            <svg class="mock-nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor"><circle cx="8" cy="6" r="3"/><path d="M2 14c0-3 2.7-5 6-5s6 2 6 5"/></svg>
-            Clientes
-          </button>
-          <button class="mock-nav-item" role="tab" aria-selected="false" aria-controls="demo-view" data-view="financeiro">
-            <svg class="mock-nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor"><path d="M2 12l4-5 3 3 3-5 2 2"/></svg>
-            Financeiro
-          </button>
+          <div class="mockup-logo-sm"><svg class="ic" aria-hidden="true"><use href="#i-scissors"/></svg> Agendou</div>
+          <button class="mock-nav-item active" role="tab" aria-selected="true" aria-controls="demo-view" data-view="geral"><svg class="ic" aria-hidden="true"><use href="#i-layout-grid"/></svg> Visão geral</button>
+          <button class="mock-nav-item" role="tab" aria-selected="false" aria-controls="demo-view" data-view="agenda" tabindex="-1"><svg class="ic" aria-hidden="true"><use href="#i-calendar"/></svg> Agenda</button>
+          <button class="mock-nav-item" role="tab" aria-selected="false" aria-controls="demo-view" data-view="clientes" tabindex="-1"><svg class="ic" aria-hidden="true"><use href="#i-users"/></svg> Clientes</button>
+          <button class="mock-nav-item" role="tab" aria-selected="false" aria-controls="demo-view" data-view="financeiro" tabindex="-1"><svg class="ic" aria-hidden="true"><use href="#i-chart-line"/></svg> Financeiro</button>
           <div class="mock-divider"></div>
-          <button class="mock-nav-item" role="tab" aria-selected="false" aria-controls="demo-view" data-view="planos">
-            <svg class="mock-nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor"><path d="M13 6a5 5 0 00-9-2M3 2v2.5h2.5M3 10a5 5 0 009 2M13 14v-2.5h-2.5"/></svg>
-            Planos de clientes
-          </button>
+          <button class="mock-nav-item" role="tab" aria-selected="false" aria-controls="demo-view" data-view="planos" tabindex="-1"><svg class="ic" aria-hidden="true"><use href="#i-repeat"/></svg> Planos de clientes</button>
         </div>
-        <div class="mockup-content" id="demo-view" role="tabpanel">
+        <div class="mockup-content" id="demo-view" role="tabpanel" aria-label="Painel de demonstração">
+          <div class="demo-loading">Carregando a demonstração…</div>
           <noscript><p class="demo-empty">Ative o JavaScript para explorar a demonstração.</p></noscript>
         </div>
       </div>
@@ -1693,105 +1887,71 @@ button.demo-row:hover { background: rgba(255,255,255,0.04); border-color: var(--
   </div>
 </section>
 
-<!-- PROBLEMA -->
-<section id="problems">
+<!-- PROBLEMA + CONTROLE FINANCEIRO -->
+<section id="financeiro" aria-labelledby="fin-title">
   <div class="container">
     <div class="section-header reveal">
       <div class="section-eyebrow">
-        <div class="eyebrow">
-          <span class="eyebrow-dot" style="background:var(--crimson)"></span>
-          O problema
-        </div>
+        <div class="eyebrow"><span class="eyebrow-dot" style="background:var(--crimson)"></span>O problema</div>
       </div>
-      <h2 class="section-title">A tesoura é com você.<br />O resto vira bagunça.</h2>
-      <p class="section-sub">Entre um cliente e outro, sobra pouco tempo para responder mensagens, anotar quem pagou e lembrar quem sumiu.</p>
+      <h2 class="section-title" id="fin-title">A tesoura é com você.<br />O resto vira bagunça.</h2>
+      <p class="section-sub">"Te passo o Pix depois." Entre um cliente e outro, ninguém lembra quem pagou, quem deve e quem sumiu.</p>
     </div>
-    <div class="problems-grid">
-      <div class="problem-card reveal">
-        <div class="problem-icon">📅</div>
-        <div class="problem-title">Agenda no WhatsApp e no caderno</div>
-        <div class="problem-desc">Você para o corte para responder "tem horário hoje?". Um encaixe errado e dois clientes chegam no mesmo horário.</div>
-      </div>
-      <div class="problem-card reveal">
-        <div class="problem-icon">💸</div>
-        <div class="problem-title">Dinheiro sem registro</div>
-        <div class="problem-desc">Quanto entrou na semana? Quem ficou de pagar depois? Sem anotação, o fim do mês nunca fecha com o que você imaginava.</div>
-      </div>
-      <div class="problem-card reveal">
-        <div class="problem-icon">👥</div>
-        <div class="problem-title">Cliente que some sem você notar</div>
-        <div class="problem-desc">Sem histórico, você não sabe quem é fiel, quem não volta há dois meses nem o que cada um costuma fazer.</div>
-      </div>
-    </div>
-  </div>
-</section>
 
-<!-- COBRANÇAS -->
-<section id="cobrancas" aria-labelledby="cob-title">
-  <div class="container">
-    <div class="cobranca-wrap">
-      <div class="reveal">
-        <div class="recorrencia-tag" style="color:var(--coral)">
-          <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><rect x="1.5" y="3.5" width="13" height="9" rx="1.5" stroke="currentColor" stroke-width="1.4"/><path d="M1.5 6.5h13" stroke="currentColor" stroke-width="1.4"/></svg>
-          Pagamentos e cobranças
-        </div>
-        <h2 class="recorrencia-title" id="cob-title">Chega de guardar de cabeça<br />quem ainda não pagou.</h2>
-        <p class="recorrencia-desc">"Te passo o Pix depois." "Semana que vem eu acerto." Cada conversa dessas é dinheiro que pode não voltar. E cobrar cliente por mensagem, um por um, toma um tempo que você não tem.</p>
+    <div class="fin-grid">
+      <div class="fin-dores reveal">
         <div class="pain-list">
-          <div class="pain-item"><span class="pain-x">✕</span><span><b>Fiado sem controle</b>Ninguém lembra exatamente quanto cada um deve, nem desde quando.</span></div>
-          <div class="pain-item"><span class="pain-x">✕</span><span><b>Mensalista atrasado</b>Você só percebe que a mensalidade venceu quando o cliente já usou o mês inteiro.</span></div>
-          <div class="pain-item"><span class="pain-x">✕</span><span><b>Caixa que não bate</b>Pix, dinheiro e cartão misturados, e nenhum número confiável no fim do dia.</span></div>
+          <div class="pain-item"><span class="ic-x"><svg class="ic" aria-hidden="true"><use href="#i-x"/></svg></span><span><b>Agenda no WhatsApp e no caderno</b>Você para o corte para responder "tem horário hoje?" e ainda arrisca dois clientes no mesmo horário.</span></div>
+          <div class="pain-item"><span class="ic-x"><svg class="ic" aria-hidden="true"><use href="#i-x"/></svg></span><span><b>Dinheiro e fiado sem registro</b>Pix, dinheiro e cartão misturados. Ninguém sabe quanto cada um deve, nem desde quando.</span></div>
+          <div class="pain-item"><span class="ic-x"><svg class="ic" aria-hidden="true"><use href="#i-x"/></svg></span><span><b>Cliente que some sem você notar</b>Sem histórico, você não vê quem não volta há dois meses.</span></div>
         </div>
-        <div class="feat-ui receber-mini" id="cob-receber" aria-label="Exemplo do quadro A receber, com dados fictícios"></div>
       </div>
 
-      <div class="solve-card reveal">
+      <div class="solve-card fin-solve reveal">
+        <div class="solve-head">Com o Agendou</div>
         <div class="solve-item">
-          <div class="benefit-check">✓</div>
+          <span class="ic-box"><svg class="ic" aria-hidden="true"><use href="#i-hand-coins"/></svg></span>
           <div>
-            <div class="solve-title">O que falta receber, com nome e valor</div>
-            <div class="solve-desc">Atendimentos concluídos sem pagamento e mensalidades em aberto aparecem somados em "A receber", cliente por cliente.</div>
+            <div class="solve-title">"A receber" com nome e valor</div>
+            <div class="solve-desc">Atendimentos sem pagamento e mensalidades em aberto aparecem somados, cliente por cliente.</div>
           </div>
         </div>
         <div class="solve-item">
-          <div class="benefit-check">✓</div>
+          <span class="ic-box"><svg class="ic" aria-hidden="true"><use href="#i-circle-check"/></svg></span>
           <div>
-            <div class="solve-title">Recebeu? Registre em um toque</div>
-            <div class="solve-desc">Marque o pagamento no balcão (Pix, dinheiro ou cartão) e o financeiro se atualiza: recebido, a receber, ticket médio e comissão de cada profissional.</div>
+            <div class="solve-title">Registre o pagamento em um toque</div>
+            <div class="solve-desc">Pix, dinheiro ou cartão no balcão: recebido, a receber, ticket médio e comissões se atualizam.</div>
           </div>
         </div>
         <div class="solve-item">
-          <div class="benefit-check">✓</div>
+          <span class="ic-box"><svg class="ic" aria-hidden="true"><use href="#i-bell-ring"/></svg></span>
           <div>
             <div class="solve-title">Mensalidade atrasada aparece sozinha</div>
-            <div class="solve-desc">Se você vende planos, a assinatura com mensalidade vencida há mais de 5 dias passa a "inadimplente". Você vê quem cobrar antes do próximo corte.</div>
+            <div class="solve-desc">Vencida há mais de 5 dias, a assinatura vira "inadimplente". Você vê quem cobrar antes do próximo corte.</div>
           </div>
         </div>
         <div class="solve-item">
-          <div class="benefit-check">✓</div>
+          <span class="ic-box"><svg class="ic" aria-hidden="true"><use href="#i-shield-check"/></svg></span>
           <div>
             <div class="solve-title">Sem cobrar duas vezes</div>
-            <div class="solve-desc">O corte coberto pelo plano já entra como coberto. Se houver valor adicional, o sistema cobra só a diferença.</div>
+            <div class="solve-desc">Corte coberto pelo plano entra como coberto. Se houver adicional, cobra só a diferença.</div>
           </div>
         </div>
         <div class="solve-item">
-          <div class="benefit-check">✓</div>
+          <span class="ic-box"><svg class="ic" aria-hidden="true"><use href="#i-message-circle"/></svg></span>
           <div>
             <div class="solve-title">Menos mensagem manual <span class="tag-cfg">Requer configuração</span></div>
-            <div class="solve-desc">Com o número da barbearia conectado à API oficial do WhatsApp, a confirmação e o lembrete do horário saem automaticamente. Sem conexão, um toque abre o WhatsApp com a mensagem pronta.</div>
+            <div class="solve-desc">Com o número da barbearia na API oficial do WhatsApp, confirmação e lembrete saem sozinhos. Sem conexão, um toque abre o WhatsApp com a mensagem pronta.</div>
           </div>
         </div>
-        <div class="solve-item">
-          <div class="benefit-check check-soon">◷</div>
-          <div>
-            <div class="solve-title">Pix na hora de agendar <span class="tag-cfg">Em implantação</span></div>
-            <div class="solve-desc">Sinal ou valor integral, com QR Code que expira e libera o horário se não for pago. Esse fluxo já existe no sistema, mas ainda em modo de testes: o recebimento real será liberado quando a integração com o provedor de pagamento estiver ativa.</div>
-          </div>
+        <div class="optional-note" style="margin:4px 0 20px">
+          <svg class="ic" aria-hidden="true"><use href="#i-info"/></svg>
+          <span><strong style="color:var(--txt2);">Sendo transparente:</strong> o Agendou não faz cobrança automática no cartão nem débito recorrente de mensalidades. Você registra os recebimentos e o sistema organiza o resto.</span>
         </div>
-        <div class="optional-note" style="margin:6px 0 20px">
-          <span class="optional-note-icon">ℹ️</span>
-          <span><strong style="color:var(--txt2);">Sendo transparente:</strong> hoje o Agendou não faz cobrança automática no cartão nem débito recorrente de mensalidades. Os recebimentos são registrados por você, e o sistema organiza o resto.</span>
-        </div>
+      </div>
+
+      <div class="fin-mini reveal">
+        <div class="feat-ui receber-mini" id="cob-receber" aria-label="Exemplo do quadro A receber, com dados fictícios"></div>
       </div>
     </div>
   </div>
@@ -1802,73 +1962,85 @@ button.demo-row:hover { background: rgba(255,255,255,0.04); border-color: var(--
   <div class="container">
     <div class="section-header reveal">
       <div class="section-eyebrow">
-        <div class="eyebrow">
-          <span class="eyebrow-dot"></span>
-          Recursos
-        </div>
+        <div class="eyebrow"><span class="eyebrow-dot"></span>Recursos</div>
       </div>
-      <h2 class="section-title">A gestão inteira da barbearia,<br />do agendamento ao fechamento do mês</h2>
-      <p class="section-sub">Três frentes que conversam entre si: o que é marcado na agenda vira histórico do cliente e número no financeiro.</p>
+      <h2 class="section-title">Do agendamento ao fechamento do mês</h2>
+      <p class="section-sub">O que é marcado na agenda vira histórico do cliente e número no financeiro.</p>
     </div>
 
     <div class="pillars">
       <div class="feat-card reveal">
-        <div class="feat-tag">Agenda e atendimentos</div>
-        <div class="feat-title">Seu cliente marca sozinho, sem você largar a máquina</div>
-        <div class="feat-desc">Uma página de agendamento só da sua barbearia, com seus serviços, preços e horários livres.</div>
-        <div class="benefit-list">
-          <div class="benefit-item"><div class="benefit-check">✓</div>Cliente escolhe serviço, profissional (ou "sem preferência") e horário</div>
-          <div class="benefit-item"><div class="benefit-check">✓</div>Agenda por profissional, com expediente, folgas e bloqueios</div>
-          <div class="benefit-item"><div class="benefit-check">✓</div>O sistema confere o horário de novo antes de gravar: sem dois clientes na mesma cadeira</div>
-          <div class="benefit-item"><div class="benefit-check">✓</div>Cliente remarca ou cancela pelo link, dentro do prazo que você definir</div>
+        <button type="button" class="pillar-head" aria-expanded="true" aria-controls="pilar-1">
+          <span class="ic-box"><svg class="ic" aria-hidden="true"><use href="#i-calendar-clock"/></svg></span>
+          <span style="flex:1"><span class="feat-tag" style="display:block">Agenda</span><span class="feat-title" style="display:block">Seu cliente marca sozinho</span></span>
+          <span class="chev"><svg class="ic" aria-hidden="true"><use href="#i-chevron-down"/></svg></span>
+        </button>
+        <div class="pillar-body" id="pilar-1">
+          <div class="feat-desc">Uma página de agendamento da sua barbearia, com seus serviços, preços e horários livres.</div>
+          <div class="benefit-list">
+            <div class="benefit-item"><span class="ic-check"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span>Cliente escolhe serviço, profissional (ou "sem preferência") e horário</div>
+            <div class="benefit-item"><span class="ic-check"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span>Agenda por profissional, com expediente, folgas e bloqueios</div>
+            <div class="benefit-item"><span class="ic-check"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span>O horário é conferido de novo antes de gravar: sem dois clientes na mesma cadeira</div>
+            <div class="benefit-item"><span class="ic-check"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span>Cliente remarca ou cancela pelo link, no prazo que você definir</div>
+          </div>
         </div>
       </div>
 
       <div class="feat-card reveal">
-        <div class="feat-tag">Clientes e histórico</div>
-        <div class="feat-title">Saiba quem volta, quem sumiu e o que cada um gosta</div>
-        <div class="feat-desc">Cada agendamento alimenta a ficha do cliente automaticamente.</div>
-        <div class="benefit-list">
-          <div class="benefit-item"><div class="benefit-check">✓</div>Ficha com histórico de atendimentos, total gasto, preferências e observações</div>
-          <div class="benefit-item"><div class="benefit-check">✓</div>Listas prontas: recorrentes, novos e sem visita há 45 dias ou mais</div>
-          <div class="benefit-item"><div class="benefit-check">✓</div>Busca por nome ou telefone</div>
-          <div class="benefit-item"><div class="benefit-check">✓</div>Importe sua base atual por planilha (CSV ou Excel)</div>
+        <button type="button" class="pillar-head" aria-expanded="true" aria-controls="pilar-2">
+          <span class="ic-box"><svg class="ic" aria-hidden="true"><use href="#i-users"/></svg></span>
+          <span style="flex:1"><span class="feat-tag" style="display:block">Clientes</span><span class="feat-title" style="display:block">Saiba quem volta e quem sumiu</span></span>
+          <span class="chev"><svg class="ic" aria-hidden="true"><use href="#i-chevron-down"/></svg></span>
+        </button>
+        <div class="pillar-body" id="pilar-2">
+          <div class="feat-desc">Cada agendamento alimenta a ficha do cliente automaticamente.</div>
+          <div class="benefit-list">
+            <div class="benefit-item"><span class="ic-check"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span>Histórico de atendimentos, total gasto, preferências e observações</div>
+            <div class="benefit-item"><span class="ic-check"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span>Listas prontas: recorrentes, novos e sem visita há 45 dias ou mais</div>
+            <div class="benefit-item"><span class="ic-check"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span>Busca por nome ou telefone</div>
+            <div class="benefit-item"><span class="ic-check"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span>Importe sua base atual por planilha (CSV ou Excel)</div>
+          </div>
         </div>
       </div>
 
       <div class="feat-card reveal">
-        <div class="feat-tag">Financeiro e indicadores</div>
-        <div class="feat-title">Números que fecham o mês sem planilha</div>
-        <div class="feat-desc">Veja o que já entrou, o que está previsto e o que ainda falta receber.</div>
-        <div class="benefit-list">
-          <div class="benefit-item"><div class="benefit-check">✓</div>Faturamento realizado, receita prevista e ticket médio</div>
-          <div class="benefit-item"><div class="benefit-check">✓</div>Comparação com o período anterior e taxa de cancelamentos e faltas</div>
-          <div class="benefit-item"><div class="benefit-check">✓</div>Comissão de cada profissional calculada sobre os atendimentos concluídos</div>
-          <div class="benefit-item"><div class="benefit-check">✓</div>Filtros por período, serviço e profissional, com exportação em CSV</div>
+        <button type="button" class="pillar-head" aria-expanded="true" aria-controls="pilar-3">
+          <span class="ic-box"><svg class="ic" aria-hidden="true"><use href="#i-wallet"/></svg></span>
+          <span style="flex:1"><span class="feat-tag" style="display:block">Financeiro</span><span class="feat-title" style="display:block">O mês fecha sem planilha</span></span>
+          <span class="chev"><svg class="ic" aria-hidden="true"><use href="#i-chevron-down"/></svg></span>
+        </button>
+        <div class="pillar-body" id="pilar-3">
+          <div class="feat-desc">O que já entrou, o que está previsto e o que ainda falta receber.</div>
+          <div class="benefit-list">
+            <div class="benefit-item"><span class="ic-check"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span>Faturamento realizado, receita prevista e ticket médio</div>
+            <div class="benefit-item"><span class="ic-check"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span>Comparação com o período anterior e taxa de cancelamentos e faltas</div>
+            <div class="benefit-item"><span class="ic-check"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span>Comissão de cada profissional sobre os atendimentos concluídos</div>
+            <div class="benefit-item"><span class="ic-check"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span>Filtros por período, serviço e profissional, com exportação em CSV</div>
+          </div>
         </div>
       </div>
     </div>
 
     <div class="extras-row">
       <div class="benefit-card-sm reveal">
-        <div class="bcm-icon">💬</div>
+        <span class="ic-box"><svg class="ic" aria-hidden="true"><use href="#i-message-circle"/></svg></span>
         <div class="bcm-title">WhatsApp oficial <span class="tag-cfg">Requer configuração</span></div>
-        <div class="bcm-desc">Confirmação e lembrete pelo número da própria barbearia, com status de entrega real.</div>
+        <div class="bcm-desc">Confirmação e lembrete pelo número da barbearia.</div>
       </div>
       <div class="benefit-card-sm reveal">
-        <div class="bcm-icon">👤</div>
+        <span class="ic-box"><svg class="ic" aria-hidden="true"><use href="#i-user-cog"/></svg></span>
         <div class="bcm-title">Equipe no painel</div>
-        <div class="bcm-desc">Dono, administradores e profissionais entram com celular e senha, cada um com o seu acesso.</div>
+        <div class="bcm-desc">Dono, admins e profissionais, cada um com seu acesso.</div>
       </div>
       <div class="benefit-card-sm reveal">
-        <div class="bcm-icon">📍</div>
+        <span class="ic-box"><svg class="ic" aria-hidden="true"><use href="#i-map-pin"/></svg></span>
         <div class="bcm-title">Mais de uma unidade</div>
-        <div class="bcm-desc">O cliente escolhe a unidade e vê os profissionais e o endereço daquela loja.</div>
+        <div class="bcm-desc">O cliente escolhe a loja e vê a equipe e o endereço dela.</div>
       </div>
       <div class="benefit-card-sm reveal">
-        <div class="bcm-icon">📱</div>
+        <span class="ic-box"><svg class="ic" aria-hidden="true"><use href="#i-smartphone"/></svg></span>
         <div class="bcm-title">Celular e computador</div>
-        <div class="bcm-desc">Funciona no navegador, sem instalar nada, para você e para o seu cliente.</div>
+        <div class="bcm-desc">Roda no navegador, sem instalar nada.</div>
       </div>
     </div>
   </div>
@@ -1879,40 +2051,19 @@ button.demo-row:hover { background: rgba(255,255,255,0.04); border-color: var(--
   <div class="container">
     <div class="recorrencia-wrap">
       <div class="recorrencia-content reveal">
-        <div class="recorrencia-tag">
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1l1.5 4L13 5.5l-3 3 .8 4.5L7 11l-3.8 2L4 8.5l-3-3L5.5 5 7 1z" fill="#FFB347"/></svg>
-          Módulo opcional
-        </div>
-        <h2 class="recorrencia-title">
-          Venda mensalidades aos seus clientes<br />
-          e tenha receita mais previsível
-        </h2>
-        <p class="recorrencia-desc">
-          Se a sua barbearia trabalha (ou quer trabalhar) com clube de assinatura, monte os planos no próprio Agendou. Se não trabalha, tudo continua funcionando normalmente.
-        </p>
+        <div class="recorrencia-tag"><svg class="ic" aria-hidden="true"><use href="#i-repeat"/></svg> Módulo opcional</div>
+        <h2 class="recorrencia-title">Venda mensalidades e tenha receita mais previsível</h2>
+        <p class="recorrencia-desc">Trabalha com clube de assinatura? Monte os planos no Agendou. Não trabalha? Nada muda no seu dia a dia.</p>
         <div class="benefit-list">
-          <div class="benefit-item">
-            <div class="benefit-check" style="background:rgba(255,179,71,0.1);border-color:rgba(255,179,71,0.2);color:var(--amber);">✓</div>
-            Plano mensal, trimestral, semestral ou anual, com os serviços incluídos
-          </div>
-          <div class="benefit-item">
-            <div class="benefit-check" style="background:rgba(255,179,71,0.1);border-color:rgba(255,179,71,0.2);color:var(--amber);">✓</div>
-            Limite de usos por ciclo e valor adicional por serviço, se você quiser cobrar
-          </div>
-          <div class="benefit-item">
-            <div class="benefit-check" style="background:rgba(255,179,71,0.1);border-color:rgba(255,179,71,0.2);color:var(--amber);">✓</div>
-            O uso do plano é registrado sozinho quando o cliente agenda
-          </div>
-          <div class="benefit-item">
-            <div class="benefit-check" style="background:rgba(255,179,71,0.1);border-color:rgba(255,179,71,0.2);color:var(--amber);">✓</div>
-            Status de cada assinante: ativa, pendente ou inadimplente
-          </div>
+          <div class="benefit-item"><span class="ic-check ic-check--amber"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span>Plano mensal, trimestral, semestral ou anual, com limite de usos</div>
+          <div class="benefit-item"><span class="ic-check ic-check--amber"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span>O uso é descontado sozinho quando o cliente agenda</div>
+          <div class="benefit-item"><span class="ic-check ic-check--amber"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span>Status de cada assinante: ativa, pendente ou inadimplente</div>
         </div>
         <div class="optional-note">
-          <span class="optional-note-icon">ℹ️</span>
-          <span><strong style="color:var(--txt2);">Você decide.</strong> Barbearias que cobram só por corte usam o sistema completo sem ativar planos. O pagamento das mensalidades é registrado por você; não há cobrança automática no cartão do cliente.</span>
+          <svg class="ic" aria-hidden="true"><use href="#i-info"/></svg>
+          <span><strong style="color:var(--txt2);">Você decide.</strong> A mensalidade é registrada por você: não há cobrança automática no cartão do cliente.</span>
         </div>
-        <button type="button" class="btn-ghost btn-ghost--lg" style="margin-top:24px" data-demo-goto="planos">Ver planos na demonstração</button>
+        <button type="button" class="btn-ghost btn-ghost--lg" style="margin-top:20px" data-demo-goto="planos">Ver planos na demonstração</button>
       </div>
       <div class="recorrencia-ui reveal" aria-label="Exemplo com dados fictícios">
         <div class="recor-ui-header">
@@ -1931,30 +2082,10 @@ button.demo-row:hover { background: rgba(255,255,255,0.04); border-color: var(--
             </div>
           </div>
           <div class="recor-subs-list">
-            <div class="recor-sub-row">
-              <div class="recor-sub-av">PA</div>
-              <span class="recor-sub-name">Pedro A.</span>
-              <span class="recor-sub-uso" data-uso-cli="3">3/4</span>
-              <span class="recor-sub-status ativo">Ativa</span>
-            </div>
-            <div class="recor-sub-row">
-              <div class="recor-sub-av">FM</div>
-              <span class="recor-sub-name">Felipe M.</span>
-              <span class="recor-sub-uso" data-uso-cli="5">2/4</span>
-              <span class="recor-sub-status ativo">Ativa</span>
-            </div>
-            <div class="recor-sub-row">
-              <div class="recor-sub-av">GO</div>
-              <span class="recor-sub-name">Gabriel O.</span>
-              <span class="recor-sub-uso" data-uso-cli="6">0/4</span>
-              <span class="recor-sub-status pend">Pendente</span>
-            </div>
-            <div class="recor-sub-row">
-              <div class="recor-sub-av">AC</div>
-              <span class="recor-sub-name">André C.</span>
-              <span class="recor-sub-uso" data-uso-cli="8">—</span>
-              <span class="recor-sub-status inad">Inadimplente</span>
-            </div>
+            <div class="recor-sub-row"><div class="recor-sub-av">PA</div><span class="recor-sub-name">Pedro A.</span><span class="recor-sub-uso" data-uso-cli="3">3/4</span><span class="recor-sub-status ativo">Ativa</span></div>
+            <div class="recor-sub-row"><div class="recor-sub-av">FM</div><span class="recor-sub-name">Felipe M.</span><span class="recor-sub-uso" data-uso-cli="5">2/4</span><span class="recor-sub-status ativo">Ativa</span></div>
+            <div class="recor-sub-row"><div class="recor-sub-av">GO</div><span class="recor-sub-name">Gabriel O.</span><span class="recor-sub-uso" data-uso-cli="6">0/4</span><span class="recor-sub-status pend">Pendente</span></div>
+            <div class="recor-sub-row"><div class="recor-sub-av">AC</div><span class="recor-sub-name">André C.</span><span class="recor-sub-uso" data-uso-cli="8">—</span><span class="recor-sub-status inad">Inadimplente</span></div>
           </div>
         </div>
       </div>
@@ -1967,30 +2098,34 @@ button.demo-row:hover { background: rgba(255,255,255,0.04); border-color: var(--
   <div class="container">
     <div class="section-header reveal">
       <div class="section-eyebrow">
-        <div class="eyebrow">
-          <span class="eyebrow-dot"></span>
-          Como funciona
-        </div>
+        <div class="eyebrow"><span class="eyebrow-dot"></span>Como funciona</div>
       </div>
-      <h2 class="section-title">Três passos para tirar a barbearia do caderno</h2>
+      <h2 class="section-title">Três passos para sair do caderno</h2>
     </div>
     <div class="steps-wrap steps-3">
       <div class="step-card reveal">
         <div class="step-num">01</div>
-        <div class="step-title">Cadastre o básico</div>
-        <div class="step-desc">Serviços, preços, profissionais e horários de funcionamento. Se já tem uma lista de clientes, importe a planilha.</div>
+        <div><div class="step-title">Cadastre o básico</div><div class="step-desc">Serviços, preços, equipe e horários.</div></div>
       </div>
       <div class="step-card reveal">
         <div class="step-num">02</div>
-        <div class="step-title">Divulgue seu link</div>
-        <div class="step-desc">Coloque o link de agendamento na bio e no WhatsApp. Os clientes marcam nos horários livres, e você também agenda pelo painel.</div>
+        <div><div class="step-title">Divulgue seu link</div><div class="step-desc">Na bio e no WhatsApp: o cliente marca sozinho.</div></div>
       </div>
       <div class="step-card reveal">
         <div class="step-num">03</div>
-        <div class="step-title">Atenda e acompanhe</div>
-        <div class="step-desc">Conclua os atendimentos, registre os pagamentos e veja no financeiro o que entrou e o que falta receber.</div>
+        <div><div class="step-title">Atenda e acompanhe</div><div class="step-desc">Veja o que entrou e o que falta receber.</div></div>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- DEPOIMENTOS (fica oculto enquanto a lista estiver vazia) -->
+<section id="depoimentos" aria-labelledby="depo-title" hidden>
+  <div class="container">
+    <div class="section-header reveal">
+      <h2 class="section-title" id="depo-title">Quem já usa</h2>
+    </div>
+    <div class="depo-grid" id="depo-grid"></div>
   </div>
 </section>
 
@@ -1999,90 +2134,73 @@ button.demo-row:hover { background: rgba(255,255,255,0.04); border-color: var(--
   <div class="container container--wide">
     <div class="section-header reveal">
       <div class="section-eyebrow">
-        <div class="eyebrow">
-          <span class="eyebrow-dot"></span>
-          Preços
-        </div>
+        <div class="eyebrow"><span class="eyebrow-dot"></span>Preços</div>
       </div>
       <h2 class="section-title" id="precos-title">Comece grátis. Assine quando a barbearia crescer.</h2>
-      <p class="section-sub">Os recursos são os mesmos em todos os planos. O que muda é o limite de clientes e a forma de pagar.</p>
     </div>
+    <p class="pricing-all reveal">Todos os planos têm todos os recursos. Muda só o limite de clientes.</p>
 
     <div class="pricing-grid">
       <!-- GRATUITO -->
-      <div class="price-card reveal">
+      <div class="price-card reveal" data-card="gratis">
         <div class="price-name">Gratuito</div>
-        <p class="price-tagline">Para conhecer o sistema e começar a organizar a agenda.</p>
+        <p class="price-tagline">Para conhecer o sistema e organizar a agenda.</p>
         <div class="price-value"><span class="cur">R$</span><span class="amt">0</span></div>
+        <p class="price-mini">Até 15 clientes cadastrados. Sem cartão.</p>
         <p class="price-billing">Sem cobrança.</p>
         <span class="price-save price-save--none" aria-hidden="true">—</span>
         <div class="price-points">
-          <div class="pf-item"><div class="pf-check">✓</div><span>Até <strong style="color:var(--txt)">15 clientes cadastrados</strong></span></div>
-          <div class="pf-item"><div class="pf-check">✓</div>Todos os recursos do sistema</div>
-          <div class="pf-item"><div class="pf-check">✓</div>Passou de 15 clientes? Migre para um plano pago</div>
+          <div class="pf-item"><span class="ic-check ic-check--green"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span><span>Até <strong style="color:var(--txt)">15 clientes cadastrados</strong></span></div>
+          <div class="pf-item"><span class="ic-check ic-check--green"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span>Sem cartão para começar</div>
         </div>
-        <a href="#planos" class="btn-ghost" data-cta="gratis">Começar grátis</a>
+        <a href="https://app-agendou.vercel.app/cadastro" class="btn-ghost" data-plano="gratis">Começar grátis</a>
       </div>
 
       <!-- MENSAL -->
-      <div class="price-card reveal">
+      <div class="price-card reveal" data-card="mensal">
         <span class="price-badge price-badge--soft">Mais flexível</span>
         <div class="price-name">Mensal</div>
-        <p class="price-tagline">Para quem prefere pagar mês a mês, sem compromisso mais longo.</p>
+        <p class="price-tagline">Para pagar mês a mês, sem compromisso mais longo.</p>
         <div class="price-value"><span class="cur">R$</span><span class="amt">59,90</span><span class="per">/mês</span></div>
         <p class="price-billing">Pagamento que libera <strong>1 mês</strong> de uso.</p>
         <span class="price-save price-save--none" aria-hidden="true">—</span>
         <div class="price-points">
-          <div class="pf-item"><div class="pf-check">✓</div>Sem o limite de 15 clientes</div>
-          <div class="pf-item"><div class="pf-check">✓</div>Todos os recursos do sistema</div>
+          <div class="pf-item"><span class="ic-check ic-check--green"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span>Sem o limite de 15 clientes</div>
         </div>
-        <a href="#" class="btn-ghost" data-cta="mensal">Assinar o Mensal</a>
+        <a href="https://app-agendou.vercel.app/cadastro?plano=mensal" class="btn-ghost" data-plano="mensal">Assinar o Mensal</a>
       </div>
 
       <!-- TRIMESTRAL -->
-      <div class="price-card reveal">
+      <div class="price-card reveal" data-card="trimestral">
         <div class="price-name">Trimestral</div>
-        <p class="price-tagline">Um pagamento a cada três meses, com desconto sobre o mensal.</p>
+        <p class="price-tagline">Um pagamento a cada três meses, com desconto.</p>
         <div class="price-value"><span class="cur">R$</span><span class="amt">159,90</span><span class="per">/trimestre</span></div>
         <p class="price-billing">Pagamento único que libera <strong>3 meses</strong>. Equivale a R$ 53,30 por mês.</p>
         <span class="price-save">Economize R$ 19,80 por trimestre (11%)</span>
         <div class="price-points">
-          <div class="pf-item"><div class="pf-check">✓</div>Sem o limite de 15 clientes</div>
-          <div class="pf-item"><div class="pf-check">✓</div>Todos os recursos do sistema</div>
+          <div class="pf-item"><span class="ic-check ic-check--green"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span>Sem o limite de 15 clientes</div>
         </div>
-        <a href="#" class="btn-ghost" data-cta="trimestral">Assinar o Trimestral</a>
+        <a href="https://app-agendou.vercel.app/cadastro?plano=trimestral" class="btn-ghost" data-plano="trimestral">Assinar o Trimestral</a>
       </div>
 
       <!-- ANUAL -->
-      <div class="price-card price-card--featured reveal">
+      <div class="price-card price-card--featured reveal" data-card="anual">
         <span class="price-badge">Melhor economia</span>
         <div class="price-name">Anual</div>
-        <p class="price-tagline">Para quem vai usar o sistema o ano todo e quer pagar menos.</p>
+        <p class="price-tagline">Para usar o ano todo e pagar menos.</p>
         <div class="price-value"><span class="cur">R$</span><span class="amt">599,90</span><span class="per">/ano</span></div>
         <p class="price-billing">Pagamento único que libera <strong>12 meses</strong>. Equivale a cerca de R$ 49,99 por mês.</p>
-        <span class="price-save">Economize R$ 118,90 por ano (≈16%)</span>
+        <span class="price-save">Economize R$ 118,90 por ano (cerca de 16%)</span>
         <div class="price-points">
-          <div class="pf-item"><div class="pf-check">✓</div>Sem o limite de 15 clientes</div>
-          <div class="pf-item"><div class="pf-check">✓</div>Todos os recursos do sistema</div>
+          <div class="pf-item"><span class="ic-check ic-check--green"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span>Sem o limite de 15 clientes</div>
         </div>
-        <a href="#" class="btn-primary" data-cta="anual">Assinar o Anual</a>
+        <a href="https://app-agendou.vercel.app/cadastro?plano=anual" class="btn-primary" data-plano="anual">Assinar o Anual</a>
       </div>
     </div>
 
-    <div class="pricing-includes reveal">
-      <div class="pricing-includes-title">Incluído em todos os planos, inclusive no gratuito</div>
-      <div class="includes-grid">
-        <div class="pf-item"><div class="pf-check">✓</div>Página de agendamento online</div>
-        <div class="pf-item"><div class="pf-check">✓</div>Agenda por profissional</div>
-        <div class="pf-item"><div class="pf-check">✓</div>Ficha e histórico de clientes</div>
-        <div class="pf-item"><div class="pf-check">✓</div>Financeiro, a receber e comissões</div>
-        <div class="pf-item"><div class="pf-check">✓</div>Indicadores e exportação CSV</div>
-        <div class="pf-item"><div class="pf-check">✓</div>Planos de clientes (opcional)</div>
-      </div>
-    </div>
     <p class="pricing-foot">
-      O limite do Gratuito conta os clientes da barbearia cadastrados no sistema (as pessoas que você atende), não os usuários que acessam o painel.<br />
-      Pagamento por Pix ou cartão, pela AbacatePay. Não há renovação automática: perto do vencimento o painel avisa e você renova; pagar antes de vencer soma o novo período ao atual.<br />
+      Nos planos pagos, você cria a conta e o pagamento abre em seguida: Pix ou cartão, pela AbacatePay. Não há renovação automática: perto do vencimento o painel avisa e você renova; pagar antes de vencer soma o novo período ao atual.<br />
+      "Clientes cadastrados" são as pessoas que você atende, não os usuários que acessam o painel.<br />
       O equivalente mensal do Trimestral e do Anual serve só para comparação. Economia calculada sobre o Mensal (R$ 59,90).
     </p>
   </div>
@@ -2093,92 +2211,46 @@ button.demo-row:hover { background: rgba(255,255,255,0.04); border-color: var(--
   <div class="container">
     <div class="section-header reveal">
       <div class="section-eyebrow">
-        <div class="eyebrow">
-          <span class="eyebrow-dot"></span>
-          Dúvidas frequentes
-        </div>
+        <div class="eyebrow"><span class="eyebrow-dot"></span>Dúvidas frequentes</div>
       </div>
       <h2 class="section-title">Ficou alguma dúvida?</h2>
     </div>
     <div class="faq-list reveal">
-
       <div class="faq-item">
         <input type="checkbox" id="faq1" class="faq-check" />
-        <label for="faq1" class="faq-question">
-          O plano gratuito tem algum recurso bloqueado?
-          <span class="faq-arrow"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-        </label>
-        <div class="faq-answer">
-          <div class="faq-answer-inner">Não. A diferença do gratuito é o limite de 15 clientes cadastrados. Esse limite conta as pessoas que você atende, não você nem a sua equipe no painel. Quando a barbearia passar disso, é só migrar para o Mensal, o Trimestral ou o Anual.</div>
-        </div>
+        <label for="faq1" class="faq-question">O plano gratuito tem algum recurso bloqueado?<span class="faq-arrow"><svg class="ic" aria-hidden="true"><use href="#i-chevron-down"/></svg></span></label>
+        <div class="faq-answer"><div class="faq-answer-inner">Não. A única diferença do gratuito é o limite de 15 clientes cadastrados. Esse limite conta as pessoas que você atende, não você nem a sua equipe no painel. Quando a barbearia passar disso, é só migrar para o Mensal, o Trimestral ou o Anual.</div></div>
       </div>
-
       <div class="faq-item">
         <input type="checkbox" id="faq2" class="faq-check" />
-        <label for="faq2" class="faq-question">
-          Meus clientes conseguem pagar pelo aplicativo?
-          <span class="faq-arrow"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-        </label>
-        <div class="faq-answer">
-          <div class="faq-answer-inner">Ainda não com dinheiro real. O pagamento por Pix no momento do agendamento (sinal ou valor integral) já existe no sistema, mas em modo de testes. Ele será liberado quando a integração com o provedor de pagamento estiver ativa. Até lá, você recebe como já faz hoje e registra o pagamento no painel em um toque, e o financeiro mostra o que entrou e o que falta receber.</div>
-        </div>
+        <label for="faq2" class="faq-question">Como faço para começar?<span class="faq-arrow"><svg class="ic" aria-hidden="true"><use href="#i-chevron-down"/></svg></span></label>
+        <div class="faq-answer"><div class="faq-answer-inner">Toque em "Começar grátis" (ou no botão do plano) e crie a conta da barbearia com seu celular e uma senha. A conta já nasce no plano Gratuito. Se você escolheu um plano pago, em seguida abre o pagamento por Pix ou cartão, e o plano é liberado assim que a AbacatePay confirma o pagamento. Não há renovação automática: o painel avisa 7 dias antes do vencimento.</div></div>
       </div>
-
       <div class="faq-item">
         <input type="checkbox" id="faq3" class="faq-check" />
-        <label for="faq3" class="faq-question">
-          O sistema manda mensagens no WhatsApp?
-          <span class="faq-arrow"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-        </label>
-        <div class="faq-answer">
-          <div class="faq-answer-inner">Sim, pela API oficial do WhatsApp (Meta), usando o número da própria barbearia: confirmação do agendamento e um lembrete antes do horário. Para isso, é preciso conectar o número no painel e ter os modelos de mensagem aprovados pela Meta, que cobra as mensagens diretamente da conta da barbearia. Sem essa conexão, o painel abre o seu WhatsApp com a mensagem pronta para você enviar.</div>
-        </div>
+        <label for="faq3" class="faq-question">Meus clientes conseguem pagar pelo aplicativo?<span class="faq-arrow"><svg class="ic" aria-hidden="true"><use href="#i-chevron-down"/></svg></span></label>
+        <div class="faq-answer"><div class="faq-answer-inner"><span class="tag-cfg">Em implantação</span> Ainda não com dinheiro real. O Pix na hora do agendamento (sinal ou valor integral) já existe no sistema, mas em modo de testes. Ele será liberado quando a integração com o provedor de pagamento estiver ativa. Até lá, você recebe como já faz hoje e registra o pagamento no painel em um toque, e o financeiro mostra o que entrou e o que falta receber.</div></div>
       </div>
-
       <div class="faq-item">
         <input type="checkbox" id="faq4" class="faq-check" />
-        <label for="faq4" class="faq-question">
-          Funciona para barbearia que cobra só por corte?
-          <span class="faq-arrow"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-        </label>
-        <div class="faq-answer">
-          <div class="faq-answer-inner">Sim. O Agendou foi feito para quem cobra por atendimento. Os planos para clientes (mensalidades) são um módulo opcional: se você não cadastrar nenhum plano, nada dele aparece no seu dia a dia.</div>
-        </div>
+        <label for="faq4" class="faq-question">O sistema manda mensagens no WhatsApp?<span class="faq-arrow"><svg class="ic" aria-hidden="true"><use href="#i-chevron-down"/></svg></span></label>
+        <div class="faq-answer"><div class="faq-answer-inner"><span class="tag-cfg">Requer configuração</span> Sim, pela API oficial do WhatsApp (Meta), usando o número da própria barbearia: confirmação do agendamento e um lembrete antes do horário. Para isso, é preciso conectar o número no painel e ter os modelos de mensagem aprovados pela Meta, que cobra as mensagens diretamente da conta da barbearia. Sem essa conexão, o painel abre o seu WhatsApp com a mensagem pronta para você enviar.</div></div>
       </div>
-
       <div class="faq-item">
         <input type="checkbox" id="faq5" class="faq-check" />
-        <label for="faq5" class="faq-question">
-          Já tenho meus clientes numa planilha. Preciso cadastrar tudo de novo?
-          <span class="faq-arrow"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-        </label>
-        <div class="faq-answer">
-          <div class="faq-answer-inner">Não. Você importa um arquivo CSV ou Excel, indica qual coluna é nome e telefone, revisa e confirma. Telefones repetidos não viram cadastros duplicados. O histórico de atendimentos e pagamentos de outros sistemas não é importado, só o cadastro dos clientes.</div>
-        </div>
+        <label for="faq5" class="faq-question">Já tenho meus clientes numa planilha. Preciso cadastrar tudo de novo?<span class="faq-arrow"><svg class="ic" aria-hidden="true"><use href="#i-chevron-down"/></svg></span></label>
+        <div class="faq-answer"><div class="faq-answer-inner">Não. Você importa um arquivo CSV ou Excel, indica qual coluna é nome e telefone, revisa e confirma. Telefones repetidos não viram cadastros duplicados. O histórico de atendimentos e pagamentos de outros sistemas não é importado, só o cadastro dos clientes.</div></div>
       </div>
-
       <div class="faq-item">
         <input type="checkbox" id="faq6" class="faq-check" />
-        <label for="faq6" class="faq-question">
-          Funciona no celular?
-          <span class="faq-arrow"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-        </label>
-        <div class="faq-answer">
-          <div class="faq-answer-inner">Sim. O Agendou roda no navegador, no celular, no tablet ou no computador, sem instalar nada. A página de agendamento dos seus clientes também foi pensada para o celular.</div>
-        </div>
+        <label for="faq6" class="faq-question">Funciona para barbearia que cobra só por corte?<span class="faq-arrow"><svg class="ic" aria-hidden="true"><use href="#i-chevron-down"/></svg></span></label>
+        <div class="faq-answer"><div class="faq-answer-inner">Sim. O Agendou foi feito para quem cobra por atendimento. Os planos para clientes (mensalidades) são um módulo opcional: se você não cadastrar nenhum plano, nada dele aparece no seu dia a dia.</div></div>
       </div>
-
       <div class="faq-item">
         <input type="checkbox" id="faq7" class="faq-check" />
-        <label for="faq7" class="faq-question">
-          Como faço para começar?
-          <span class="faq-arrow"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-        </label>
-        <div class="faq-answer">
-          <div class="faq-answer-inner">Clique no botão do plano e crie a conta da sua barbearia com seu celular e uma senha. A conta já nasce no plano Gratuito. Se você escolheu um plano pago, em seguida abre o pagamento por Pix ou cartão, e o plano é liberado assim que a AbacatePay confirma o pagamento. Não há renovação automática: o painel avisa 7 dias antes do vencimento.</div>
-        </div>
+        <label for="faq7" class="faq-question">Funciona no celular?<span class="faq-arrow"><svg class="ic" aria-hidden="true"><use href="#i-chevron-down"/></svg></span></label>
+        <div class="faq-answer"><div class="faq-answer-inner">Sim. O Agendou roda no navegador, no celular, no tablet ou no computador, sem instalar nada. A página de agendamento dos seus clientes também foi pensada para o celular.</div></div>
       </div>
-
     </div>
   </div>
 </section>
@@ -2187,23 +2259,19 @@ button.demo-row:hover { background: rgba(255,255,255,0.04); border-color: var(--
 <section id="cta-final">
   <div class="container container--narrow">
     <div class="reveal">
-      <h2 class="cta-final-title">
-        Sua próxima semana já pode<br />
-        começar <span class="gradient-text">organizada.</span>
-      </h2>
-      <p class="cta-final-sub">
-        Comece pelo plano gratuito, divulgue seu link de agendamento e acompanhe agenda, clientes e caixa num lugar só.
-      </p>
+      <h2 class="cta-final-title">Sua próxima semana já pode<br />começar <span class="gradient-text">organizada.</span></h2>
+      <p class="cta-final-sub">Crie a conta grátis, divulgue seu link e veja agenda, clientes e o que falta receber num lugar só.</p>
       <div class="cta-final-actions">
-        <a href="#planos" class="btn-primary btn-primary--lg" data-cta="gratis">Começar grátis</a>
-        <a href="#demo" class="btn-ghost btn-ghost--lg">Explorar a demonstração</a>
+        <a href="https://app-agendou.vercel.app/cadastro" class="btn-primary btn-primary--lg" data-cta="final">Começar grátis</a>
+        <a href="#demo" class="btn-link" data-demo-link="final">Ver o painel funcionando <svg class="ic ic--sm" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
       </div>
     </div>
   </div>
 </section>
+</main>
 
 <!-- FOOTER -->
-<footer>
+<footer id="rodape">
   <div class="container">
     <div class="footer-grid">
       <div>
@@ -2217,7 +2285,7 @@ button.demo-row:hover { background: rgba(255,255,255,0.04); border-color: var(--
         <div class="footer-col-title">Produto</div>
         <div class="footer-links">
           <a href="#demo">Demonstração</a>
-          <a href="#cobrancas">Cobranças</a>
+          <a href="#financeiro">Cobranças</a>
           <a href="#features">Recursos</a>
           <a href="#recorrencia">Planos de clientes</a>
           <a href="#planos">Preços</a>
@@ -2227,15 +2295,15 @@ button.demo-row:hover { background: rgba(255,255,255,0.04); border-color: var(--
         <div class="footer-col-title">Suporte</div>
         <div class="footer-links">
           <a href="#faq">Dúvidas frequentes</a>
-          <a href="https://app-agendou.vercel.app/painel/login">Entrar no painel</a>
-          <a href="mailto:contato@agendou.com.br">Contato</a>
+          <a href="mailto:contato@agendou.com.br" id="footer-contato" data-contato>Contato</a>
+          <a href="https://app-agendou.vercel.app/painel/login" data-login>Entrar</a>
         </div>
       </div>
       <div>
         <div class="footer-col-title">Legal</div>
         <div class="footer-links">
-          <a href="https://app-agendou.vercel.app/termos">Termos de uso</a>
-          <a href="https://app-agendou.vercel.app/privacidade">Política de privacidade</a>
+          <a href="https://app-agendou.vercel.app/termos" data-app-path="/termos">Termos de uso</a>
+          <a href="https://app-agendou.vercel.app/privacidade" data-app-path="/privacidade">Política de privacidade</a>
         </div>
       </div>
     </div>
@@ -2247,33 +2315,157 @@ button.demo-row:hover { background: rgba(255,255,255,0.04); border-color: var(--
   </div>
 </footer>
 
-<script>
-/* ─── CONFIGURAÇÃO DE CONTRATAÇÃO ─────────────────────────────────
-   Todos os CTAs levam ao cadastro do app (com ?plano=gratis|mensal|trimestral|anual).
-   O app cria a conta no Gratuito e, se o plano for pago, abre o pagamento pela
-   AbacatePay. Se `cadastroUrl` ficar vazio, os botões dos planos abrem um e-mail.  */
-const CONTRATACAO = {
-  email: 'contato@agendou.com.br',
-  cadastroUrl: 'https://app-agendou.vercel.app/cadastro'
-};
-const NOMES_PLANO = { gratis: 'Gratuito', mensal: 'Mensal', trimestral: 'Trimestral', anual: 'Anual' };
-document.querySelectorAll('[data-cta]').forEach(a => {
-  const plano = a.dataset.cta;
-  if (CONTRATACAO.cadastroUrl) {
-    a.href = CONTRATACAO.cadastroUrl + (CONTRATACAO.cadastroUrl.includes('?') ? '&' : '?') + 'plano=' + plano;
-    return;
-  }
-  // sem cadastro: CTAs genéricos levam à seção de preços; botões de plano abrem o e-mail
-  if (a.closest('.price-card')) {
-    const assunto = encodeURIComponent('Quero o plano ' + NOMES_PLANO[plano] + ' do Agendou');
-    const corpo = encodeURIComponent('Olá! Quero ativar o plano ' + NOMES_PLANO[plano] + ' para a minha barbearia.\n\nNome da barbearia:\nCidade:\nCelular (com DDD):\n');
-    a.href = 'mailto:' + CONTRATACAO.email + '?subject=' + assunto + '&body=' + corpo;
-  }
-});
+<!-- barra de CTA fixa (celular) -->
+<div class="sticky-cta" id="sticky-cta">
+  <a href="https://app-agendou.vercel.app/cadastro" class="btn-primary" data-cta="barra-fixa">Começar grátis</a>
+  <span class="sticky-cta-note">Até 15 clientes. Sem cartão.</span>
+</div>
 
-// Menu mobile
-document.querySelectorAll('[data-close-menu]').forEach(a =>
-  a.addEventListener('click', () => { document.getElementById('nav-menu-open').checked = false; }));
+<!-- WhatsApp para dúvidas (aparece quando o número está configurado) -->
+<a class="wa-float" id="wa-float" href="#" target="_blank" rel="noopener" aria-label="Tirar dúvidas pelo WhatsApp" hidden><svg class="ic" aria-hidden="true"><use href="#i-message-circle"/></svg></a>
+
+<script>
+/* ─── CONFIGURAÇÃO ─────────────────────────────────────────────────
+   Edite aqui. Tudo o que é link externo da página sai deste bloco.   */
+const CONFIG = {
+  appUrl: 'https://app-agendou.vercel.app',
+  cadastroPath: '/cadastro',            // aceita ?plano=mensal|trimestral|anual
+  loginPath: '/painel/login',
+  // WhatsApp para dúvidas: só dígitos, com DDI e DDD (ex.: '5511999999999').
+  // Vazio = o botão flutuante fica escondido e "Contato" usa o e-mail.
+  whatsappNumero: '',
+  whatsappMensagem: 'Oi, quero saber mais sobre o Agendou',
+  email: 'contato@agendou.com.br'
+};
+
+/* Título do hero: troque HERO_VARIANTE para 'b' (ou abra a página com
+   ?titulo=b) para testar a alternativa. A variante vai junto nos eventos. */
+const HERO_TITULOS = {
+  a: 'Saiba quem te deve, quem sumiu e quem vem amanhã. <span class="gradient-text">Num painel só.</span>',
+  b: 'O cliente marca sozinho. <span class="gradient-text">O fiado aparece com nome e valor.</span>'
+};
+const HERO_VARIANTE = 'a';
+
+/* Depoimentos reais. Enquanto a lista estiver vazia, a seção não aparece.
+   Formato: { foto: 'img/joao.webp' (opcional), nome: 'João Silva',
+              barbearia: 'Barbearia do João', cidade: 'Campinas, SP',
+              frase: 'O que ele disse, com as palavras dele.' }            */
+const DEPOIMENTOS = [];
+
+/* ─── medição (Vercel Web Analytics) ─── */
+window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+const heroVar = (new URLSearchParams(location.search).get('titulo') || HERO_VARIANTE).toLowerCase();
+const VAR = HERO_TITULOS[heroVar] ? heroVar : 'a';
+function rastrear(nome, dados) {
+  try { window.va('event', { name: nome, data: Object.assign({ titulo: VAR }, dados || {}) }); } catch (e) {}
+}
+
+/* título alternativo */
+if (VAR !== 'a') document.getElementById('hero-titulo').innerHTML = HERO_TITULOS[VAR];
+
+/* ─── links de cadastro (com UTMs da visita, se houver) ─── */
+const utm = new URLSearchParams();
+new URLSearchParams(location.search).forEach((v, k) => { if (/^utm_|^(gclid|fbclid)$/.test(k)) utm.set(k, v); });
+function urlCadastro(plano) {
+  const p = new URLSearchParams(utm);
+  if (plano && plano !== 'gratis') p.set('plano', plano);
+  const q = p.toString();
+  return CONFIG.appUrl + CONFIG.cadastroPath + (q ? '?' + q : '');
+}
+document.querySelectorAll('[data-cta]').forEach(a => {
+  a.href = urlCadastro();
+  a.addEventListener('click', () => rastrear('cta_click', { posicao: a.dataset.cta }));
+});
+document.querySelectorAll('[data-plano]').forEach(a => {
+  a.href = urlCadastro(a.dataset.plano);
+  a.addEventListener('click', () => {
+    rastrear('plano_click', { plano: a.dataset.plano });
+    rastrear('cta_click', { posicao: 'precos', plano: a.dataset.plano });
+  });
+});
+document.querySelectorAll('[data-login]').forEach(a => { a.href = CONFIG.appUrl + CONFIG.loginPath; });
+document.querySelectorAll('[data-app-path]').forEach(a => { a.href = CONFIG.appUrl + a.dataset.appPath; });
+
+/* ─── WhatsApp e contato ─── */
+const waNum = String(CONFIG.whatsappNumero || '').replace(/\D/g, '');
+const waUrl = waNum ? 'https://wa.me/' + waNum + '?text=' + encodeURIComponent(CONFIG.whatsappMensagem) : '';
+const waFloat = document.getElementById('wa-float');
+const contato = document.getElementById('footer-contato');
+if (waUrl) {
+  waFloat.href = waUrl; waFloat.hidden = false;
+  waFloat.addEventListener('click', () => rastrear('whatsapp_click', { origem: 'flutuante' }));
+  contato.href = waUrl; contato.target = '_blank'; contato.rel = 'noopener';
+  contato.addEventListener('click', () => rastrear('whatsapp_click', { origem: 'rodape' }));
+} else {
+  contato.href = 'mailto:' + CONFIG.email + '?subject=' + encodeURIComponent('Dúvida sobre o Agendou');
+}
+
+/* ─── menu mobile ─── */
+const navToggle = document.getElementById('nav-toggle');
+const navMenu = document.getElementById('nav-menu');
+function menu(abrir) {
+  navMenu.classList.toggle('open', abrir);
+  navToggle.setAttribute('aria-expanded', abrir);
+  navToggle.setAttribute('aria-label', abrir ? 'Fechar menu' : 'Abrir menu');
+  document.body.classList.toggle('menu-open', abrir);
+  atualizarBarra();
+}
+navToggle.addEventListener('click', () => menu(!navMenu.classList.contains('open')));
+navMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => menu(false)));
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && navMenu.classList.contains('open')) { menu(false); navToggle.focus(); } });
+
+/* ─── barra de CTA fixa: aparece depois do hero, some em preços / CTA final / rodapé ─── */
+const barra = document.getElementById('sticky-cta');
+const visiveis = new Set();
+function atualizarBarra() {
+  const mostrar = !visiveis.has('hero') && !visiveis.has('planos') && !visiveis.has('cta-final') && !visiveis.has('rodape')
+    && !navMenu.classList.contains('open');
+  barra.classList.toggle('show', mostrar);
+  document.body.classList.toggle('has-sticky', mostrar && getComputedStyle(barra).display !== 'none');
+}
+const obsBarra = new IntersectionObserver(es => {
+  es.forEach(e => e.isIntersecting ? visiveis.add(e.target.id) : visiveis.delete(e.target.id));
+  atualizarBarra();
+}, { threshold: 0 });
+['hero', 'planos', 'cta-final', 'rodape'].forEach(id => obsBarra.observe(document.getElementById(id)));
+addEventListener('resize', atualizarBarra, { passive: true });
+
+/* ─── recursos: acordeão no celular (o primeiro abre por padrão) ─── */
+const mqCel = matchMedia('(max-width: 900px)');
+const pilares = [...document.querySelectorAll('.pillar-head')];
+function modoPilares() {
+  pilares.forEach((b, i) => {
+    const abrir = !mqCel.matches || i === 0;
+    b.setAttribute('aria-expanded', abrir);
+    document.getElementById(b.getAttribute('aria-controls')).hidden = !abrir;
+    b.tabIndex = mqCel.matches ? 0 : -1;
+  });
+}
+pilares.forEach(b => b.addEventListener('click', () => {
+  if (!mqCel.matches) return;
+  const abrir = b.getAttribute('aria-expanded') !== 'true';
+  b.setAttribute('aria-expanded', abrir);
+  document.getElementById(b.getAttribute('aria-controls')).hidden = !abrir;
+}));
+modoPilares();
+mqCel.addEventListener('change', modoPilares);
+
+/* ─── depoimentos ─── */
+(function () {
+  const lista = DEPOIMENTOS.filter(d => d && d.nome && d.frase);
+  if (!lista.length) return;
+  const esc = s => String(s || '').replace(/[&<>"]/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[ch]));
+  const ini = n => n.trim().split(/\s+/).map(p => p[0]).slice(0, 2).join('').toUpperCase();
+  document.getElementById('depo-grid').innerHTML = lista.map(d => `
+    <figure class="depo-card reveal visible">
+      <blockquote class="depo-frase">“${esc(d.frase)}”</blockquote>
+      <figcaption class="depo-autor">
+        ${d.foto ? `<img class="depo-foto" src="${esc(d.foto)}" alt="" width="44" height="44" loading="lazy" decoding="async" />` : `<span class="depo-foto" aria-hidden="true">${esc(ini(d.nome))}</span>`}
+        <span><span class="depo-nome">${esc(d.nome)}</span><br /><span class="depo-local">${esc([d.barbearia, d.cidade].filter(Boolean).join(' · '))}</span></span>
+      </figcaption>
+    </figure>`).join('');
+  document.getElementById('depoimentos').hidden = false;
+})();
 
 // Ano do rodapé
 document.getElementById('ano').textContent = new Date().getFullYear();
@@ -2288,23 +2480,55 @@ document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
 // Nav scroll style
 const nav = document.getElementById('nav');
+let navEscuro = false;
 window.addEventListener('scroll', () => {
-  if (window.scrollY > 60) {
-    nav.style.background = 'rgba(11,12,14,0.92)';
-    nav.style.boxShadow = '0 4px 48px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.05)';
-  } else {
-    nav.style.background = 'rgba(17,18,20,0.75)';
-    nav.style.boxShadow = '0 4px 32px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.06)';
-  }
+  const v = window.scrollY > 60;
+  if (v === navEscuro) return;
+  navEscuro = v;
+  nav.style.background = v ? 'rgba(11,12,14,0.92)' : '';
+  nav.style.boxShadow = v ? '0 4px 48px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.05)' : '';
 }, { passive: true });
+
+/* ─── demonstração: carrega só quando chega perto da tela ─── */
+let demoIniciada = false, demoIr = null, demoRastreada = false;
+function demoAberta(origem) {
+  if (demoRastreada) return;
+  demoRastreada = true;
+  rastrear('demo_open', { origem });
+}
+function iniciarDemo() {
+  if (demoIniciada) return;
+  demoIniciada = true;
+  demoIr = demo();
+}
+const demoSec = document.getElementById('demo');
+const fin = document.getElementById('financeiro');
+if ('IntersectionObserver' in window) {
+  const obsDemo = new IntersectionObserver(es => {
+    if (es.some(e => e.isIntersecting)) { obsDemo.disconnect(); (window.requestIdleCallback || setTimeout)(iniciarDemo, { timeout: 1500 }); }
+  }, { rootMargin: '400px 0px' });
+  obsDemo.observe(demoSec); obsDemo.observe(fin);
+  const obsVista = new IntersectionObserver(es => {
+    if (es.some(e => e.isIntersecting)) { demoAberta('rolagem'); obsVista.disconnect(); }
+  }, { threshold: 0.35 });
+  obsVista.observe(document.getElementById('demo-app'));
+} else iniciarDemo();
+document.querySelectorAll('[data-demo-link]').forEach(a => a.addEventListener('click', () => { iniciarDemo(); demoAberta(a.dataset.demoLink); }));
+document.querySelectorAll('[data-demo-goto]').forEach(b => b.addEventListener('click', () => {
+  iniciarDemo(); demoAberta('clube');
+  demoIr && demoIr(b.dataset.demoGoto);
+  demoSec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}));
 
 /* ─── DEMONSTRAÇÃO INTERATIVA ─────────────────────────────────────
    Tudo roda no navegador, com dados fictícios gerados por semente fixa.
    Nenhuma chamada de rede, nada é gravado. Botões de ação só mostram
    um aviso explicando o que fariam na conta real.                    */
-(function demo() {
+function demo() {
+
   const view = document.getElementById('demo-view');
-  if (!view) return;
+  if (!view) return null;
+  const IC = (n, c) => `<svg class="ic ${c || ''}" aria-hidden="true"><use href="#i-${n}"/></svg>`;
 
   // ── dados fictícios ──
   let seed = 20261024;
@@ -2468,7 +2692,7 @@ window.addEventListener('scroll', () => {
     const ant = calc(a - len, b - len)[campo], atual = calc(a, b)[campo];
     if (!ant) return 'Sem base de comparação';
     const v = Math.round((atual - ant) / ant * 100);
-    return (v >= 0 ? '↑ ' : '↓ ') + Math.abs(v) + '% vs. ' + rotulo;
+    return (v >= 0 ? IC('trending-up', 'var-ic') : IC('trending-down', 'var-ic')) + Math.abs(v) + '% vs. ' + rotulo;
   }
   const aReceberAtend = () => AG.filter(x => x.status === 'concluido' && x.preco > x.coberto && !x.pago).sort((x, y) => y.d - x.d || y.t - x.t);
   const mensPend = () => MENS.filter(m => m.pagoEm === null);
@@ -2700,7 +2924,7 @@ window.addEventListener('scroll', () => {
       </div>
       <div class="demo-split">
         <div class="mock-card">
-          <div class="mock-card-title">${PLANO.nome} <button type="button" class="demo-btn" data-acao="abriria o cadastro de um novo plano">+ Novo plano</button></div>
+          <div class="mock-card-title">${PLANO.nome} <button type="button" class="demo-btn" data-acao="abriria o cadastro de um novo plano">${IC('plus')} Novo plano</button></div>
           <div style="font-size:22px;font-weight:800;letter-spacing:-0.04em">${brl(PLANO.preco)} <span style="font-size:12px;font-weight:400;color:var(--txt3)">/ mês</span></div>
           <div class="demo-sub" style="margin:2px 0 12px">Inclui ${PLANO.usos} cortes por ciclo, 100% cobertos</div>
           ${assin.map(c => { const m = MENS.find(x => x.cli === c.id); const u = usoAtual(c); return `
@@ -2760,12 +2984,6 @@ window.addEventListener('scroll', () => {
     if (e.target.id === 'demo-busca') { S.busca = e.target.value; render(true); }
   });
 
-  // atalhos de fora da demo
-  document.querySelectorAll('[data-demo-goto]').forEach(b => b.addEventListener('click', () => {
-    ir(b.dataset.demoGoto);
-    document.getElementById('demo').scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }));
-
   // quadro "A receber" da seção de cobranças (mesmos dados da demo)
   const cob = document.getElementById('cob-receber');
   if (cob) {
@@ -2786,7 +3004,8 @@ window.addEventListener('scroll', () => {
   });
 
   render();
-})();
+  return ir;
+}
 </script>
 </body>
 </html>
