@@ -1738,19 +1738,9 @@ button.mock-nav-item.active .ic { opacity: 1; }
   .steps-wrap.steps-3 .step-num { width: 44px; height: 44px; margin: 0; font-size: 15px; flex-shrink: 0; box-shadow: none; }
   .steps-wrap.steps-3 .step-title { margin-bottom: 2px; }
 
-  /* preços: Anual primeiro, Gratuito por último e compacto */
+  /* preços: ordem crescente (Gratuito → Anual), igual ao computador */
   .pricing-all { margin: 0 auto 28px; }
   .pricing-grid { gap: 22px; }
-  .price-card--featured { order: 1; }
-  .price-card[data-card="trimestral"] { order: 2; }
-  .price-card[data-card="mensal"] { order: 3; }
-  .price-card[data-card="gratis"] { order: 4; padding: 18px; }
-  .price-card[data-card="gratis"] .price-tagline,
-  .price-card[data-card="gratis"] .price-billing,
-  .price-card[data-card="gratis"] .price-points { display: none; }
-  .price-card[data-card="gratis"] .price-value .amt { font-size: 30px; }
-  .price-card[data-card="gratis"] .price-mini { display: block; }
-  .price-card[data-card="gratis"] .btn-ghost { margin-top: 14px; }
   .price-tagline { margin-bottom: 12px; }
   .price-points { margin: 14px 0 18px; }
 
