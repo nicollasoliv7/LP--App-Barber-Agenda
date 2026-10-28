@@ -31,6 +31,8 @@
   --r-lg:     20px;
   --r-xl:     28px;
   --ease:     cubic-bezier(0.22, 1, 0.36, 1);
+  --green:    #4ADE80;
+  --plan:     #818CF8;
 }
 
 /* ─── RESET ───────────────────────────────────────────────────── */
@@ -44,6 +46,8 @@ body {
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
 }
+::selection { background: rgba(255,107,74,0.28); color: var(--txt); }
+input, textarea { caret-color: var(--coral); }
 a { text-decoration: none; color: inherit; }
 img { max-width: 100%; display: block; }
 ul { list-style: none; }
@@ -649,9 +653,9 @@ h1 {
 .feat-mini-table th { color: var(--txt3); font-weight: 500; font-size: 10.5px; }
 .feat-mini-table td { color: var(--txt2); }
 .feat-mini-table tr:last-child td { border-bottom: none; }
-.tag-ok  { display:inline-block; background:rgba(40,200,80,0.1); color:#4ADE80; border-radius:100px; padding:2px 8px; font-size:9.5px; font-weight:600; }
+.tag-ok  { display:inline-block; background:rgba(40,200,80,0.1); color:var(--green); border-radius:100px; padding:2px 8px; font-size:9.5px; font-weight:600; }
 .tag-pend{ display:inline-block; background:rgba(255,179,71,0.1); color:var(--amber); border-radius:100px; padding:2px 8px; font-size:9.5px; font-weight:600; }
-.tag-new { display:inline-block; background:rgba(99,102,241,0.12); color:#818CF8; border-radius:100px; padding:2px 8px; font-size:9.5px; font-weight:600; }
+.tag-new { display:inline-block; background:rgba(99,102,241,0.12); color:var(--plan); border-radius:100px; padding:2px 8px; font-size:9.5px; font-weight:600; }
 .mini-chart {
   display: flex;
   align-items: flex-end;
@@ -695,7 +699,7 @@ h1 {
 .plan-row-name { font-size: 12px; font-weight: 600; color: var(--txt2); }
 .plan-row-price { font-size: 10.5px; color: var(--txt3); }
 .plan-row-status { font-size: 10px; padding: 2px 8px; border-radius: 100px; font-weight: 600; }
-.plan-row-status.ativo { background: rgba(40,200,80,0.1); color: #4ADE80; }
+.plan-row-status.ativo { background: rgba(40,200,80,0.1); color: var(--green); }
 
 /* ─── RECURRENCE ──────────────────────────────────────────────── */
 #recorrencia {
@@ -859,7 +863,7 @@ h1 {
 .recor-sub-name { flex: 1; color: var(--txt2); }
 .recor-sub-venc { font-size: 10.5px; color: var(--txt3); }
 .recor-sub-status { font-size: 9.5px; padding: 2px 7px; border-radius: 100px; font-weight: 600; }
-.recor-sub-status.ativo { background: rgba(40,200,80,0.1); color: #4ADE80; }
+.recor-sub-status.ativo { background: rgba(40,200,80,0.1); color: var(--green); }
 .recor-sub-status.pend  { background: rgba(255,179,71,0.1); color: var(--amber); }
 
 /* ─── HOW IT WORKS ────────────────────────────────────────────── */
@@ -1027,7 +1031,7 @@ h1 {
   flex-shrink: 0;
   margin-top: 1px;
   font-size: 9px;
-  color: #4ADE80;
+  color: var(--green);
 }
 .pricing-cta {
   padding: 0 32px 32px;
@@ -1279,6 +1283,9 @@ button.mock-nav-item.active { background: rgba(255,107,74,0.12); color: var(--co
 .demo-split { display: grid; grid-template-columns: 1.25fr 1fr; gap: 10px; }
 .demo-split--even { grid-template-columns: 1fr 1fr; }
 .demo-scroll { max-height: 400px; overflow-y: auto; scrollbar-width: thin; scrollbar-color: var(--s3) transparent; margin-right: -6px; padding-right: 6px; }
+.demo-scroll::-webkit-scrollbar { width: 4px; }
+.demo-scroll::-webkit-scrollbar-track { background: transparent; }
+.demo-scroll::-webkit-scrollbar-thumb { background: var(--s3); border-radius: 2px; }
 .demo-chart { display: flex; align-items: flex-end; gap: 3px; height: 130px; padding-top: 6px; }
 .demo-chart .mini-bar { min-height: 3px; cursor: default; }
 .demo-chart .mini-bar.off { background: rgba(255,255,255,0.06); }
@@ -1300,12 +1307,12 @@ button.demo-row:hover { background: rgba(255,255,255,0.04); border-color: var(--
   display: inline-flex; align-items: center; gap: 4px; white-space: nowrap; flex-shrink: 0;
 }
 .st::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: currentColor; }
-.st-ok   { background: rgba(40,200,80,0.1);   color: #4ADE80; }
+.st-ok   { background: rgba(40,200,80,0.1);   color: var(--green); }
 .st-conf { background: rgba(255,107,74,0.12); color: var(--coral); }
 .st-pend { background: rgba(255,179,71,0.1);  color: var(--amber); }
 .st-bad  { background: rgba(255,47,58,0.12);  color: #FF6B73; }
 .st-mute { background: rgba(255,255,255,0.06); color: var(--txt3); }
-.st-plan { background: rgba(99,102,241,0.12); color: #818CF8; }
+.st-plan { background: rgba(99,102,241,0.12); color: var(--plan); }
 .demo-kv { display: flex; justify-content: space-between; gap: 12px; font-size: 11.5px; padding: 7px 0; border-bottom: 1px solid rgba(255,255,255,0.04); }
 .demo-kv > span:first-child { color: var(--txt3); }
 .demo-kv > span:last-child { color: var(--txt2); text-align: right; }
@@ -1422,7 +1429,7 @@ button.demo-row:hover { background: rgba(255,255,255,0.04); border-color: var(--
 .price-billing { font-size: 12.5px; color: var(--txt3); margin-top: 6px; line-height: 1.5; min-height: 38px; }
 .price-billing strong { color: var(--txt2); font-weight: 600; }
 .price-save {
-  align-self: flex-start; font-size: 11.5px; font-weight: 600; color: #4ADE80;
+  align-self: flex-start; font-size: 11.5px; font-weight: 600; color: var(--green);
   background: rgba(40,200,80,0.1); border: 1px solid rgba(40,200,80,0.2);
   border-radius: 100px; padding: 3px 10px; margin-top: 10px;
 }
@@ -1506,7 +1513,7 @@ button.demo-row:hover { background: rgba(255,255,255,0.04); border-color: var(--
   background: rgba(255,107,74,0.16); color: var(--coral);
 }
 .ic-check .ic { width: 11px; height: 11px; stroke-width: 3; }
-.ic-check--green { background: rgba(40,200,80,0.14); color: #4ADE80; }
+.ic-check--green { background: rgba(40,200,80,0.14); color: var(--green); }
 .ic-check--amber { background: rgba(255,179,71,0.16); color: var(--amber); }
 .ic-x {
   width: 32px; height: 32px; border-radius: 10px; flex-shrink: 0;
@@ -1635,7 +1642,7 @@ button.mock-nav-item.active .ic { opacity: 1; }
 .faq-answer-inner .tag-cfg { margin-right: 4px; }
 
 /* rodapé */
-.footer-links a { display: inline-flex; align-items: center; min-height: 32px; }
+.footer-links a { display: inline-flex; align-items: center; min-height: 44px; }
 
 /* barra de CTA fixa (celular) */
 .sticky-cta {
@@ -1708,11 +1715,11 @@ button.mock-nav-item.active .ic { opacity: 1; }
   .demo-head { margin-bottom: 18px; }
   .demo-hint { font-size: 14.5px; }
   button.mock-nav-item { min-height: 44px; padding: 0 14px; font-size: 13.5px; }
-  .demo-chip { min-height: 40px; padding: 0 14px; font-size: 13px; }
+  .demo-chip { min-height: 44px; padding: 0 14px; font-size: 13px; }
   .demo-chips { gap: 6px; }
   .demo-row { min-height: 44px; font-size: 13px; }
   .demo-row .muted { font-size: 11.5px; }
-  .demo-btn { min-height: 40px; font-size: 12.5px; padding: 0 12px; }
+  .demo-btn { min-height: 44px; font-size: 12.5px; padding: 0 12px; }
   .demo-search { min-height: 44px; font-size: 16px; }
   .demo-scroll { max-height: 320px; }
   .demo-kv { font-size: 13px; }
@@ -1873,6 +1880,32 @@ button.mock-nav-item.active .ic { opacity: 1; }
         </div>
       </div>
       <div class="demo-toast" id="demo-toast" role="status" aria-live="polite"></div>
+    </div>
+  </div>
+</section>
+
+<!-- COMO FUNCIONA -->
+<section id="como-funciona">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-eyebrow">
+        <div class="eyebrow"><span class="eyebrow-dot"></span>Como funciona</div>
+      </div>
+      <h2 class="section-title">Três passos para sair do caderno</h2>
+    </div>
+    <div class="steps-wrap steps-3">
+      <div class="step-card reveal">
+        <div class="step-num">01</div>
+        <div><div class="step-title">Cadastre o básico</div><div class="step-desc">Serviços, preços, equipe e horários.</div></div>
+      </div>
+      <div class="step-card reveal">
+        <div class="step-num">02</div>
+        <div><div class="step-title">Divulgue seu link</div><div class="step-desc">Na bio e no WhatsApp: o cliente marca sozinho.</div></div>
+      </div>
+      <div class="step-card reveal">
+        <div class="step-num">03</div>
+        <div><div class="step-title">Atenda e acompanhe</div><div class="step-desc">Veja o que entrou e o que falta receber.</div></div>
+      </div>
     </div>
   </div>
 </section>
@@ -2078,32 +2111,6 @@ button.mock-nav-item.active .ic { opacity: 1; }
             <div class="recor-sub-row"><div class="recor-sub-av">AC</div><span class="recor-sub-name">André C.</span><span class="recor-sub-uso" data-uso-cli="8">—</span><span class="recor-sub-status inad">Inadimplente</span></div>
           </div>
         </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- COMO FUNCIONA -->
-<section id="como-funciona">
-  <div class="container">
-    <div class="section-header reveal">
-      <div class="section-eyebrow">
-        <div class="eyebrow"><span class="eyebrow-dot"></span>Como funciona</div>
-      </div>
-      <h2 class="section-title">Três passos para sair do caderno</h2>
-    </div>
-    <div class="steps-wrap steps-3">
-      <div class="step-card reveal">
-        <div class="step-num">01</div>
-        <div><div class="step-title">Cadastre o básico</div><div class="step-desc">Serviços, preços, equipe e horários.</div></div>
-      </div>
-      <div class="step-card reveal">
-        <div class="step-num">02</div>
-        <div><div class="step-title">Divulgue seu link</div><div class="step-desc">Na bio e no WhatsApp: o cliente marca sozinho.</div></div>
-      </div>
-      <div class="step-card reveal">
-        <div class="step-num">03</div>
-        <div><div class="step-title">Atenda e acompanhe</div><div class="step-desc">Veja o que entrou e o que falta receber.</div></div>
       </div>
     </div>
   </div>
