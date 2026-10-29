@@ -1062,8 +1062,7 @@ h1 {
   overflow: hidden;
   transition: border-color 0.2s;
 }
-.faq-item:has(.faq-check:checked) { border-color: var(--b2); }
-.faq-check { display: none; }
+.faq-item.is-open { border-color: var(--b2); }
 .faq-question {
   display: flex;
   align-items: center;
@@ -1075,6 +1074,7 @@ h1 {
   cursor: pointer;
   user-select: none;
   transition: color 0.2s;
+  background: none; border: none; width: 100%; text-align: left; color: inherit;
 }
 .faq-question:hover { color: var(--txt); }
 .faq-arrow {
@@ -1084,13 +1084,13 @@ h1 {
   color: var(--txt3);
   transition: transform 0.3s var(--ease), color 0.2s;
 }
-.faq-check:checked ~ .faq-question .faq-arrow { transform: rotate(180deg); color: var(--coral); }
+.faq-question[aria-expanded="true"] .faq-arrow { transform: rotate(180deg); color: var(--coral); }
 .faq-answer {
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.4s var(--ease);
 }
-.faq-check:checked ~ .faq-answer { max-height: 400px; }
+.faq-item.is-open .faq-answer { max-height: 400px; }
 .faq-answer-inner {
   padding: 0 22px 18px;
   font-size: 14px;
@@ -1416,8 +1416,8 @@ button.demo-row:hover { background: rgba(255,255,255,0.04); border-color: var(--
 .price-badge {
   position: absolute; top: -11px; left: 22px;
   font-size: 10.5px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
-  padding: 4px 10px; border-radius: 100px; color: #fff;
-  background: linear-gradient(90deg, var(--crimson), var(--coral));
+  padding: 4px 10px; border-radius: 100px; color: var(--bg);
+  background: linear-gradient(90deg, var(--coral), var(--amber));
 }
 .price-badge--soft { background: var(--s3); color: var(--txt2); border: 1px solid var(--b2); }
 .price-name { font-size: 13px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--coral); margin-bottom: 6px; }
@@ -1800,7 +1800,7 @@ button.mock-nav-item.active .ic { opacity: 1; }
   </a>
   <div class="nav-links">
     <a href="#demo">Demonstração</a>
-    <a href="#financeiro">Cobranças</a>
+    <a href="#financeiro">O problema</a>
     <a href="#features">Recursos</a>
     <a href="#planos">Preços</a>
     <a href="#faq">Dúvidas</a>
@@ -1815,7 +1815,7 @@ button.mock-nav-item.active .ic { opacity: 1; }
 </nav>
 <div class="nav-mobile-overlay" id="nav-menu">
   <a href="#demo" data-close-menu>Demonstração</a>
-  <a href="#financeiro" data-close-menu>Cobranças</a>
+  <a href="#financeiro" data-close-menu>O problema</a>
   <a href="#features" data-close-menu>Recursos</a>
   <a href="#planos" data-close-menu>Preços</a>
   <a href="#faq" data-close-menu>Dúvidas</a>
@@ -1833,7 +1833,7 @@ button.mock-nav-item.active .ic { opacity: 1; }
       <span class="eyebrow-dot"></span>
       Sistema de gestão para barbearias
     </div>
-    <h1 id="hero-titulo">Saiba quem te deve, quem sumiu e quem vem amanhã. <span class="gradient-text">Num painel só.</span></h1>
+    <h1 id="hero-titulo">Saiba quem te deve, quem sumiu e quem vem amanhã. <span style="color:var(--amber);font-weight:800">Num painel só.</span></h1>
     <p class="hero-sub">Agenda online, histórico de clientes e o que falta receber, no celular.</p>
     <div class="hero-actions">
       <a href="https://app-barber-agendamentos.vercel.app/cadastro" class="btn-primary btn-primary--lg" data-cta="hero">Começar grátis</a>
@@ -1888,9 +1888,6 @@ button.mock-nav-item.active .ic { opacity: 1; }
 <section id="como-funciona">
   <div class="container">
     <div class="section-header reveal">
-      <div class="section-eyebrow">
-        <div class="eyebrow"><span class="eyebrow-dot"></span>Como funciona</div>
-      </div>
       <h2 class="section-title">Três passos para sair do caderno</h2>
     </div>
     <div class="steps-wrap steps-3">
@@ -1914,9 +1911,6 @@ button.mock-nav-item.active .ic { opacity: 1; }
 <section id="financeiro" aria-labelledby="fin-title">
   <div class="container">
     <div class="section-header reveal">
-      <div class="section-eyebrow">
-        <div class="eyebrow"><span class="eyebrow-dot" style="background:var(--crimson)"></span>O problema</div>
-      </div>
       <h2 class="section-title" id="fin-title">A tesoura é com você.<br />O resto vira bagunça.</h2>
       <p class="section-sub">"Te passo o Pix depois." Entre um cliente e outro, ninguém lembra quem pagou, quem deve e quem sumiu.</p>
     </div>
@@ -1984,9 +1978,6 @@ button.mock-nav-item.active .ic { opacity: 1; }
 <section id="features">
   <div class="container">
     <div class="section-header reveal">
-      <div class="section-eyebrow">
-        <div class="eyebrow"><span class="eyebrow-dot"></span>Recursos</div>
-      </div>
       <h2 class="section-title">Do agendamento ao fechamento do mês</h2>
       <p class="section-sub">O que é marcado na agenda vira histórico do cliente e número no financeiro.</p>
     </div>
@@ -2130,12 +2121,9 @@ button.mock-nav-item.active .ic { opacity: 1; }
 <section id="planos" aria-labelledby="precos-title">
   <div class="container container--wide">
     <div class="section-header reveal">
-      <div class="section-eyebrow">
-        <div class="eyebrow"><span class="eyebrow-dot"></span>Preços</div>
-      </div>
       <h2 class="section-title" id="precos-title">Comece grátis. Assine quando a barbearia crescer.</h2>
     </div>
-    <p class="pricing-all reveal">Todos os planos têm todos os recursos. Muda só o limite de clientes.</p>
+    <p class="pricing-all reveal">Todos os planos têm todos os recursos — muda só o limite de clientes cadastrados. Sem renovação automática: o painel avisa antes do vencimento e você decide se renova.</p>
 
     <div class="pricing-grid">
       <!-- GRATUITO -->
@@ -2162,20 +2150,25 @@ button.mock-nav-item.active .ic { opacity: 1; }
         <p class="price-billing">Pagamento que libera <strong>1 mês</strong> de uso.</p>
         <span class="price-save price-save--none" aria-hidden="true">—</span>
         <div class="price-points">
-          <div class="pf-item"><span class="ic-check ic-check--green"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span>Sem o limite de 15 clientes</div>
+          <div class="pf-item"><span class="ic-check ic-check--green"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span>Clientes ilimitados — agenda, ficha e histórico para todos</div>
+          <div class="pf-item"><span class="ic-check ic-check--green"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span>Financeiro e exportação CSV de todo o período</div>
+          <div class="pf-item"><span class="ic-check ic-check--green"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span>Importe sua base de clientes atual de uma vez</div>
         </div>
         <a href="https://app-barber-agendamentos.vercel.app/cadastro?plano=mensal" class="btn-ghost" data-plano="mensal">Assinar o Mensal</a>
       </div>
 
       <!-- TRIMESTRAL -->
       <div class="price-card reveal" data-card="trimestral">
+        <span class="price-badge price-badge--soft">Desconto de 11%</span>
         <div class="price-name">Trimestral</div>
         <p class="price-tagline">Um pagamento a cada três meses, com desconto.</p>
         <div class="price-value"><span class="cur">R$</span><span class="amt">159,90</span><span class="per">/trimestre</span></div>
         <p class="price-billing">Pagamento único que libera <strong>3 meses</strong>. Equivale a R$ 53,30 por mês.</p>
-        <span class="price-save">Economize R$ 19,80 por trimestre (11%)</span>
+        <span class="price-save">Economize R$ 19,80 por trimestre</span>
         <div class="price-points">
-          <div class="pf-item"><span class="ic-check ic-check--green"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span>Sem o limite de 15 clientes</div>
+          <div class="pf-item"><span class="ic-check ic-check--green"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span>Clientes ilimitados — agenda, ficha e histórico para todos</div>
+          <div class="pf-item"><span class="ic-check ic-check--green"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span>Financeiro e exportação CSV de todo o período</div>
+          <div class="pf-item"><span class="ic-check ic-check--green"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span>Importe sua base de clientes atual de uma vez</div>
         </div>
         <a href="https://app-barber-agendamentos.vercel.app/cadastro?plano=trimestral" class="btn-ghost" data-plano="trimestral">Assinar o Trimestral</a>
       </div>
@@ -2189,14 +2182,16 @@ button.mock-nav-item.active .ic { opacity: 1; }
         <p class="price-billing">Pagamento único que libera <strong>12 meses</strong>. Equivale a cerca de R$ 49,99 por mês.</p>
         <span class="price-save">Economize R$ 118,90 por ano (cerca de 16%)</span>
         <div class="price-points">
-          <div class="pf-item"><span class="ic-check ic-check--green"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span>Sem o limite de 15 clientes</div>
+          <div class="pf-item"><span class="ic-check ic-check--green"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span>Clientes ilimitados — agenda, ficha e histórico para todos</div>
+          <div class="pf-item"><span class="ic-check ic-check--green"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span>Financeiro e exportação CSV de todo o período</div>
+          <div class="pf-item"><span class="ic-check ic-check--green"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span>Importe sua base de clientes atual de uma vez</div>
         </div>
         <a href="https://app-barber-agendamentos.vercel.app/cadastro?plano=anual" class="btn-primary" data-plano="anual">Assinar o Anual</a>
       </div>
     </div>
 
     <p class="pricing-foot">
-      Nos planos pagos, você cria a conta e o pagamento abre em seguida: Pix ou cartão, pela AbacatePay. Não há renovação automática: perto do vencimento o painel avisa e você renova; pagar antes de vencer soma o novo período ao atual.<br />
+      Nos planos pagos, você cria a conta e o pagamento abre em seguida: Pix ou cartão, pela AbacatePay. Pagar antes de vencer soma o novo período ao atual.<br />
       "Clientes cadastrados" são as pessoas que você atende, não os usuários que acessam o painel.<br />
       O equivalente mensal do Trimestral e do Anual serve só para comparação. Economia calculada sobre o Mensal (R$ 59,90).
     </p>
@@ -2207,46 +2202,40 @@ button.mock-nav-item.active .ic { opacity: 1; }
 <section id="faq">
   <div class="container">
     <div class="section-header reveal">
-      <div class="section-eyebrow">
-        <div class="eyebrow"><span class="eyebrow-dot"></span>Dúvidas frequentes</div>
-      </div>
       <h2 class="section-title">Ficou alguma dúvida?</h2>
     </div>
     <div class="faq-list reveal">
       <div class="faq-item">
-        <input type="checkbox" id="faq1" class="faq-check" />
-        <label for="faq1" class="faq-question">O plano gratuito tem algum recurso bloqueado?<span class="faq-arrow"><svg class="ic" aria-hidden="true"><use href="#i-chevron-down"/></svg></span></label>
-        <div class="faq-answer"><div class="faq-answer-inner">Não. A única diferença do gratuito é o limite de 15 clientes cadastrados. Esse limite conta as pessoas que você atende, não você nem a sua equipe no painel. Quando a barbearia passar disso, é só migrar para o Mensal, o Trimestral ou o Anual.</div></div>
+        <button type="button" class="faq-question" aria-expanded="false" aria-controls="faq-answer-1">O plano gratuito tem algum recurso bloqueado?<span class="faq-arrow" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-chevron-down"/></svg></span></button>
+        <div class="faq-answer" id="faq-answer-1"><div class="faq-answer-inner">Não. A única diferença do gratuito é o limite de 15 clientes cadastrados. Esse limite conta as pessoas que você atende, não você nem a sua equipe no painel. Quando a barbearia passar disso, é só migrar para o Mensal, o Trimestral ou o Anual.</div></div>
       </div>
       <div class="faq-item">
-        <input type="checkbox" id="faq2" class="faq-check" />
-        <label for="faq2" class="faq-question">Como faço para começar?<span class="faq-arrow"><svg class="ic" aria-hidden="true"><use href="#i-chevron-down"/></svg></span></label>
-        <div class="faq-answer"><div class="faq-answer-inner">Toque em "Começar grátis" (ou no botão do plano) e crie a conta da barbearia com seu celular e uma senha. A conta já nasce no plano Gratuito. Se você escolheu um plano pago, em seguida abre o pagamento por Pix ou cartão, e o plano é liberado assim que a AbacatePay confirma o pagamento. Não há renovação automática: o painel avisa 7 dias antes do vencimento.</div></div>
+        <button type="button" class="faq-question" aria-expanded="false" aria-controls="faq-answer-2">Como faço para começar?<span class="faq-arrow" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-chevron-down"/></svg></span></button>
+        <div class="faq-answer" id="faq-answer-2"><div class="faq-answer-inner">Toque em "Começar grátis" (ou no botão do plano) e crie a conta da barbearia com seu celular e uma senha. A conta já nasce no plano Gratuito. Se você escolheu um plano pago, em seguida abre o pagamento por Pix ou cartão, e o plano é liberado assim que a AbacatePay confirma o pagamento. Não há renovação automática: o painel avisa 7 dias antes do vencimento.</div></div>
       </div>
       <div class="faq-item">
-        <input type="checkbox" id="faq3" class="faq-check" />
-        <label for="faq3" class="faq-question">Meus clientes conseguem pagar pelo aplicativo?<span class="faq-arrow"><svg class="ic" aria-hidden="true"><use href="#i-chevron-down"/></svg></span></label>
-        <div class="faq-answer"><div class="faq-answer-inner"><span class="tag-cfg">Em implantação</span> Ainda não com dinheiro real. O Pix na hora do agendamento (sinal ou valor integral) já existe no sistema, mas em modo de testes. Ele será liberado quando a integração com o provedor de pagamento estiver ativa. Até lá, você recebe como já faz hoje e registra o pagamento no painel em um toque, e o financeiro mostra o que entrou e o que falta receber.</div></div>
+        <button type="button" class="faq-question" aria-expanded="false" aria-controls="faq-answer-3">Meus clientes conseguem pagar pelo aplicativo?<span class="faq-arrow" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-chevron-down"/></svg></span></button>
+        <div class="faq-answer" id="faq-answer-3"><div class="faq-answer-inner"><span class="tag-cfg">Em implantação</span> Ainda não com dinheiro real. O Pix na hora do agendamento (sinal ou valor integral) já existe no sistema, mas em modo de testes. Ele será liberado quando a integração com o provedor de pagamento estiver ativa. Até lá, você recebe como já faz hoje e registra o pagamento no painel em um toque, e o financeiro mostra o que entrou e o que falta receber.</div></div>
       </div>
       <div class="faq-item">
-        <input type="checkbox" id="faq4" class="faq-check" />
-        <label for="faq4" class="faq-question">O sistema manda mensagens no WhatsApp?<span class="faq-arrow"><svg class="ic" aria-hidden="true"><use href="#i-chevron-down"/></svg></span></label>
-        <div class="faq-answer"><div class="faq-answer-inner"><span class="tag-cfg">Requer configuração</span> Sim, pela API oficial do WhatsApp (Meta), usando o número da própria barbearia: confirmação do agendamento e um lembrete antes do horário. Para isso, é preciso conectar o número no painel e ter os modelos de mensagem aprovados pela Meta, que cobra as mensagens diretamente da conta da barbearia. Sem essa conexão, o painel abre o seu WhatsApp com a mensagem pronta para você enviar.</div></div>
+        <button type="button" class="faq-question" aria-expanded="false" aria-controls="faq-answer-4">O sistema manda mensagens no WhatsApp?<span class="faq-arrow" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-chevron-down"/></svg></span></button>
+        <div class="faq-answer" id="faq-answer-4"><div class="faq-answer-inner"><span class="tag-cfg">Requer configuração</span> Sim, pela API oficial do WhatsApp (Meta), usando o número da própria barbearia: confirmação do agendamento e um lembrete antes do horário. Para isso, é preciso conectar o número no painel e ter os modelos de mensagem aprovados pela Meta, que cobra as mensagens diretamente da conta da barbearia. Sem essa conexão, o painel abre o seu WhatsApp com a mensagem pronta para você enviar.</div></div>
       </div>
       <div class="faq-item">
-        <input type="checkbox" id="faq5" class="faq-check" />
-        <label for="faq5" class="faq-question">Já tenho meus clientes numa planilha. Preciso cadastrar tudo de novo?<span class="faq-arrow"><svg class="ic" aria-hidden="true"><use href="#i-chevron-down"/></svg></span></label>
-        <div class="faq-answer"><div class="faq-answer-inner">Não. Você importa um arquivo CSV ou Excel, indica qual coluna é nome e telefone, revisa e confirma. Telefones repetidos não viram cadastros duplicados. O histórico de atendimentos e pagamentos de outros sistemas não é importado, só o cadastro dos clientes.</div></div>
+        <button type="button" class="faq-question" aria-expanded="false" aria-controls="faq-answer-5">Já tenho meus clientes numa planilha. Preciso cadastrar tudo de novo?<span class="faq-arrow" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-chevron-down"/></svg></span></button>
+        <div class="faq-answer" id="faq-answer-5"><div class="faq-answer-inner">Não. Você importa um arquivo CSV ou Excel, indica qual coluna é nome e telefone, revisa e confirma. Telefones repetidos não viram cadastros duplicados. O histórico de atendimentos e pagamentos de outros sistemas não é importado, só o cadastro dos clientes.</div></div>
       </div>
       <div class="faq-item">
-        <input type="checkbox" id="faq6" class="faq-check" />
-        <label for="faq6" class="faq-question">Funciona para barbearia que cobra só por corte?<span class="faq-arrow"><svg class="ic" aria-hidden="true"><use href="#i-chevron-down"/></svg></span></label>
-        <div class="faq-answer"><div class="faq-answer-inner">Sim. O Agendou foi feito para quem cobra por atendimento. Os planos para clientes (mensalidades) são um módulo opcional: se você não cadastrar nenhum plano, nada dele aparece no seu dia a dia.</div></div>
+        <button type="button" class="faq-question" aria-expanded="false" aria-controls="faq-answer-6">O que acontece quando chego a 15 clientes no plano Gratuito?<span class="faq-arrow" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-chevron-down"/></svg></span></button>
+        <div class="faq-answer" id="faq-answer-6"><div class="faq-answer-inner">O sistema avisa quando a barbearia está chegando no limite. Chegar a 15 não bloqueia quem já está cadastrado — você continua atendendo sua base normal. Para adicionar novos clientes além dos 15, é só migrar para um plano pago. Todos os recursos continuam os mesmos, sem reconfigurar nada.</div></div>
       </div>
       <div class="faq-item">
-        <input type="checkbox" id="faq7" class="faq-check" />
-        <label for="faq7" class="faq-question">Funciona no celular?<span class="faq-arrow"><svg class="ic" aria-hidden="true"><use href="#i-chevron-down"/></svg></span></label>
-        <div class="faq-answer"><div class="faq-answer-inner">Sim. O Agendou roda no navegador, no celular, no tablet ou no computador, sem instalar nada. A página de agendamento dos seus clientes também foi pensada para o celular.</div></div>
+        <button type="button" class="faq-question" aria-expanded="false" aria-controls="faq-answer-7">Funciona para barbearia que cobra só por corte?<span class="faq-arrow" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-chevron-down"/></svg></span></button>
+        <div class="faq-answer" id="faq-answer-7"><div class="faq-answer-inner">Sim. O Agendou foi feito para quem cobra por atendimento. Os planos para clientes (mensalidades) são um módulo opcional: se você não cadastrar nenhum plano, nada dele aparece no seu dia a dia.</div></div>
+      </div>
+      <div class="faq-item">
+        <button type="button" class="faq-question" aria-expanded="false" aria-controls="faq-answer-8">Funciona no celular?<span class="faq-arrow" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-chevron-down"/></svg></span></button>
+        <div class="faq-answer" id="faq-answer-8"><div class="faq-answer-inner">Sim. O Agendou roda no navegador, no celular, no tablet ou no computador, sem instalar nada. A página de agendamento dos seus clientes também foi pensada para o celular.</div></div>
       </div>
     </div>
   </div>
@@ -2256,7 +2245,7 @@ button.mock-nav-item.active .ic { opacity: 1; }
 <section id="cta-final">
   <div class="container container--narrow">
     <div class="reveal">
-      <h2 class="cta-final-title">Sua próxima semana já pode<br />começar <span class="gradient-text">organizada.</span></h2>
+      <h2 class="cta-final-title">Sua próxima semana já pode<br />começar <span style="color:var(--amber);font-weight:800">organizada.</span></h2>
       <p class="cta-final-sub">Crie a conta grátis, divulgue seu link e veja agenda, clientes e o que falta receber num lugar só.</p>
       <div class="cta-final-actions">
         <a href="https://app-barber-agendamentos.vercel.app/cadastro" class="btn-primary btn-primary--lg" data-cta="final">Começar grátis</a>
@@ -2338,8 +2327,8 @@ const CONFIG = {
 /* Título do hero: troque HERO_VARIANTE para 'b' (ou abra a página com
    ?titulo=b) para testar a alternativa. A variante vai junto nos eventos. */
 const HERO_TITULOS = {
-  a: 'Saiba quem te deve, quem sumiu e quem vem amanhã. <span class="gradient-text">Num painel só.</span>',
-  b: 'O cliente marca sozinho. <span class="gradient-text">O fiado aparece com nome e valor.</span>'
+  a: 'Saiba quem te deve, quem sumiu e quem vem amanhã. <span style="color:var(--amber);font-weight:800">Num painel só.</span>',
+  b: 'O cliente marca sozinho. <span style="color:var(--amber);font-weight:800">O fiado aparece com nome e valor.</span>'
 };
 const HERO_VARIANTE = 'a';
 
@@ -3003,6 +2992,15 @@ function demo() {
   render();
   return ir;
 }
+
+// FAQ accordion
+document.querySelectorAll('.faq-question').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    var expanded = this.getAttribute('aria-expanded') === 'true';
+    this.setAttribute('aria-expanded', String(!expanded));
+    this.closest('.faq-item').classList.toggle('is-open', !expanded);
+  });
+});
 </script>
 </body>
 </html>
