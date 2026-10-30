@@ -125,6 +125,12 @@ button { cursor: pointer; font-family: inherit; border: none; outline: none; }
 @media (prefers-reduced-motion: reduce) {
   .aurora-wrap::before, .aurora-wrap::after, .aurora-mid { animation: none; }
 }
+@media (max-width: 600px) {
+  .aurora-wrap::before, .aurora-wrap::after { filter: blur(60px); }
+  .aurora-wrap::before { width: 450px; height: 350px; animation: none; }
+  .aurora-wrap::after  { width: 350px; height: 300px; animation: none; }
+  .aurora-mid          { width: 300px; height: 250px; filter: blur(50px); animation: none; }
+}
 
 /* ─── NOISE TEXTURE ───────────────────────────────────────────── */
 body::before {
