@@ -1,0 +1,8 @@
+# Claude Code — toda a infraestrutura local da ferramenta
+.claude/
+
+# Impeccable — arquivos locais / efêmeros (não versionar)
+.impeccable/config.local.json
+.impeccable/hook.*.json
+.impeccable/*.png
+.impeccable/live/server.json
