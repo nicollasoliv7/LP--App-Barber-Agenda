@@ -4,6 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 <meta name="theme-color" content="#07080A" />
+<meta name="color-scheme" content="dark" />
 <title>Agendou — Sistema de gestão para barbearias</title>
 <meta name="description" content="Agenda online, histórico de clientes, financeiro e controle do que falta receber num painel só. Comece grátis com até 15 clientes cadastrados, sem cartão." />
 <link rel="icon" type="image/svg+xml" href="https://app-barber-agendamentos.vercel.app/icon.svg" />
@@ -15,6 +16,7 @@
 <style>
 /* ─── TOKENS ─────────────────────────────────────────────────── */
 :root {
+  color-scheme: dark;
   --bg:       #07080A;
   --s1:       #111214;
   --s2:       #17191C;
@@ -285,22 +287,6 @@ section { position: relative; z-index: 2; }
   padding: 160px 0 80px;
   text-align: center;
 }
-.eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--coral);
-  background: rgba(255,107,74,0.1);
-  border: 1px solid rgba(255,107,74,0.2);
-  border-radius: 100px;
-  padding: 5px 14px;
-  margin-bottom: 24px;
-}
-.eyebrow-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--coral); }
 h1 {
   font-size: clamp(38px, 5.5vw, 66px);
   font-weight: 700;
@@ -481,7 +467,7 @@ h1 {
   justify-content: space-between;
 }
 .mock-badge {
-  font-size: 9.5px;
+  font-size: 11px;
   background: rgba(255,107,74,0.15);
   color: var(--coral);
   border-radius: 100px;
@@ -531,9 +517,9 @@ h1 {
 }
 .client-info { flex: 1; }
 .client-name { font-size: 11px; font-weight: 500; color: var(--txt2); }
-.client-last { font-size: 10px; color: var(--txt3); }
+.client-last { font-size: 11px; color: var(--txt3); }
 .client-tag {
-  font-size: 9.5px;
+  font-size: 11px;
   padding: 2px 7px;
   border-radius: 100px;
   background: rgba(255,179,71,0.1);
@@ -642,12 +628,12 @@ h1 {
   text-align: left;
   border-bottom: 1px solid rgba(255,255,255,0.04);
 }
-.feat-mini-table th { color: var(--txt3); font-weight: 500; font-size: 10.5px; }
+.feat-mini-table th { color: var(--txt3); font-weight: 500; font-size: 11px; }
 .feat-mini-table td { color: var(--txt2); }
 .feat-mini-table tr:last-child td { border-bottom: none; }
-.tag-ok  { display:inline-block; background:rgba(40,200,80,0.1); color:var(--green); border-radius:100px; padding:2px 8px; font-size:9.5px; font-weight:600; }
-.tag-pend{ display:inline-block; background:rgba(255,179,71,0.1); color:var(--amber); border-radius:100px; padding:2px 8px; font-size:9.5px; font-weight:600; }
-.tag-new { display:inline-block; background:rgba(99,102,241,0.12); color:var(--plan); border-radius:100px; padding:2px 8px; font-size:9.5px; font-weight:600; }
+.tag-ok  { display:inline-block; background:rgba(40,200,80,0.1); color:var(--green); border-radius:100px; padding:2px 8px; font-size:11px; font-weight:600; }
+.tag-pend{ display:inline-block; background:rgba(255,179,71,0.1); color:var(--amber); border-radius:100px; padding:2px 8px; font-size:11px; font-weight:600; }
+.tag-new { display:inline-block; background:rgba(99,102,241,0.12); color:var(--plan); border-radius:100px; padding:2px 8px; font-size:11px; font-weight:600; }
 .mini-chart {
   display: flex;
   align-items: flex-end;
@@ -689,8 +675,8 @@ h1 {
 .plan-row-icon.amber { background: rgba(255,179,71,0.15); }
 .plan-row-info { flex: 1; }
 .plan-row-name { font-size: 12px; font-weight: 600; color: var(--txt2); }
-.plan-row-price { font-size: 10.5px; color: var(--txt3); }
-.plan-row-status { font-size: 10px; padding: 2px 8px; border-radius: 100px; font-weight: 600; }
+.plan-row-price { font-size: 11px; color: var(--txt3); }
+.plan-row-status { font-size: 11px; padding: 2px 8px; border-radius: 100px; font-weight: 600; }
 .plan-row-status.ativo { background: rgba(40,200,80,0.1); color: var(--green); }
 
 /* ─── RECURRENCE ──────────────────────────────────────────────── */
@@ -848,13 +834,13 @@ h1 {
   border-radius: 50%;
   background: var(--s3);
   display: flex; align-items: center; justify-content: center;
-  font-size: 9.5px;
+  font-size: 11px;
   font-weight: 700;
   flex-shrink: 0;
 }
 .recor-sub-name { flex: 1; color: var(--txt2); }
-.recor-sub-venc { font-size: 10.5px; color: var(--txt3); }
-.recor-sub-status { font-size: 9.5px; padding: 2px 7px; border-radius: 100px; font-weight: 600; }
+.recor-sub-venc { font-size: 11px; color: var(--txt3); }
+.recor-sub-status { font-size: 11px; padding: 2px 7px; border-radius: 100px; font-weight: 600; }
 .recor-sub-status.ativo { background: rgba(40,200,80,0.1); color: var(--green); }
 .recor-sub-status.pend  { background: rgba(255,179,71,0.1); color: var(--amber); }
 
@@ -1270,7 +1256,7 @@ button.mock-nav-item.active { background: rgba(255,107,74,0.12); color: var(--co
 }
 .demo-chip:hover { border-color: var(--b2); color: var(--txt); }
 .demo-chip[aria-pressed="true"] { background: rgba(255,107,74,0.12); border-color: rgba(255,107,74,0.3); color: var(--coral); }
-.demo-sub { font-size: 11px; color: var(--txt3); margin: -4px 0 12px; }
+.demo-sub { font-size: 11px; color: var(--txt3); margin: -4px 0 12px; letter-spacing: 0; }
 .demo-split { display: grid; grid-template-columns: 1.25fr 1fr; gap: 10px; }
 .demo-split--even { grid-template-columns: 1fr 1fr; }
 .demo-scroll { max-height: 400px; overflow-y: auto; scrollbar-width: thin; scrollbar-color: var(--s3) transparent; margin-right: -6px; padding-right: 6px; }
@@ -1280,7 +1266,7 @@ button.mock-nav-item.active { background: rgba(255,107,74,0.12); color: var(--co
 .demo-chart { display: flex; align-items: flex-end; gap: 3px; height: 130px; padding-top: 6px; }
 .demo-chart .mini-bar { min-height: 3px; cursor: default; }
 .demo-chart .mini-bar.off { background: rgba(255,255,255,0.06); }
-.demo-axis { display: flex; justify-content: space-between; font-size: 9.5px; color: var(--txt3); margin-top: 6px; }
+.demo-axis { display: flex; justify-content: space-between; font-size: 11px; color: var(--txt3); margin-top: 6px; }
 .demo-row {
   display: flex; align-items: center; gap: 9px; width: 100%;
   padding: 8px; border-radius: 8px; border: 1px solid transparent;
@@ -1290,11 +1276,11 @@ button.mock-nav-item.active { background: rgba(255,107,74,0.12); color: var(--co
 button.demo-row:hover { background: rgba(255,255,255,0.04); border-color: var(--b1); }
 .demo-row.sel { background: rgba(255,107,74,0.08); border-color: rgba(255,107,74,0.25); }
 .demo-row .grow { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.demo-row .muted { color: var(--txt3); font-size: 10.5px; white-space: nowrap; }
-.demo-time { font-variant-numeric: tabular-nums; color: var(--txt3); width: 36px; flex-shrink: 0; font-size: 10.5px; }
+.demo-row .muted { color: var(--txt3); font-size: 11px; white-space: nowrap; }
+.demo-time { font-variant-numeric: tabular-nums; color: var(--txt3); width: 36px; flex-shrink: 0; font-size: 11px; }
 .demo-val { font-variant-numeric: tabular-nums; font-weight: 600; color: var(--txt); white-space: nowrap; }
 .st {
-  font-size: 9.5px; font-weight: 600; padding: 2px 8px; border-radius: 100px;
+  font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 100px;
   display: inline-flex; align-items: center; gap: 4px; white-space: nowrap; flex-shrink: 0;
 }
 .st::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: currentColor; }
@@ -1326,7 +1312,7 @@ button.demo-row:hover { background: rgba(255,255,255,0.04); border-color: var(--
 .demo-empty { font-size: 12px; color: var(--txt3); padding: 28px 12px; text-align: center; line-height: 1.6; }
 .demo-meter { height: 5px; background: rgba(255,255,255,0.06); border-radius: 100px; overflow: hidden; width: 64px; flex-shrink: 0; }
 .demo-meter > i { display: block; height: 100%; background: linear-gradient(90deg, var(--coral), var(--amber)); border-radius: 100px; }
-.demo-note { font-size: 10.5px; color: var(--txt3); margin-top: 10px; line-height: 1.5; }
+.demo-note { font-size: 12px; color: var(--txt3); margin-top: 10px; line-height: 1.5; }
 .demo-hbar { display: flex; align-items: center; gap: 8px; font-size: 11px; color: var(--txt2); margin-bottom: 9px; }
 .demo-hbar .lbl { width: 62px; flex-shrink: 0; }
 .demo-hbar .trk { flex: 1; height: 7px; background: rgba(255,255,255,0.05); border-radius: 100px; overflow: hidden; }
@@ -1440,7 +1426,7 @@ button.demo-row:hover { background: rgba(255,255,255,0.04); border-color: var(--
 
 /* planos p/ clientes: status reais */
 .recor-sub-status.inad { background: rgba(255,47,58,0.12); color: #FF6B73; }
-.recor-sub-uso { font-size: 10.5px; color: var(--txt3); width: 34px; text-align: right; font-variant-numeric: tabular-nums; }
+.recor-sub-uso { font-size: 11px; color: var(--txt3); width: 34px; text-align: right; font-variant-numeric: tabular-nums; }
 
 .steps-wrap.steps-3 { grid-template-columns: repeat(3, 1fr); }
 .steps-wrap.steps-3::before { left: calc(16.66% + 20px); right: calc(16.66% + 20px); }
@@ -1715,7 +1701,7 @@ button.mock-nav-item.active .ic { opacity: 1; }
   .demo-scroll { max-height: 320px; }
   .demo-kv { font-size: 13px; }
   .mock-stat-label, .mock-stat-sub { font-size: 11px; }
-  .demo-flag { font-size: 10.5px; }
+  .demo-flag { font-size: 11px; }
 
   #financeiro, #features, #recorrencia, #como-funciona, #planos, #faq { padding: 56px 0; }
   #cta-final { padding: 64px 0 72px; }
@@ -1820,10 +1806,6 @@ button.mock-nav-item.active .ic { opacity: 1; }
 <!-- HERO -->
 <section id="hero">
   <div class="container">
-    <div class="eyebrow">
-      <span class="eyebrow-dot"></span>
-      Sistema de gestão para barbearias
-    </div>
     <h1 id="hero-titulo">O cliente marca sozinho. <span style="color:var(--amber);font-weight:800">A mensalidade atrasada é cobrada automaticamente pelo app.</span></h1>
     <p class="hero-sub">Agenda pelo link da bio e clube de assinatura no mesmo app. O Agendou conta os cortes de cada mensalista e mostra quem está em dia e quem atrasou. Sem caderno, sem conta de cabeça.</p>
     <div class="hero-actions">
