@@ -11,6 +11,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@600;700;800&display=swap" rel="stylesheet" />
 <style>
 /* ─── TOKENS ─────────────────────────────────────────────────── */
 :root {
@@ -22,7 +23,7 @@
   --b2:       rgba(255,255,255,0.18);
   --txt:      #FFFFFF;
   --txt2:     #B0B0B3;
-  --txt3:     #85858A;
+  --txt3:     #8C8C91;
   --crimson:  #FF2F3A;
   --coral:    #FF6B4A;
   --amber:    #FFB347;
@@ -814,7 +815,7 @@ h1 {
   border-bottom: 1px solid var(--b1);
 }
 .recor-plan-name { font-size: 15px; font-weight: 700; margin-bottom: 3px; }
-.recor-plan-price { font-size: 24px; font-weight: 800; letter-spacing: -0.05em; }
+.recor-plan-price { font-size: 24px; font-weight: 800; letter-spacing: -0.05em; font-family: 'Geist Mono', monospace; }
 .recor-plan-price span { font-size: 13px; font-weight: 400; color: var(--txt3); }
 .recor-assinantes { font-size: 11px; color: var(--txt3); }
 .recor-assinantes strong { color: var(--amber); font-size: 13px; }
@@ -1397,7 +1398,7 @@ button.demo-row:hover { background: rgba(255,255,255,0.04); border-color: var(--
 .pillars .benefit-item { font-size: 13.5px; }
 .extras-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 14px; }
 .tag-cfg {
-  display: inline-block; font-size: 9.5px; font-weight: 600; letter-spacing: 0.02em;
+  display: inline-block; font-size: 11px; font-weight: 600; letter-spacing: 0.02em;
   padding: 2px 8px; border-radius: 100px; vertical-align: middle;
   background: rgba(255,179,71,0.1); color: var(--amber); border: 1px solid rgba(255,179,71,0.2);
 }
@@ -1424,7 +1425,7 @@ button.demo-row:hover { background: rgba(255,255,255,0.04); border-color: var(--
 .price-tagline { font-size: 13px; color: var(--txt3); line-height: 1.5; min-height: 40px; margin-bottom: 18px; }
 .price-value { display: flex; align-items: baseline; gap: 4px; flex-wrap: wrap; }
 .price-value .cur { font-size: 16px; font-weight: 700; color: var(--txt2); }
-.price-value .amt { font-size: 40px; font-weight: 800; letter-spacing: -0.05em; line-height: 1.05; font-variant-numeric: tabular-nums; }
+.price-value .amt { font-size: 40px; font-weight: 800; letter-spacing: -0.05em; line-height: 1.05; font-variant-numeric: tabular-nums; font-family: 'Geist Mono', monospace; }
 .price-value .per { font-size: 13px; color: var(--txt3); }
 .price-billing { font-size: 12.5px; color: var(--txt3); margin-top: 6px; line-height: 1.5; min-height: 38px; }
 .price-billing strong { color: var(--txt2); font-weight: 600; }
@@ -1833,8 +1834,8 @@ button.mock-nav-item.active .ic { opacity: 1; }
       <span class="eyebrow-dot"></span>
       Sistema de gestão para barbearias
     </div>
-    <h1 id="hero-titulo">Saiba quem te deve, quem sumiu e quem vem amanhã. <span style="color:var(--amber);font-weight:800">Num painel só.</span></h1>
-    <p class="hero-sub">Agenda online, histórico de clientes e o que falta receber, no celular.</p>
+    <h1 id="hero-titulo">O cliente marca sozinho. <span style="color:var(--amber);font-weight:800">A mensalidade atrasada é cobrada automaticamente pelo app.</span></h1>
+    <p class="hero-sub">Agenda pelo link da bio e clube de assinatura no mesmo app. O Agendou conta os cortes de cada mensalista e mostra quem está em dia e quem atrasou. Sem caderno, sem conta de cabeça.</p>
     <div class="hero-actions">
       <a href="https://app-barber-agendamentos.vercel.app/cadastro" class="btn-primary btn-primary--lg" data-cta="hero">Começar grátis</a>
       <a href="#demo" class="btn-link" data-demo-link="hero">Ver o painel funcionando <svg class="ic ic--sm" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
@@ -1846,64 +1847,6 @@ button.mock-nav-item.active .ic { opacity: 1; }
       <li class="hero-chip"><span class="ic-box"><svg class="ic" aria-hidden="true"><use href="#i-wallet"/></svg></span>Recebido e a receber à vista</li>
       <li class="hero-chip"><span class="ic-box"><svg class="ic" aria-hidden="true"><use href="#i-repeat"/></svg></span>Mensalidades, se você quiser</li>
     </ul>
-  </div>
-</section>
-
-<!-- DEMONSTRAÇÃO INTERATIVA (carregada quando chega perto da tela) -->
-<section id="demo" aria-labelledby="demo-title">
-  <div class="container container--wide">
-    <div class="demo-head reveal">
-      <h2 id="demo-title" class="section-title">Explore o painel antes de criar sua conta</h2>
-      <p class="demo-hint">Troque de aba, mude o período, abra um horário ou a ficha de um cliente. Dados fictícios: nada é gravado.</p>
-    </div>
-    <div class="mockup-frame reveal" id="demo-app">
-      <div class="mockup-topbar">
-        <div class="dot-red"></div>
-        <div class="dot-yellow"></div>
-        <div class="dot-green"></div>
-        <div class="mockup-url">Barbearia Exemplo · painel</div>
-        <span class="demo-flag">Demonstração · dados fictícios</span>
-      </div>
-      <div class="mockup-body">
-        <div class="mockup-sidebar" role="tablist" aria-label="Seções da demonstração">
-          <div class="mockup-logo-sm"><svg class="ic" aria-hidden="true"><use href="#i-scissors"/></svg> Agendou</div>
-          <button class="mock-nav-item active" role="tab" aria-selected="true" aria-controls="demo-view" data-view="geral"><svg class="ic" aria-hidden="true"><use href="#i-layout-grid"/></svg> Visão geral</button>
-          <button class="mock-nav-item" role="tab" aria-selected="false" aria-controls="demo-view" data-view="agenda" tabindex="-1"><svg class="ic" aria-hidden="true"><use href="#i-calendar"/></svg> Agenda</button>
-          <button class="mock-nav-item" role="tab" aria-selected="false" aria-controls="demo-view" data-view="clientes" tabindex="-1"><svg class="ic" aria-hidden="true"><use href="#i-users"/></svg> Clientes</button>
-          <button class="mock-nav-item" role="tab" aria-selected="false" aria-controls="demo-view" data-view="financeiro" tabindex="-1"><svg class="ic" aria-hidden="true"><use href="#i-chart-line"/></svg> Financeiro</button>
-          <div class="mock-divider"></div>
-          <button class="mock-nav-item" role="tab" aria-selected="false" aria-controls="demo-view" data-view="planos" tabindex="-1"><svg class="ic" aria-hidden="true"><use href="#i-repeat"/></svg> Planos de clientes</button>
-        </div>
-        <div class="mockup-content" id="demo-view" role="tabpanel" aria-label="Painel de demonstração">
-          <div class="demo-loading">Carregando a demonstração…</div>
-          <noscript><p class="demo-empty">Ative o JavaScript para explorar a demonstração.</p></noscript>
-        </div>
-      </div>
-      <div class="demo-toast" id="demo-toast" role="status" aria-live="polite"></div>
-    </div>
-  </div>
-</section>
-
-<!-- COMO FUNCIONA -->
-<section id="como-funciona">
-  <div class="container">
-    <div class="section-header reveal">
-      <h2 class="section-title">Três passos para sair do caderno</h2>
-    </div>
-    <div class="steps-wrap steps-3">
-      <div class="step-card reveal">
-        <div class="step-num">01</div>
-        <div><div class="step-title">Cadastre o básico</div><div class="step-desc">Serviços, preços, equipe e horários.</div></div>
-      </div>
-      <div class="step-card reveal">
-        <div class="step-num">02</div>
-        <div><div class="step-title">Divulgue seu link</div><div class="step-desc">Na bio e no WhatsApp: o cliente marca sozinho.</div></div>
-      </div>
-      <div class="step-card reveal">
-        <div class="step-num">03</div>
-        <div><div class="step-title">Atenda e acompanhe</div><div class="step-desc">Veja o que entrou e o que falta receber.</div></div>
-      </div>
-    </div>
   </div>
 </section>
 
@@ -1970,6 +1913,64 @@ button.mock-nav-item.active .ic { opacity: 1; }
       <div class="fin-mini reveal">
         <div class="feat-ui receber-mini" id="cob-receber" aria-label="Exemplo do quadro A receber, com dados fictícios"></div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMO FUNCIONA -->
+<section id="como-funciona">
+  <div class="container">
+    <div class="section-header reveal">
+      <h2 class="section-title">Três passos para sair do caderno</h2>
+    </div>
+    <div class="steps-wrap steps-3">
+      <div class="step-card reveal">
+        <div class="step-num">01</div>
+        <div><div class="step-title">Cadastre o básico</div><div class="step-desc">Serviços, preços, equipe e horários.</div></div>
+      </div>
+      <div class="step-card reveal">
+        <div class="step-num">02</div>
+        <div><div class="step-title">Divulgue seu link</div><div class="step-desc">Na bio e no WhatsApp: o cliente marca sozinho.</div></div>
+      </div>
+      <div class="step-card reveal">
+        <div class="step-num">03</div>
+        <div><div class="step-title">Atenda e acompanhe</div><div class="step-desc">Veja o que entrou e o que falta receber.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DEMONSTRAÇÃO INTERATIVA (carregada quando chega perto da tela) -->
+<section id="demo" aria-labelledby="demo-title">
+  <div class="container container--wide">
+    <div class="demo-head reveal">
+      <h2 id="demo-title" class="section-title">Explore o painel antes de criar sua conta</h2>
+      <p class="demo-hint">Troque de aba, mude o período, abra um horário ou a ficha de um cliente. Dados fictícios: nada é gravado.</p>
+    </div>
+    <div class="mockup-frame reveal" id="demo-app">
+      <div class="mockup-topbar">
+        <div class="dot-red"></div>
+        <div class="dot-yellow"></div>
+        <div class="dot-green"></div>
+        <div class="mockup-url">Barbearia Exemplo · painel</div>
+        <span class="demo-flag">Demonstração · dados fictícios</span>
+      </div>
+      <div class="mockup-body">
+        <div class="mockup-sidebar" role="tablist" aria-label="Seções da demonstração">
+          <div class="mockup-logo-sm"><svg class="ic" aria-hidden="true"><use href="#i-scissors"/></svg> Agendou</div>
+          <button class="mock-nav-item active" role="tab" aria-selected="true" aria-controls="demo-view" data-view="geral"><svg class="ic" aria-hidden="true"><use href="#i-layout-grid"/></svg> Visão geral</button>
+          <button class="mock-nav-item" role="tab" aria-selected="false" aria-controls="demo-view" data-view="agenda" tabindex="-1"><svg class="ic" aria-hidden="true"><use href="#i-calendar"/></svg> Agenda</button>
+          <button class="mock-nav-item" role="tab" aria-selected="false" aria-controls="demo-view" data-view="clientes" tabindex="-1"><svg class="ic" aria-hidden="true"><use href="#i-users"/></svg> Clientes</button>
+          <button class="mock-nav-item" role="tab" aria-selected="false" aria-controls="demo-view" data-view="financeiro" tabindex="-1"><svg class="ic" aria-hidden="true"><use href="#i-chart-line"/></svg> Financeiro</button>
+          <div class="mock-divider"></div>
+          <button class="mock-nav-item" role="tab" aria-selected="false" aria-controls="demo-view" data-view="planos" tabindex="-1"><svg class="ic" aria-hidden="true"><use href="#i-repeat"/></svg> Planos de clientes</button>
+        </div>
+        <div class="mockup-content" id="demo-view" role="tabpanel" aria-label="Painel de demonstração">
+          <div class="demo-loading">Carregando a demonstração…</div>
+          <noscript><p class="demo-empty">Ative o JavaScript para explorar a demonstração.</p></noscript>
+        </div>
+      </div>
+      <div class="demo-toast" id="demo-toast" role="status" aria-live="polite"></div>
     </div>
   </div>
 </section>
@@ -2138,7 +2139,7 @@ button.mock-nav-item.active .ic { opacity: 1; }
           <div class="pf-item"><span class="ic-check ic-check--green"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span><span>Até <strong style="color:var(--txt)">15 clientes cadastrados</strong></span></div>
           <div class="pf-item"><span class="ic-check ic-check--green"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span>Sem cartão para começar</div>
         </div>
-        <a href="https://app-barber-agendamentos.vercel.app/cadastro" class="btn-ghost" data-plano="gratis">Começar grátis</a>
+        <a href="https://app-barber-agendamentos.vercel.app/cadastro" class="btn-primary" data-plano="gratis">Começar grátis</a>
       </div>
 
       <!-- MENSAL -->
@@ -2202,7 +2203,7 @@ button.mock-nav-item.active .ic { opacity: 1; }
 <section id="faq">
   <div class="container">
     <div class="section-header reveal">
-      <h2 class="section-title">Ficou alguma dúvida?</h2>
+      <h2 class="section-title">As dúvidas mais comuns antes de começar.</h2>
     </div>
     <div class="faq-list reveal">
       <div class="faq-item">
@@ -2328,9 +2329,9 @@ const CONFIG = {
    ?titulo=b) para testar a alternativa. A variante vai junto nos eventos. */
 const HERO_TITULOS = {
   a: 'Saiba quem te deve, quem sumiu e quem vem amanhã. <span style="color:var(--amber);font-weight:800">Num painel só.</span>',
-  b: 'O cliente marca sozinho. <span style="color:var(--amber);font-weight:800">O fiado aparece com nome e valor.</span>'
+  b: 'O cliente marca sozinho. <span style="color:var(--amber);font-weight:800">A mensalidade atrasada é cobrada automaticamente pelo app.</span>'
 };
-const HERO_VARIANTE = 'a';
+const HERO_VARIANTE = 'b';
 
 /* Depoimentos reais. Enquanto a lista estiver vazia, a seção não aparece.
    Formato: { foto: 'img/joao.webp' (opcional), nome: 'João Silva',
