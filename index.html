@@ -7,6 +7,15 @@
 <meta name="color-scheme" content="dark" />
 <title>Agendou — Sistema de gestão para barbearias</title>
 <meta name="description" content="Agenda online, histórico de clientes, financeiro e controle do que falta receber num painel só. Comece grátis com até 15 clientes cadastrados, sem cartão." />
+<!-- Open Graph -->
+<meta property="og:type"        content="website" />
+<meta property="og:url"         content="https://app-barber-agendamentos.vercel.app" />
+<meta property="og:title"       content="Agendou — O cliente marca sozinho" />
+<meta property="og:description" content="Link na bio, agendamento sem conta, clube de mensalistas. Grátis para até 15 clientes, sem cartão." />
+<!-- Twitter / X -->
+<meta name="twitter:card"        content="summary_large_image" />
+<meta name="twitter:title"       content="Agendou — O cliente marca sozinho" />
+<meta name="twitter:description" content="Link na bio, agendamento sem conta, clube de mensalistas. Grátis para até 15 clientes, sem cartão." />
 <link rel="icon" type="image/svg+xml" href="https://app-barber-agendamentos.vercel.app/icon.svg" />
 <link rel="preconnect" href="https://app-barber-agendamentos.vercel.app" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -1620,7 +1629,9 @@ button.mock-nav-item.active .ic { opacity: 1; }
 /* preços */
 .price-card .btn-primary, .price-card .btn-ghost { min-height: 48px; display: flex; }
 .pf-item { align-items: flex-start; }
-.pricing-all { text-align: center; font-size: 15px; color: var(--txt2); margin: -40px auto 40px; max-width: 520px; }
+.pricing-trust { display: flex; justify-content: center; gap: 12px 32px; flex-wrap: wrap; margin: 0 auto 40px; max-width: 820px; }
+.pricing-trust-item { display: flex; align-items: flex-start; gap: 8px; font-size: 14px; color: var(--txt2); line-height: 1.45; max-width: 260px; }
+.pricing-trust-item .ic { width: 15px; height: 15px; flex-shrink: 0; color: var(--green); margin-top: 1px; }
 .pricing-foot { max-width: 760px; margin-left: auto; margin-right: auto; }
 
 /* faq */
@@ -1739,7 +1750,8 @@ button.mock-nav-item.active .ic { opacity: 1; }
   .steps-wrap.steps-3 .step-title { margin-bottom: 2px; }
 
   /* ── preços ──────────────────────────────────── */
-  .pricing-all { margin: 0 auto 28px; }
+  .pricing-trust { gap: 10px 20px; margin-bottom: 28px; }
+  .pricing-trust-item { max-width: 100%; }
   .pricing-grid { gap: 16px; }
   .price-card { padding: 24px 20px; }
   .price-card--featured { border-width: 2px; border-color: rgba(255,107,74,0.72); }
@@ -2516,7 +2528,20 @@ button.mock-nav-item.active .ic { opacity: 1; }
     <div class="section-header reveal">
       <h2 class="section-title" id="precos-title">Comece grátis. Assine quando a barbearia crescer.</h2>
     </div>
-    <p class="pricing-all reveal">Todos os planos têm todos os recursos — muda só o limite de clientes cadastrados. Sem renovação automática: o painel avisa antes do vencimento e você decide se renova.</p>
+    <div class="pricing-trust reveal">
+      <div class="pricing-trust-item">
+        <svg class="ic" aria-hidden="true"><use href="#i-circle-check"/></svg>
+        <span><strong>Comece grátis</strong> — plano Gratuito para até 15 clientes, sem cartão.</span>
+      </div>
+      <div class="pricing-trust-item">
+        <svg class="ic" aria-hidden="true"><use href="#i-circle-check"/></svg>
+        <span><strong>Sem renovação automática</strong> — você paga só o período que escolher, sem cobrança surpresa.</span>
+      </div>
+      <div class="pricing-trust-item">
+        <svg class="ic" aria-hidden="true"><use href="#i-circle-check"/></svg>
+        <span><strong>Todos os recursos em todos os planos</strong> — o Gratuito só limita a 15 clientes.</span>
+      </div>
+    </div>
 
     <div class="pricing-grid">
       <!-- GRATUITO -->
@@ -2721,7 +2746,7 @@ const CONFIG = {
    ?titulo=b) para testar a alternativa. A variante vai junto nos eventos. */
 const HERO_TITULOS = {
   a: 'Saiba quem te deve, quem sumiu e quem vem amanhã. <span style="color:var(--amber);font-weight:800">Num painel só.</span>',
-  b: 'O cliente marca sozinho. <span style="color:var(--amber);font-weight:800">A mensalidade atrasada é cobrada automaticamente pelo app.</span>'
+  b: 'Seu link na bio. <span style="color:var(--amber);font-weight:800">O cliente escolhe o serviço e o horário, sem criar conta.</span>'
 };
 const HERO_VARIANTE = 'b';
 
