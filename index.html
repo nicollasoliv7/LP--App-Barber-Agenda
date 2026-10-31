@@ -51,6 +51,11 @@ body {
 }
 ::selection { background: rgba(255,107,74,0.28); color: var(--txt); }
 input, textarea { caret-color: var(--coral); }
+html { scrollbar-width: thin; scrollbar-color: var(--s3) transparent; }
+html::-webkit-scrollbar { width: 8px; }
+html::-webkit-scrollbar-track { background: transparent; }
+html::-webkit-scrollbar-thumb { background: var(--s3); border-radius: 4px; }
+html::-webkit-scrollbar-thumb:hover { background: var(--b2); }
 a { text-decoration: none; color: inherit; }
 img { max-width: 100%; display: block; }
 ul { list-style: none; }
@@ -1725,6 +1730,7 @@ button.mock-nav-item.active .ic { opacity: 1; }
 
   .recorrencia-wrap { gap: 28px; }
   .recorrencia-desc { font-size: 15.5px; margin-bottom: 18px; }
+  .recorrencia-content .btn-ghost--lg { width: 100%; justify-content: center; }
 
   .steps-wrap.steps-3 { gap: 10px; }
   .steps-wrap.steps-3 .step-card { display: flex; align-items: center; gap: 14px; text-align: left;
@@ -1959,7 +1965,6 @@ button.mock-nav-item.active .ic { opacity: 1; }
   border: 1.5px solid var(--b1);
   flex-shrink: 0;
   position: relative;
-  flex-shrink: 0;
 }
 .bk-service.selected .bk-svc-radio {
   border-color: var(--coral);
