@@ -2032,6 +2032,57 @@ button.mock-nav-item.active .ic { opacity: 1; }
   .link-ag-head { margin-bottom: 40px; }
   .bk-stage::before { inset: -40px; filter: blur(28px); }
 }
+
+/* ─── BOOKING LINK ANIMATION ──────────────────────────────── */
+/* Glow ring — box-shadow is static; only opacity transitions (cheap) */
+.bk-stage::after {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: 27px;
+  box-shadow:
+    0 0 0 1.5px rgba(255,107,74,0.9),
+    0 0 24px rgba(255,107,74,0.55),
+    0 0 64px rgba(255,47,58,0.35),
+    0 0 110px rgba(255,47,58,0.18);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 2;
+  transition: opacity 0.6s var(--ease);
+}
+.bk-stage.bk-glowing::after { opacity: 1; }
+/* Ícone dentro da URL bar */
+.bk-url-text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+.bk-url-text .ic { width: 10px; height: 10px; flex-shrink: 0; opacity: 0.45; }
+/* Estados do botão */
+.bk-confirm.bk-pressed { transform: scale(0.97); transition: transform 0.1s; }
+.bk-confirm.bk-done {
+  background: var(--green);
+  color: var(--bg);
+  transition: background 0.3s var(--ease), color 0.3s var(--ease);
+}
+/* Mobile: halo menor */
+@media (max-width: 600px) {
+  .bk-stage::after {
+    inset: -2px;
+    border-radius: 26px;
+    box-shadow:
+      0 0 0 1px rgba(255,107,74,0.8),
+      0 0 16px rgba(255,107,74,0.4),
+      0 0 40px rgba(255,47,58,0.25);
+  }
+}
+/* prefers-reduced-motion: suprime animação, exibe estado final estático */
+@media (prefers-reduced-motion: reduce) {
+  .bk-stage::after { display: none; }
+  .bk-confirm.bk-pressed,
+  .bk-confirm.bk-done { transition: none; }
+}
 </style>
 <script defer src="/_vercel/insights/script.js"></script>
 </head>
@@ -2200,14 +2251,17 @@ button.mock-nav-item.active .ic { opacity: 1; }
       <p class="link-ag-sub">Você posta o link na bio do Instagram. O cliente clica, escolhe o serviço e o horário, confirma com nome e telefone. Sem app, sem conta, sem você precisar responder nada.</p>
     </div>
 
-    <div class="bk-stage reveal" aria-label="Exemplo visual da página de agendamento">
+    <div class="bk-stage reveal" aria-hidden="true">
       <div class="bk-card">
         <!-- URL bar -->
         <div class="bk-url-bar">
           <div class="bk-url-dots">
             <span></span><span></span><span></span>
           </div>
-          <div class="bk-url-text">agendou.com/joaobarber</div>
+          <div class="bk-url-text">
+            <svg class="ic" aria-hidden="true"><use href="#i-shield-check"/></svg>
+            agendou.com/joaobarber
+          </div>
         </div>
 
         <!-- Booking body -->
@@ -3340,6 +3394,87 @@ document.querySelectorAll('.faq-question').forEach(function(btn) {
     this.closest('.faq-item').classList.toggle('is-open', !expanded);
   });
 });
+</script>
+
+<script>
+/* ─── BOOKING LINK ANIMATION ──────────────────────────────── */
+(function () {
+  'use strict';
+  var stage = document.querySelector('.bk-stage');
+  if (!stage) return;
+
+  var services = stage.querySelectorAll('.bk-service');
+  var allSlots = stage.querySelectorAll('.bk-slot');
+  var btn      = stage.querySelector('.bk-confirm');
+  var BTN_HTML = btn ? btn.innerHTML : '';
+
+  // Reduced motion: show static final state and stop
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    if (services[1]) services[1].classList.add('selected');
+    if (allSlots[3]) allSlots[3].classList.add('selected');
+    return;
+  }
+
+  var visible = false;
+  var running = false;
+
+  function sleep(ms) { return new Promise(function (r) { setTimeout(r, ms); }); }
+
+  function reset() {
+    stage.classList.remove('bk-glowing');
+    services.forEach(function (s) { s.classList.remove('selected'); });
+    allSlots.forEach(function (s) { s.classList.remove('selected'); });
+    if (btn) { btn.classList.remove('bk-done', 'bk-pressed'); btn.innerHTML = BTN_HTML; }
+  }
+
+  async function animate() {
+    if (running) return;
+    running = true;
+    reset();
+    await sleep(500);
+
+    // Phase 1: glow activates
+    if (!visible) { running = false; return; }
+    stage.classList.add('bk-glowing');
+    await sleep(900);
+
+    // Phase 2: select service (Corte + Barba = index 1)
+    if (!visible) { running = false; return; }
+    if (services[1]) services[1].classList.add('selected');
+    await sleep(1000);
+
+    // Phase 3: select slot 11:30 (index 3)
+    if (!visible) { running = false; return; }
+    if (allSlots[3]) allSlots[3].classList.add('selected');
+    await sleep(1000);
+
+    // Phase 4: button press → done
+    if (!visible) { running = false; return; }
+    if (btn) {
+      btn.classList.add('bk-pressed');
+      await sleep(150);
+      btn.classList.remove('bk-pressed');
+      btn.classList.add('bk-done');
+      btn.innerHTML = '<svg class="ic" aria-hidden="true"><use href="#i-circle-check"></use></svg> Agendado ✓';
+    }
+    await sleep(2200);
+
+    // Fade glow then reset
+    stage.classList.remove('bk-glowing');
+    await sleep(700);
+
+    running = false;
+    if (visible) animate();
+  }
+
+  if ('IntersectionObserver' in window) {
+    var obs = new IntersectionObserver(function (entries) {
+      visible = entries[0].isIntersecting;
+      if (visible && !running) animate();
+    }, { threshold: 0.3 });
+    obs.observe(stage);
+  }
+})();
 </script>
 </body>
 </html>
