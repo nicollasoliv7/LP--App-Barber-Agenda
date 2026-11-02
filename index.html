@@ -1279,6 +1279,9 @@ a.tag-cfg { text-decoration: none; }
   background: var(--s1); border: 1px solid var(--b1); border-radius: var(--r-lg);
   padding: 26px 22px 22px; display: flex; flex-direction: column; position: relative;
 }
+.price-card {
+  transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
+}
 .price-card--featured {
   border-color: rgba(255,107,74,0.45);
   background: linear-gradient(180deg, rgba(255,107,74,0.08), var(--s1) 45%);
@@ -1290,7 +1293,6 @@ a.tag-cfg { text-decoration: none; }
   padding: 4px 10px; border-radius: 100px; color: var(--bg);
   background: linear-gradient(90deg, var(--coral), var(--amber));
 }
-.price-badge--soft { background: var(--s3); color: var(--txt2); border: 1px solid var(--b2); }
 .price-name { font-size: 13px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--coral); margin-bottom: 6px; }
 .price-tagline { font-size: 13px; color: var(--txt3); line-height: 1.5; margin-bottom: 18px; }
 .price-value { display: flex; align-items: baseline; gap: 4px; flex-wrap: wrap; }
@@ -1304,7 +1306,6 @@ a.tag-cfg { text-decoration: none; }
   background: rgba(40,200,80,0.1); border: 1px solid rgba(40,200,80,0.2);
   border-radius: 100px; padding: 3px 10px; margin-top: 10px;
 }
-.price-save--none { visibility: hidden; }
 .price-points { margin: 18px 0 22px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
 .price-points .pf-item { font-size: 13.5px; }
 .price-card .btn-primary, .price-card .btn-ghost {
@@ -1337,6 +1338,7 @@ a.tag-cfg { text-decoration: none; }
   display: inline-flex; align-items: center; gap: 5px;
   font-size: 12px; color: var(--txt3); background: var(--s2);
   border: 1px solid var(--b1); border-radius: 100px; padding: 3px 10px; margin-top: 10px;
+  align-self: flex-start;
 }
 
 /* planos p/ clientes: status reais */
@@ -1596,7 +1598,7 @@ button.mock-nav-item.active .ic { opacity: 1; }
   /* ── hero ────────────────────────────────────── */
   #hero { padding: 116px 0 56px; }
   .eyebrow { margin-bottom: 18px; }
-  #hero h1 { font-size: clamp(36px, 9.5vw, 42px); margin-bottom: 20px; letter-spacing: -0.035em; line-height: 1.05; }
+  #hero h1 { font-size: clamp(28px, 8vw, 34px); margin-bottom: 20px; letter-spacing: -0.035em; line-height: 1.08; }
   .hero-sub { font-size: 16px; margin-bottom: 32px; }
   .hero-actions { flex-direction: column; gap: 12px; margin-bottom: 24px; }
   .hero-actions .btn-primary--lg { width: 100%; }
@@ -1677,7 +1679,6 @@ button.mock-nav-item.active .ic { opacity: 1; }
   .nav-cta { display: none; }
   .sticky-cta-note { display: none; }
 }
-.price-mini { display: none; font-size: 13px; color: var(--txt3); margin-top: 4px; }
 
 .logo-mark { flex-shrink: 0; display: block; }
 
@@ -2441,7 +2442,6 @@ button.mock-nav-item.active .ic { opacity: 1; }
         <div class="price-name">Gratuito</div>
         <p class="price-tagline">Para conhecer o sistema e organizar a agenda.</p>
         <div class="price-value"><span class="cur">R$</span><span class="amt">0</span></div>
-        <div class="price-eq"></div>
         <div class="price-free-limit">Até 15 clientes cadastrados</div>
         <div class="price-points">
           <div class="pf-item"><span class="ic-check ic-check--green"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span><span>Até <strong style="color:var(--txt)">15 clientes cadastrados</strong></span></div>
