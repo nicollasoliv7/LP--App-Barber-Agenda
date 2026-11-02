@@ -1274,7 +1274,7 @@ button.demo-row:hover { background: rgba(255,255,255,0.04); border-color: var(--
 a.tag-cfg { text-decoration: none; }
 
 /* ─── PREÇOS ──────────────────────────────────────────────────── */
-.pricing-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; align-items: stretch; padding-top: 12px; }
+.pricing-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; align-items: stretch; padding-top: 12px; max-width: 820px; margin-left: auto; margin-right: auto; }
 .price-card {
   background: var(--s1); border: 1px solid var(--b1); border-radius: var(--r-lg);
   padding: 26px 22px 22px; display: flex; flex-direction: column; position: relative;
@@ -1292,12 +1292,12 @@ a.tag-cfg { text-decoration: none; }
 }
 .price-badge--soft { background: var(--s3); color: var(--txt2); border: 1px solid var(--b2); }
 .price-name { font-size: 13px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--coral); margin-bottom: 6px; }
-.price-tagline { font-size: 13px; color: var(--txt3); line-height: 1.5; min-height: 40px; margin-bottom: 18px; }
+.price-tagline { font-size: 13px; color: var(--txt3); line-height: 1.5; margin-bottom: 18px; }
 .price-value { display: flex; align-items: baseline; gap: 4px; flex-wrap: wrap; }
 .price-value .cur { font-size: 16px; font-weight: 700; color: var(--txt2); }
 .price-value .amt { font-size: 40px; font-weight: 800; letter-spacing: -0.05em; line-height: 1.05; font-variant-numeric: tabular-nums; font-family: 'Geist Mono', monospace; }
 .price-value .per { font-size: 13px; color: var(--txt3); }
-.price-billing { font-size: 12.5px; color: var(--txt3); margin-top: 6px; line-height: 1.5; min-height: 38px; }
+.price-billing { font-size: 12.5px; color: var(--txt3); margin-top: 6px; line-height: 1.5; }
 .price-billing strong { color: var(--txt2); font-weight: 600; }
 .price-save {
   align-self: flex-start; font-size: 11.5px; font-weight: 600; color: var(--green);
@@ -1317,6 +1317,27 @@ a.tag-cfg { text-decoration: none; }
 .pricing-includes-title { font-size: 13px; font-weight: 600; color: var(--txt2); margin-bottom: 16px; }
 .includes-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px 24px; }
 .pricing-foot { text-align: center; font-size: 12.5px; color: var(--txt3); margin-top: 18px; line-height: 1.6; }
+.period-selector {
+  display: flex; background: var(--s2); border: 1px solid var(--b1);
+  border-radius: 10px; padding: 3px; gap: 2px; margin-bottom: 22px;
+}
+.period-btn {
+  flex: 1; text-align: center; padding: 7px 6px; border-radius: 7px;
+  font-size: 12.5px; font-weight: 600; color: var(--txt3);
+  background: transparent; transition: background 0.18s var(--ease), color 0.18s;
+}
+.period-btn.active { background: var(--s3); color: var(--txt); box-shadow: 0 1px 4px rgba(0,0,0,0.35); }
+.period-btn .pill {
+  display: inline-block; font-size: 10px; font-weight: 700;
+  background: rgba(74,222,128,0.14); color: var(--green);
+  border-radius: 100px; padding: 1px 6px; margin-left: 4px; vertical-align: middle;
+}
+.price-eq { font-family: 'Geist Mono', monospace; font-size: 12px; font-weight: 600; color: var(--txt2); margin-top: 3px; min-height: 18px; }
+.price-free-limit {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-size: 12px; color: var(--txt3); background: var(--s2);
+  border: 1px solid var(--b1); border-radius: 100px; padding: 3px 10px; margin-top: 10px;
+}
 
 /* planos p/ clientes: status reais */
 .recor-sub-status.inad { background: rgba(255,47,58,0.12); color: #FF6B73; }
@@ -1326,9 +1347,6 @@ a.tag-cfg { text-decoration: none; }
 .steps-wrap.steps-3::before { left: calc(16.66% + 20px); right: calc(16.66% + 20px); }
 
 /* ─── RESPONSIVO (complementa o bloco original) ───────────────── */
-@media (max-width: 1080px) {
-  .pricing-grid { grid-template-columns: 1fr 1fr; gap: 22px 14px; }
-}
 @media (max-width: 900px) {
   #demo .mockup-body { min-height: 0; }
   .mockup-sidebar {
@@ -1355,8 +1373,8 @@ a.tag-cfg { text-decoration: none; }
   #demo .mockup-topbar { justify-content: flex-end; }
   .extras-row, .includes-grid { grid-template-columns: 1fr; }
   .solve-card { padding: 4px 18px; }
-  .price-tagline, .price-billing { min-height: 0; }
-  .price-save--none { display: none; }
+  .period-btn { font-size: 11.5px; padding: 7px 4px; }
+  .period-btn .pill { display: none; }
   .hero-note { margin-top: -28px; }
 }
 
@@ -2423,9 +2441,8 @@ button.mock-nav-item.active .ic { opacity: 1; }
         <div class="price-name">Gratuito</div>
         <p class="price-tagline">Para conhecer o sistema e organizar a agenda.</p>
         <div class="price-value"><span class="cur">R$</span><span class="amt">0</span></div>
-        <p class="price-mini">Até 15 clientes cadastrados. Sem cartão.</p>
-        <p class="price-billing">Sem cobrança.</p>
-        <span class="price-save price-save--none" aria-hidden="true">—</span>
+        <div class="price-eq"></div>
+        <div class="price-free-limit">Até 15 clientes cadastrados</div>
         <div class="price-points">
           <div class="pf-item"><span class="ic-check ic-check--green"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span><span>Até <strong style="color:var(--txt)">15 clientes cadastrados</strong></span></div>
           <div class="pf-item"><span class="ic-check ic-check--green"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span>Sem cartão para começar</div>
@@ -2433,52 +2450,35 @@ button.mock-nav-item.active .ic { opacity: 1; }
         <a href="https://app-barber-agendamentos.vercel.app/cadastro" class="btn-primary" data-plano="gratis">Começar grátis</a>
       </div>
 
-      <!-- MENSAL -->
-      <div class="price-card reveal" data-card="mensal">
-        <span class="price-badge price-badge--soft">Mais flexível</span>
-        <div class="price-name">Mensal</div>
-        <p class="price-tagline">Clientes ilimitados, pague quando quiser.</p>
-        <div class="price-value"><span class="cur">R$</span><span class="amt">59,90</span><span class="per">/mês</span></div>
-        <p class="price-billing">Pagamento que libera <strong>1 mês</strong> de uso.</p>
-        <span class="price-save price-save--none" aria-hidden="true">—</span>
-        <div class="price-points">
-          <div class="pf-item"><span class="ic-check ic-check--green"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span>Clientes ilimitados — agenda, ficha e histórico para todos</div>
-          <div class="pf-item"><span class="ic-check ic-check--green"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span>Financeiro e exportação CSV de todo o período</div>
-          <div class="pf-item"><span class="ic-check ic-check--green"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span>Importe sua base de clientes atual de uma vez</div>
-        </div>
-        <a href="https://app-barber-agendamentos.vercel.app/cadastro?plano=mensal" class="btn-ghost" data-plano="mensal">Assinar o Mensal</a>
-      </div>
+      <!-- PAGO (seletor de período) -->
+      <div class="price-card price-card--featured reveal" data-card="pago" id="paid-card">
+        <span class="price-badge" id="paid-badge">Melhor economia</span>
+        <div class="price-name">Clientes ilimitados</div>
+        <p class="price-tagline">Todos os recursos. Escolha o período que preferir.</p>
 
-      <!-- TRIMESTRAL -->
-      <div class="price-card reveal" data-card="trimestral">
-        <span class="price-badge price-badge--soft">Desconto de 11%</span>
-        <div class="price-name">Trimestral</div>
-        <p class="price-tagline">Três meses por R$ 53,30/mês — R$ 19,80 a menos por trimestre.</p>
-        <div class="price-value"><span class="cur">R$</span><span class="amt">159,90</span><span class="per">/trimestre</span></div>
-        <p class="price-billing">Pagamento único que libera <strong>3 meses</strong>. Equivale a R$ 53,30 por mês.</p>
-        <span class="price-save">Economize R$ 19,80 por trimestre</span>
-        <div class="price-points">
-          <div class="pf-item"><span class="ic-check ic-check--green"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span>Clientes ilimitados — agenda, ficha e histórico para todos</div>
-          <div class="pf-item"><span class="ic-check ic-check--green"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span>Financeiro e exportação CSV de todo o período</div>
-          <div class="pf-item"><span class="ic-check ic-check--green"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span>Importe sua base de clientes atual de uma vez</div>
+        <div class="period-selector" role="group" aria-label="Período de assinatura">
+          <button class="period-btn" data-period="mensal" aria-pressed="false" type="button">Mensal</button>
+          <button class="period-btn" data-period="trimestral" aria-pressed="false" type="button">Trimestral <span class="pill" aria-hidden="true">−11%</span></button>
+          <button class="period-btn active" data-period="anual" aria-pressed="true" type="button">Anual <span class="pill" aria-hidden="true">−16%</span></button>
         </div>
-        <a href="https://app-barber-agendamentos.vercel.app/cadastro?plano=trimestral" class="btn-ghost" data-plano="trimestral">Assinar o Trimestral</a>
-      </div>
 
-      <!-- ANUAL -->
-      <div class="price-card price-card--featured reveal" data-card="anual">
-        <span class="price-badge">Melhor economia</span>
-        <div class="price-name">Anual</div>
-        <p class="price-tagline">Dois meses de graça comparado ao Mensal.</p>
-        <div class="price-value"><span class="cur">R$</span><span class="amt">599,90</span><span class="per">/ano</span></div>
-        <p class="price-billing">Pagamento único que libera <strong>12 meses</strong>. Equivale a cerca de R$ 49,99 por mês.</p>
-        <span class="price-save">Economize R$ 118,90 por ano (cerca de 16%)</span>
+        <div class="price-value">
+          <span class="cur">R$</span>
+          <span class="amt" id="paid-amt">599,90</span>
+          <span class="per" id="paid-per">/ano</span>
+        </div>
+        <p class="price-billing" id="paid-billing">Pagamento único que libera <strong>12 meses</strong>.</p>
+        <p class="price-eq" id="paid-eq">≈ R$ 49,99/mês</p>
+        <span class="price-save" id="paid-save">Economize R$ 118,90 por ano (cerca de 16%)</span>
+
         <div class="price-points">
           <div class="pf-item"><span class="ic-check ic-check--green"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span>Clientes ilimitados — agenda, ficha e histórico para todos</div>
           <div class="pf-item"><span class="ic-check ic-check--green"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span>Financeiro e exportação CSV de todo o período</div>
           <div class="pf-item"><span class="ic-check ic-check--green"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span>Importe sua base de clientes atual de uma vez</div>
         </div>
-        <a href="https://app-barber-agendamentos.vercel.app/cadastro?plano=anual" class="btn-primary" data-plano="anual">Assinar o Anual</a>
+
+        <a href="https://app-barber-agendamentos.vercel.app/cadastro?plano=anual"
+           class="btn-primary" id="paid-cta" data-plano="anual">Assinar o Anual</a>
       </div>
     </div>
 
@@ -3374,6 +3374,49 @@ document.querySelectorAll('.faq-question').forEach(function(btn) {
     obs.observe(stage);
   }
 })();
+</script>
+<script>
+/* ─── SELETOR DE PERÍODO (preços) ─────────────────────────────── */
+(function () {
+  var plans = {
+    mensal:     { amt:'59,90',  per:'/mês',       billing:'Pagamento que libera <strong>1 mês</strong> de uso.', eq:'',                    save:'',                                        badge:'',                badgeVisible:false, btnLabel:'Assinar o Mensal',      btnClass:'btn-ghost',   href:'https://app-barber-agendamentos.vercel.app/cadastro?plano=mensal',      featured:false },
+    trimestral: { amt:'159,90', per:'/trimestre', billing:'Pagamento único que libera <strong>3 meses</strong>.', eq:'≈ R$ 53,30/mês',     save:'Economize R$ 19,80 por trimestre',        badge:'Desconto de 11%', badgeVisible:true,  btnLabel:'Assinar o Trimestral', btnClass:'btn-ghost',   href:'https://app-barber-agendamentos.vercel.app/cadastro?plano=trimestral', featured:true  },
+    anual:      { amt:'599,90', per:'/ano',       billing:'Pagamento único que libera <strong>12 meses</strong>.', eq:'≈ R$ 49,99/mês',   save:'Economize R$ 118,90 por ano (cerca de 16%)', badge:'Melhor economia', badgeVisible:true,  btnLabel:'Assinar o Anual',      btnClass:'btn-primary', href:'https://app-barber-agendamentos.vercel.app/cadastro?plano=anual',      featured:true  },
+  };
+  var card    = document.getElementById('paid-card');
+  var badge   = document.getElementById('paid-badge');
+  var amt     = document.getElementById('paid-amt');
+  var per     = document.getElementById('paid-per');
+  var billing = document.getElementById('paid-billing');
+  var eq      = document.getElementById('paid-eq');
+  var save    = document.getElementById('paid-save');
+  var cta     = document.getElementById('paid-cta');
+  if (!card) return;
+  var btns = card.querySelectorAll('.period-btn');
+  function activate(period) {
+    var p = plans[period];
+    btns.forEach(function (b) {
+      var active = b.dataset.period === period;
+      b.classList.toggle('active', active);
+      b.setAttribute('aria-pressed', String(active));
+    });
+    amt.textContent   = p.amt;
+    per.textContent   = p.per;
+    billing.innerHTML = p.billing;
+    eq.textContent    = p.eq;
+    save.textContent  = p.save;
+    badge.textContent = p.badge;
+    badge.hidden      = !p.badgeVisible;
+    cta.textContent   = p.btnLabel;
+    cta.className     = p.btnClass;
+    cta.href          = p.href;
+    cta.dataset.plano = period;
+    card.classList.toggle('price-card--featured', p.featured);
+  }
+  btns.forEach(function (b) {
+    b.addEventListener('click', function () { activate(b.dataset.period); });
+  });
+}());
 </script>
 </body>
 </html>
