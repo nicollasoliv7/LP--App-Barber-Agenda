@@ -20,8 +20,7 @@
 <link rel="preconnect" href="https://app-barber-agendamentos.vercel.app" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-<link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@600;700;800&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Geist+Mono:wght@600;700;800&display=swap" rel="stylesheet" />
 <style>
 /* ─── TOKENS ─────────────────────────────────────────────────── */
 :root {
@@ -45,6 +44,7 @@
   --ease:     cubic-bezier(0.22, 1, 0.36, 1);
   --green:    #4ADE80;
   --plan:     #818CF8;
+  --txt-on-light: #1A1B1D;
 }
 
 /* ─── RESET ───────────────────────────────────────────────────── */
@@ -68,7 +68,7 @@ html::-webkit-scrollbar-thumb:hover { background: var(--b2); }
 a { text-decoration: none; color: inherit; }
 img { max-width: 100%; display: block; }
 ul { list-style: none; }
-button { cursor: pointer; font-family: inherit; border: none; outline: none; }
+button { cursor: pointer; font-family: inherit; border: none; outline: 2px solid transparent; }
 
 /* ─── AURORA ──────────────────────────────────────────────────── */
 .aurora-wrap {
@@ -231,7 +231,7 @@ section { position: relative; z-index: 2; }
 }
 .btn-primary {
   background: #E6E6E6;
-  color: #1A1B1D;
+  color: var(--txt-on-light);
   font-size: 13.5px;
   font-weight: 600;
   padding: 8px 18px;
@@ -419,7 +419,7 @@ h1 {
   display: flex;
   align-items: center;
   gap: 9px;
-  padding: 8px 10px;
+  padding: 10px 10px;
   border-radius: 9px;
   font-size: 12.5px;
   color: var(--txt3);
@@ -547,10 +547,6 @@ h1 {
 }
 
 /* ─── SECTION COMMON ──────────────────────────────────────────── */
-.section-eyebrow {
-  text-align: center;
-  margin-bottom: 16px;
-}
 .section-title {
   font-size: clamp(28px, 3.5vw, 42px);
   font-weight: 700;
@@ -813,7 +809,7 @@ h1 {
 }
 .recor-plan-name { font-size: 15px; font-weight: 700; margin-bottom: 3px; }
 .recor-plan-price { font-size: 24px; font-weight: 800; letter-spacing: -0.05em; font-family: 'Geist Mono', monospace; }
-.recor-plan-price span { font-size: 13px; font-weight: 400; color: var(--txt3); }
+.recor-plan-price span { font-size: 13px; font-weight: 400; color: var(--txt3); letter-spacing: -0.02em; }
 .recor-assinantes { font-size: 11px; color: var(--txt3); }
 .recor-assinantes strong { color: var(--amber); font-size: 13px; }
 .recor-progress {
@@ -1271,7 +1267,8 @@ button.mock-nav-item.active { background: rgba(255,107,74,0.12); color: var(--co
 .demo-chip {
   font-size: 11.5px; font-weight: 500; color: var(--txt2);
   background: rgba(255,255,255,0.04); border: 1px solid var(--b1);
-  border-radius: 100px; padding: 5px 12px;
+  border-radius: 100px; padding: 8px 14px; min-height: 36px;
+  display: inline-flex; align-items: center;
   transition: border-color .15s, color .15s, background .15s;
 }
 .demo-chip:hover { border-color: var(--b2); color: var(--txt); }
@@ -1543,7 +1540,7 @@ body { font-size: 16px; }
 .nav-mobile-overlay a { min-height: 48px; display: flex; align-items: center; }
 .nav-mobile-overlay .menu-actions { display: flex; flex-direction: column; gap: 10px; width: min(320px, 100% - 48px); margin-top: 20px; }
 .nav-mobile-overlay .menu-actions a { justify-content: center; padding: 14px 20px; font-size: 16px; border-radius: 12px; }
-.nav-mobile-overlay .menu-actions .btn-primary { color: #1A1B1D; }
+.nav-mobile-overlay .menu-actions .btn-primary { color: var(--txt-on-light); }
 body.menu-open { overflow: hidden; }
 
 /* hero */
@@ -2025,7 +2022,7 @@ button.mock-nav-item.active .ic { opacity: 1; }
   padding: 13px;
   border-radius: 12px;
   background: #E6E6E6;
-  color: #1A1B1D;
+  color: var(--txt-on-light);
   font-family: inherit;
   font-size: 14.5px;
   font-weight: 700;
