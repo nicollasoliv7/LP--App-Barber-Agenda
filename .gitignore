@@ -4,8 +4,5 @@
 # Referências / prints de inspiração (não versionar)
 referencias/
 
-# Impeccable — arquivos locais / efêmeros (não versionar)
-.impeccable/config.local.json
-.impeccable/hook.*.json
-.impeccable/*.png
-.impeccable/live/server.json
+# Impeccable — pasta interna completa (não versionar)
+.impeccable/
