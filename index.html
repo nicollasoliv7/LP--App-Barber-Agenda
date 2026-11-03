@@ -2064,62 +2064,12 @@ button.mock-nav-item.active .ic { opacity: 1; }
       <p class="section-sub">"Te passo o Pix depois." Entre um cliente e outro, ninguém lembra quem pagou, quem deve e quem sumiu.</p>
     </div>
 
-    <div class="fin-grid">
-      <div class="fin-dores reveal">
-        <div class="pain-list">
-          <div class="pain-item"><span class="ic-x"><svg class="ic" aria-hidden="true"><use href="#i-x"/></svg></span><span><b>Agenda no WhatsApp e no caderno</b>Você para o corte para responder "tem horário hoje?" e ainda arrisca dois clientes no mesmo horário.</span></div>
-          <div class="pain-item"><span class="ic-x"><svg class="ic" aria-hidden="true"><use href="#i-x"/></svg></span><span><b>Dinheiro e fiado sem registro</b>Pix, dinheiro e cartão misturados. Ninguém sabe quanto cada um deve, nem desde quando.</span></div>
-          <div class="pain-item"><span class="ic-x"><svg class="ic" aria-hidden="true"><use href="#i-x"/></svg></span><span><b>Cliente que some sem você notar</b>Sem histórico, você não vê quem não volta há dois meses.</span></div>
-        </div>
-      </div>
-
-      <div class="solve-card fin-solve reveal">
-        <div class="solve-head">Com o Agendou</div>
-        <div class="solve-item">
-          <span class="ic-box"><svg class="ic" aria-hidden="true"><use href="#i-hand-coins"/></svg></span>
-          <div>
-            <div class="solve-title">"A receber" com nome e valor</div>
-            <div class="solve-desc">Atendimentos sem pagamento e mensalidades em aberto aparecem somados, cliente por cliente.</div>
-          </div>
-        </div>
-        <div class="solve-item">
-          <span class="ic-box"><svg class="ic" aria-hidden="true"><use href="#i-circle-check"/></svg></span>
-          <div>
-            <div class="solve-title">Registre o pagamento em um toque</div>
-            <div class="solve-desc">Pix, dinheiro ou cartão no balcão: recebido, a receber, ticket médio e comissões se atualizam.</div>
-          </div>
-        </div>
-        <div class="solve-item">
-          <span class="ic-box"><svg class="ic" aria-hidden="true"><use href="#i-bell-ring"/></svg></span>
-          <div>
-            <div class="solve-title">Mensalidade atrasada aparece sozinha</div>
-            <div class="solve-desc">Vencida há mais de 5 dias, a assinatura vira "inadimplente". Você vê quem cobrar antes do próximo corte.</div>
-          </div>
-        </div>
-        <div class="solve-item">
-          <span class="ic-box"><svg class="ic" aria-hidden="true"><use href="#i-shield-check"/></svg></span>
-          <div>
-            <div class="solve-title">Sem cobrar duas vezes</div>
-            <div class="solve-desc">Corte coberto pelo plano entra como coberto. Se houver adicional, cobra só a diferença.</div>
-          </div>
-        </div>
-        <div class="solve-item">
-          <span class="ic-box"><svg class="ic" aria-hidden="true"><use href="#i-message-circle"/></svg></span>
-          <div>
-            <div class="solve-title">Menos mensagem manual <a href="#faq" class="tag-cfg">Requer configuração</a></div>
-            <div class="solve-desc">Com o número da barbearia na API oficial do WhatsApp, confirmação e lembrete saem sozinhos. Sem conexão, um toque abre o WhatsApp com a mensagem pronta.</div>
-          </div>
-        </div>
-        <div class="optional-note" style="margin:4px 0 20px">
-          <svg class="ic" aria-hidden="true"><use href="#i-info"/></svg>
-          <span><strong style="color:var(--txt2);">Sendo transparente:</strong> o Agendou não faz cobrança automática no cartão nem débito recorrente de mensalidades. Você registra os recebimentos e o sistema organiza o resto.</span>
-        </div>
-      </div>
-
-      <div class="fin-mini reveal">
-        <div class="feat-ui receber-mini" id="cob-receber" aria-label="Exemplo do quadro A receber, com dados fictícios"></div>
-      </div>
+    <div class="pain-list reveal" style="max-width:680px;margin:0 auto">
+      <div class="pain-item"><span class="ic-x"><svg class="ic" aria-hidden="true"><use href="#i-x"/></svg></span><span><b>Agenda no WhatsApp e no caderno</b>Você para o corte para responder "tem horário hoje?" e ainda arrisca dois clientes no mesmo horário.</span></div>
+      <div class="pain-item"><span class="ic-x"><svg class="ic" aria-hidden="true"><use href="#i-x"/></svg></span><span><b>Dinheiro e fiado sem registro</b>Pix, dinheiro e cartão misturados. Ninguém sabe quanto cada um deve, nem desde quando.</span></div>
+      <div class="pain-item"><span class="ic-x"><svg class="ic" aria-hidden="true"><use href="#i-x"/></svg></span><span><b>Cliente que some sem você notar</b>Sem histórico, você não vê quem não volta há dois meses.</span></div>
     </div>
+
   </div>
 </section>
 
@@ -2239,41 +2189,6 @@ button.mock-nav-item.active .ic { opacity: 1; }
   </div>
 </section>
 
-<!-- DEMONSTRAÇÃO INTERATIVA (carregada quando chega perto da tela) -->
-<section id="demo" aria-labelledby="demo-title">
-  <div class="container container--wide">
-    <div class="demo-head reveal">
-      <h2 id="demo-title" class="section-title">Explore o painel antes de criar sua conta</h2>
-      <p class="demo-hint">Troque de aba, mude o período, abra um horário ou a ficha de um cliente. Dados fictícios: nada é gravado.</p>
-    </div>
-    <div class="mockup-frame reveal" id="demo-app">
-      <div class="mockup-topbar">
-        <div class="dot-red"></div>
-        <div class="dot-yellow"></div>
-        <div class="dot-green"></div>
-        <div class="mockup-url">Barbearia Exemplo · painel</div>
-        <span class="demo-flag">Demonstração · dados fictícios</span>
-      </div>
-      <div class="mockup-body">
-        <div class="mockup-sidebar" role="tablist" aria-label="Seções da demonstração">
-          <div class="mockup-logo-sm"><svg class="ic" aria-hidden="true"><use href="#i-scissors"/></svg> Agendou</div>
-          <button class="mock-nav-item active" role="tab" aria-selected="true" aria-controls="demo-view" data-view="geral"><svg class="ic" aria-hidden="true"><use href="#i-layout-grid"/></svg> Visão geral</button>
-          <button class="mock-nav-item" role="tab" aria-selected="false" aria-controls="demo-view" data-view="agenda" tabindex="-1"><svg class="ic" aria-hidden="true"><use href="#i-calendar"/></svg> Agenda</button>
-          <button class="mock-nav-item" role="tab" aria-selected="false" aria-controls="demo-view" data-view="clientes" tabindex="-1"><svg class="ic" aria-hidden="true"><use href="#i-users"/></svg> Clientes</button>
-          <button class="mock-nav-item" role="tab" aria-selected="false" aria-controls="demo-view" data-view="financeiro" tabindex="-1"><svg class="ic" aria-hidden="true"><use href="#i-chart-line"/></svg> Financeiro</button>
-          <div class="mock-divider"></div>
-          <button class="mock-nav-item" role="tab" aria-selected="false" aria-controls="demo-view" data-view="planos" tabindex="-1"><svg class="ic" aria-hidden="true"><use href="#i-repeat"/></svg> Planos de clientes</button>
-        </div>
-        <div class="mockup-content" id="demo-view" role="tabpanel" aria-label="Painel de demonstração">
-          <div class="demo-loading">Carregando a demonstração…</div>
-          <noscript><style>.demo-loading { display: none; }</style><p class="demo-empty">Ative o JavaScript para explorar a demonstração.</p></noscript>
-        </div>
-      </div>
-      <div class="demo-toast" id="demo-toast" role="status" aria-live="polite"></div>
-    </div>
-  </div>
-</section>
-
 <!-- RECURSOS -->
 <section id="features">
   <div class="container">
@@ -2333,6 +2248,22 @@ button.mock-nav-item.active .ic { opacity: 1; }
           </div>
         </div>
       </div>
+
+      <div class="feat-card reveal">
+        <button type="button" class="pillar-head" aria-expanded="false" aria-controls="pilar-4">
+          <span class="ic-box"><svg class="ic" aria-hidden="true"><use href="#i-repeat"/></svg></span>
+          <span style="flex:1"><span class="feat-tag" style="display:block">Mensalidades</span><span class="feat-title" style="display:block">Renda previsível todo mês</span></span>
+          <span class="chev"><svg class="ic" aria-hidden="true"><use href="#i-chevron-down"/></svg></span>
+        </button>
+        <div class="pillar-body" id="pilar-4">
+          <div class="feat-desc">Módulo opcional: monte planos de assinatura para seus clientes. Não usa? Nada muda no seu dia a dia.</div>
+          <div class="benefit-list">
+            <div class="benefit-item"><span class="ic-check ic-check--amber"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span>Plano mensal, trimestral, semestral ou anual, com limite de usos</div>
+            <div class="benefit-item"><span class="ic-check ic-check--amber"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span>O uso é descontado sozinho quando o cliente agenda</div>
+            <div class="benefit-item"><span class="ic-check ic-check--amber"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span>Status de cada assinante: ativa, pendente ou inadimplente</div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <div class="extras-row">
@@ -2355,53 +2286,6 @@ button.mock-nav-item.active .ic { opacity: 1; }
         <span class="ic-box"><svg class="ic" aria-hidden="true"><use href="#i-smartphone"/></svg></span>
         <div class="bcm-title">Celular e computador</div>
         <div class="bcm-desc">Roda no navegador, sem instalar nada.</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- PLANOS PARA CLIENTES (opcional) -->
-<section id="recorrencia">
-  <div class="container">
-    <div class="recorrencia-wrap">
-      <div class="recorrencia-content reveal">
-        <div class="recorrencia-tag"><svg class="ic" aria-hidden="true"><use href="#i-repeat"/></svg> Módulo opcional</div>
-        <h2 class="recorrencia-title">Venda mensalidades e tenha receita mais previsível</h2>
-        <p class="recorrencia-desc">Trabalha com clube de assinatura? Monte os planos no Agendou. Não trabalha? Nada muda no seu dia a dia.</p>
-        <div class="benefit-list">
-          <div class="benefit-item"><span class="ic-check ic-check--amber"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span>Plano mensal, trimestral, semestral ou anual, com limite de usos</div>
-          <div class="benefit-item"><span class="ic-check ic-check--amber"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span>O uso é descontado sozinho quando o cliente agenda</div>
-          <div class="benefit-item"><span class="ic-check ic-check--amber"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span>Status de cada assinante: ativa, pendente ou inadimplente</div>
-        </div>
-        <div class="optional-note">
-          <svg class="ic" aria-hidden="true"><use href="#i-info"/></svg>
-          <span><strong style="color:var(--txt2);">Você decide.</strong> A mensalidade é registrada por você: não há cobrança automática no cartão do cliente.</span>
-        </div>
-        <button type="button" class="btn-ghost btn-ghost--lg" style="margin-top:20px" data-demo-goto="planos">Ver planos na demonstração</button>
-      </div>
-      <div class="recorrencia-ui reveal" aria-label="Exemplo com dados fictícios">
-        <div class="recor-ui-header">
-          <span class="recor-ui-title">Planos de clientes</span>
-          <span class="demo-flag">Exemplo fictício</span>
-        </div>
-        <div class="recor-plan-card">
-          <div class="recor-plan-top">
-            <div>
-              <div class="recor-plan-name">Clube do Corte</div>
-              <div class="recor-plan-price">R$ 120 <span>/ mês · 4 cortes por ciclo</span></div>
-            </div>
-            <div>
-              <div class="recor-assinantes">Assinantes</div>
-              <div class="recor-assinantes"><strong>4</strong></div>
-            </div>
-          </div>
-          <div class="recor-subs-list">
-            <div class="recor-sub-row"><div class="recor-sub-av">PA</div><span class="recor-sub-name">Pedro A.</span><span class="recor-sub-uso" data-uso-cli="3">3/4</span><span class="recor-sub-status ativo">Ativa</span></div>
-            <div class="recor-sub-row"><div class="recor-sub-av">FM</div><span class="recor-sub-name">Felipe M.</span><span class="recor-sub-uso" data-uso-cli="5">2/4</span><span class="recor-sub-status ativo">Ativa</span></div>
-            <div class="recor-sub-row"><div class="recor-sub-av">GO</div><span class="recor-sub-name">Gabriel O.</span><span class="recor-sub-uso" data-uso-cli="6">0/4</span><span class="recor-sub-status pend">Pendente</span></div>
-            <div class="recor-sub-row"><div class="recor-sub-av">AC</div><span class="recor-sub-name">André C.</span><span class="recor-sub-uso" data-uso-cli="8">—</span><span class="recor-sub-status inad">Inadimplente</span></div>
-          </div>
-        </div>
       </div>
     </div>
   </div>
@@ -2492,6 +2376,41 @@ button.mock-nav-item.active .ic { opacity: 1; }
   </div>
 </section>
 
+<!-- DEMONSTRAÇÃO INTERATIVA (carregada quando chega perto da tela) -->
+<section id="demo" aria-labelledby="demo-title">
+  <div class="container container--wide">
+    <div class="demo-head reveal">
+      <h2 id="demo-title" class="section-title">Explore o painel antes de criar sua conta</h2>
+      <p class="demo-hint">Troque de aba, mude o período, abra um horário ou a ficha de um cliente. Dados fictícios: nada é gravado.</p>
+    </div>
+    <div class="mockup-frame reveal" id="demo-app">
+      <div class="mockup-topbar">
+        <div class="dot-red"></div>
+        <div class="dot-yellow"></div>
+        <div class="dot-green"></div>
+        <div class="mockup-url">Barbearia Exemplo · painel</div>
+        <span class="demo-flag">Demonstração · dados fictícios</span>
+      </div>
+      <div class="mockup-body">
+        <div class="mockup-sidebar" role="tablist" aria-label="Seções da demonstração">
+          <div class="mockup-logo-sm"><svg class="ic" aria-hidden="true"><use href="#i-scissors"/></svg> Agendou</div>
+          <button class="mock-nav-item active" role="tab" aria-selected="true" aria-controls="demo-view" data-view="geral"><svg class="ic" aria-hidden="true"><use href="#i-layout-grid"/></svg> Visão geral</button>
+          <button class="mock-nav-item" role="tab" aria-selected="false" aria-controls="demo-view" data-view="agenda" tabindex="-1"><svg class="ic" aria-hidden="true"><use href="#i-calendar"/></svg> Agenda</button>
+          <button class="mock-nav-item" role="tab" aria-selected="false" aria-controls="demo-view" data-view="clientes" tabindex="-1"><svg class="ic" aria-hidden="true"><use href="#i-users"/></svg> Clientes</button>
+          <button class="mock-nav-item" role="tab" aria-selected="false" aria-controls="demo-view" data-view="financeiro" tabindex="-1"><svg class="ic" aria-hidden="true"><use href="#i-chart-line"/></svg> Financeiro</button>
+          <div class="mock-divider"></div>
+          <button class="mock-nav-item" role="tab" aria-selected="false" aria-controls="demo-view" data-view="planos" tabindex="-1"><svg class="ic" aria-hidden="true"><use href="#i-repeat"/></svg> Planos de clientes</button>
+        </div>
+        <div class="mockup-content" id="demo-view" role="tabpanel" aria-label="Painel de demonstração">
+          <div class="demo-loading">Carregando a demonstração…</div>
+          <noscript><style>.demo-loading { display: none; }</style><p class="demo-empty">Ative o JavaScript para explorar a demonstração.</p></noscript>
+        </div>
+      </div>
+      <div class="demo-toast" id="demo-toast" role="status" aria-live="polite"></div>
+    </div>
+  </div>
+</section>
+
 <!-- FAQ -->
 <section id="faq">
   <div class="container">
@@ -2567,7 +2486,7 @@ button.mock-nav-item.active .ic { opacity: 1; }
           <a href="#demo">Demonstração</a>
           <a href="#financeiro">Cobranças</a>
           <a href="#features">Recursos</a>
-          <a href="#recorrencia">Planos de clientes</a>
+          <a href="#features">Mensalidades</a>
           <a href="#planos">Preços</a>
         </div>
       </div>
